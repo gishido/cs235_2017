@@ -30,7 +30,7 @@ void testExtra();
 #define TEST2   // for testFill()
 #define TEST3   // for testIterate()
 #define TEST4   // for testCopy()
-//#define TEST5   // for testExtra()
+#define TEST5   // for testExtra()
 
 /**********************************************************************
  * MAIN
