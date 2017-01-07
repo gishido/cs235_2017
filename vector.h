@@ -9,6 +9,7 @@
 #define VECTOR_H
 
 #include <cassert> //for asserts
+#include <iostream>
 
 //forward declaration for VectorIterator
 template <class T>
@@ -32,8 +33,15 @@ public:
    Vector(int capacity) throw (const char *);
    
    // destructor : free everything
-   ~Vector()        {                                  }
-   
+   ~Vector()        {if (theCapacity) delete [] data;  }
+
+   //assignment operator
+   Vector<T>& operator= (const Vector<T> &rhs) throw (const char *);
+
+   //bracket [] operator
+   T& operator [](int index) throw (const char *);
+   const T& operator [](int index) const throw (const char *);
+
    // is the container currently empty
    bool empty() const  { return numItems == 0;         }
 
@@ -48,6 +56,7 @@ public:
 
    // add an item to the container
    void insert(const T & t) throw (const char *);
+   void push_back(const T & t) throw (const char *);
 
    // return an iterator to the beginning of the list
    VectorIterator <T> begin() { return VectorIterator<T>(data); }
@@ -190,6 +199,74 @@ Vector <T> :: Vector(int theCapacity) throw (const char *)
 }
 
 /***************************************************
+ * Vector :: operator=
+ **************************************************/
+ template <class T>
+ Vector <T>& Vector<T> :: operator=(const Vector<T> &rhs) throw (const char *)
+ {
+     assert(rhs.theCapacity >= 0);
+
+     //if there's nothing to do, do nothing
+     if (rhs.theCapacity == 0)
+     {
+         this->theCapacity = this->numItems = 0;
+         this->data = NULL;
+
+         return *this;
+     }
+
+     //attempt to allocate
+     try
+     {
+         this->data = new T[rhs.theCapacity];
+     }
+     catch (std::bad_alloc)
+     {
+         throw "ERROR: unable to allocate buffer";
+     }
+
+     //copy size and capacity
+     assert(rhs.numItems >= 0 && rhs.numItems <= rhs.theCapacity);
+     this->theCapacity = rhs.theCapacity;
+     this->numItems = rhs.numItems;
+
+     //copy items
+     for (int i = 0; i < this->numItems; i++)
+        this->data[i] = rhs.data[i];
+
+    //filling remaining array with default value of T
+    for (int i = this->numItems; i < this->theCapacity; i++)
+        this->data[i] = T();
+
+    return *this;
+ }
+
+ /***************************************************
+ * Vector :: operator []
+ **************************************************/
+ template <class T>
+ T& Vector<T> :: operator [](int index) throw (const char *)
+ {
+     if (index < 0 || index > numItems)
+     {
+         throw "ERROR: index out of bounds";
+     }
+
+     return data[index];
+ }
+
+ template <class T>
+ const T& Vector<T> :: operator [](int index) const throw (const char *)
+ {
+     if (index < 0 || index > numItems)
+     {
+         throw "ERROR: index out of bounds";
+     }
+
+     return data[index];
+ }
+
+/***************************************************
  * Vector :: INSERT
  * Insert an item on the end of the container
  **************************************************/
@@ -202,6 +279,41 @@ void Vector <T> :: insert(const T & t) throw (const char *)
    
    // add an item to the end
    data[numItems++] = t;
+}
+
+/***************************************************
+ * Vector :: PUSH_BACK
+ * Extends the array size prior to an insert
+ **************************************************/
+template <class T>
+void Vector<T> :: push_back(const T & t) throw (const char *)
+{
+    //create a new, temp empty array
+    T* moreData;
+
+    if (numItems >= theCapacity)
+    {
+        if (theCapacity == 0)
+        {
+            //initialize size to at least 1
+            theCapacity = 1;
+        }
+        else
+        {
+            //double size
+            theCapacity *= 2;
+        }
+
+        moreData = new T[theCapacity];
+        //copy existing items to the new array
+        for (int i = 0; i < numItems; ++i)
+            moreData[i] = data[i];
+
+        delete [] data;
+        data = moreData;
+    }
+
+    insert(t);
 }
 
 #endif //VECTOR_H

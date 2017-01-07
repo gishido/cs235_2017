@@ -27,7 +27,7 @@ void testExtra();
 // I suggest first commenting out all of these tests, then try to use only
 // TEST1.  Then, when TEST1 works, try TEST2 and so on.
 #define TEST1   // for testSimple()
-//#define TEST2   // for testFill()
+#define TEST2   // for testFill()
 //#define TEST3   // for testIterate()
 //#define TEST4   // for testCopy()
 //#define TEST5   // for testExtra()
