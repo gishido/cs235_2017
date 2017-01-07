@@ -1,6 +1,8 @@
 /***********************************************************************
 * Header:
 *    vector.h header file
+* Author:
+*    Adam Shumway
 * Summary: 
 *    Vector Template Class Header File
 ************************************************************************/

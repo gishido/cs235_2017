@@ -7,7 +7,7 @@
 # Summary:
 #     Week 01, Vector Makefile
 # Time:
-#     <how long did it take to complete this program?>
+#     This took around 6 hours to complete
 ###############################################################
 ###############################################################
 # Makefile variables for windows, mac, or linux
@@ -17,7 +17,6 @@ ifeq ($(OS),Windows_NT)
     RM = del /f
     PROGRAM = a.exe
     P_EXT = .exe
-    #FixPath = $(subst /,\,$1)
 else
     ifeq ($(shell uname), Linux)
         #Linux stuff
@@ -27,7 +26,6 @@ else
         POSITIONTEST = positionText.out
         MOVETEST = moveTest.out
         TAR = tar -cf week01.tar *.h *.cpp makefile
-        #FixPath = $1
     endif
     ifeq ($(shell uname),Darwin)
         #Mac stuff
