@@ -1,6 +1,6 @@
 /***********************************************************************
 * Program:
-*    Week 03, Stack
+*    Week 02, Stack
 *    Brother Helfrich, CS 235
 * Author:
 *    Br. Helfrich
@@ -28,9 +28,9 @@ void testErrors();
 // I suggest first commenting out all of these tests, then try to use only
 // TEST1.  Then, when TEST1 works, try TEST2 and so on.
 #define TEST1   // for testSimple()
-#define TEST2   // for testPush()
-#define TEST3   // for testPop()
-#define TEST4   // for testErrors()
+//#define TEST2   // for testPush()
+//#define TEST3   // for testPop()
+//#define TEST4   // for testErrors()
 
 /**********************************************************************
  * MAIN

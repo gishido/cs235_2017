@@ -4,8 +4,8 @@
 * Summary:
 *    This will contain just the prototype for the convertInfixToPostfix()
 *    function
-* Author
-*    <your names here>
+* Authors
+*    Adam Shumway, Jenaca Willans
 ************************************************************************/
 
 #ifndef INFIX_H

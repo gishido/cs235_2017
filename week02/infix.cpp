@@ -3,7 +3,7 @@
  *    Week 02, Stack
  *    Brother Helfrich, CS 235
  * Author:
- *    <your name here>
+ *    Adam Shumway, Jenaca Willans
  * Summary:
  *    This program will implement the testInfixToPostfix()
  *    and testInfixToAssembly() functions

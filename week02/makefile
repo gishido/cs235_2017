@@ -1,21 +1,49 @@
 ###############################################################
 # Program:
 #     Week 02, STACK
-#     Brother XXXX, CS235
+#     Brother JonesL, CS235
 # Author:
-#     <your name here>
+#     Adam Shumway, Jenaca Willans
 # Summary:
-#     <put a description here>
+#     Week 02, Stack Makefile
 # Time:
 #     <how long did it take to complete this program>?
 ###############################################################
+###############################################################
+# Makefile variables for windows, mac, or linux
+###############################################################
+ifeq ($(OS),Windows_NT)
+    #Windows stuff
+    RM = del /f
+    PROGRAM = a.exe
+    P_EXT = .exe
+else
+    ifeq ($(shell uname), Linux)
+        #Linux stuff
+        RM = rm -f
+        PROGRAM = a.out
+        P_EXT = .out
+        POSITIONTEST = positionText.out
+        MOVETEST = moveTest.out
+        TAR = tar -cf week02.tar *.h *.cpp makefile
+    endif
+    ifeq ($(shell uname),Darwin)
+        #Mac stuff
+        RM = rm -f
+        PROGRAM = a.out
+        P_EXT = .out
+        POSITIONTEST = positionText.out
+        MOVETEST = moveTest.out
+        TAR = tar -cf week02.tar *.h *.cpp makefile
+    endif
+endif
 
 ##############################################################
 # The main rule
 ##############################################################
-a.out: stack.h week02.o infix.o 
-	g++ -o a.out week02.o infix.o 
-	tar -cf week02.tar *.h *.cpp makefile
+$(PROGRAM): stack.h week02.o infix.o 
+	g++ -o $(PROGRAM) week02.o infix.o 
+	$(TAR)
 
 ##############################################################
 # The individual components
@@ -28,3 +56,8 @@ week02.o: stack.h infix.h week02.cpp
 infix.o: stack.h infix.h infix.cpp
 	g++ -c infix.cpp
 
+###############################################################
+# General rules
+###############################################################
+clean :
+	$(RM) *$(P_EXT) *.o *.out *.tar *~
