@@ -23,6 +23,87 @@ string convertInfixToPostfix(const string & infix)
 {
    string postfix;
 
+   /**********************************
+   Implement code for infix to postfix
+   **********************************/
+   char token,
+         topToken;
+   Stack<char> myStack;
+   const string BLANK = " ";
+   for (int i = 0; i < infix.length(); i++)
+   {
+      token = infix[i];
+      switch(token)
+      {
+         case ' ' : break;    //do nothing skip blanks
+         case '(' : myStack.push(token);
+                    break;
+         case ')' : for (;;)
+            {
+               assert (!myStack.empty());
+               topToken = myStack.top();
+               myStack.pop();
+               if (topToken == '(') break;
+               postfix.append(BLANK + topToken);
+            }
+            break;
+         case '+' : case '-' :
+         case '^' : case '*' : case '/' : case '%':
+                    for (;;)
+                    {
+                        if (myStack.empty() ||
+                           myStack.top() == '(' ||
+                           ((token == '^' || token == '*' || token == '/' || token == '%') &&
+                           (myStack.top() == '*' || myStack.top() == '+' || myStack.top() == '-')))
+                        {
+                           myStack.push(token);
+                           break;
+                        }
+                        else
+                        {
+                           topToken = myStack.top();
+                           myStack.pop();
+                           postfix.append(BLANK + topToken);
+                        }
+                    }
+                    break;
+         default : //operand
+                  // postfix.append(BLANK + token);
+                  if ( isdigit(infix[i-1]) )
+                  {
+                     postfix.append(1, token);
+                  }
+                  else
+                  {
+                     postfix.append(BLANK + token);
+                  }
+
+                  for(;;)
+                  {
+                     if ( !isalnum(infix[i+1]) ) break; //end of identifier
+                     i++;
+                     token = infix[i];
+                     postfix.append(1, token);
+                  }
+      }
+   }
+   // pop remaining operators on the stack
+   for (;;)
+   {
+      if (myStack.empty()) break;
+      topToken = myStack.top();
+      myStack.pop();
+      if (topToken != '(')
+      {
+         postfix.append(BLANK + topToken);
+      }
+      else
+      {
+         std::cout << " *** Error in infix expression ***\n";
+         break;
+      }
+   }
+
    return postfix;
 }
 
