@@ -98,36 +98,37 @@ class Queue
               {
                  throw "ERROR: Unable to allocate a new buffer for queue";
               }
-              if(myFront == myBack)
-              {
-                  for (int i = myFront; i <= oldCapacity; i++)
-                  {
-                      temp[(i - 1) % oldCapacity] = myArray[i % oldCapacity];
-                  }
-                  
-                delete [] myArray;
-                myArray = temp;
-                myFront = 0; //reset front after copy
-                myBack = oldCapacity; //rest back after copy
-                newBack = oldCapacity + 1; //reset newBack after copy
-              }
-              else
-              {
-                  for (int i = 0; i < mySize; i++)
+
+              //if(myFront == myBack)
+              //{
+              //    for (int i = myFront; i <= oldCapacity; i++)
+              //    {
+              //        temp[(i - 1) % oldCapacity] = myArray[i % oldCapacity];
+              //    }
+              //    
+              //  delete [] myArray;
+              //  myArray = temp;
+              //  myFront = 0; //reset front after copy
+              //  myBack = oldCapacity; //rest back after copy
+              //  newBack = oldCapacity + 1; //reset newBack after copy
+              //}
+              //else
+              //{
+                  for (int i = 0; i <= mySize; i++)
                   {
                          temp[i] = myArray[i];
                   }
 
                 delete [] myArray;
                 myArray = temp;
-                myBack = oldCapacity; //rest back after copy
-                newBack = oldCapacity + 1; //reset newBack after copy
+                //myBack = oldCapacity; //rest back after copy
+                newBack = (myBack + 1) % myCapacity;; //reset newBack after copy
 
-              }
+              //}
            }
            else
            {
-             newBack = (myBack + 1) % myCapacity;
+             newBack = myBack + 1;
            }
            
            myArray[myBack] = value;
@@ -284,7 +285,7 @@ Queue <T> :: Queue(int myCapacity) throw (const char *)
     myBack = rhs.myBack;
 
     // copy the items over one at a time
-    for (int i = 0; i < rhs.myCapacity; i++)
+    for (int i = 0; i <= mySize; i++)
     {
         myArray[i] = rhs.myArray[i];
         
