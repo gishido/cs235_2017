@@ -134,12 +134,14 @@ void testSimple()
 template <class T>
 ostream & operator << (ostream & out, Queue <T> q) 
 {
-   
+//    out << "out override: front-" << q.theFront() << " size " << q.size() << endl;
    out << "{ ";
    while (!q.empty())
    {
+      // out << endl << "out override while loop" << endl;
       out << q.front() << ' ';
       q.pop();
+      // out << endl;
    }
    out << '}';
 

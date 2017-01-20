@@ -48,6 +48,9 @@ class Queue
                 pop();
         }
 
+        //temp getters
+        int theFront() const {return myFront;}
+
         // how many items are in the Queue
         int size() const {return mySize;}
 
@@ -75,7 +78,7 @@ class Queue
            
            if (myCapacity == 0)
            {
-            //    cout << "push capacity is 0\n";
+                // cout << "\n\tpush capacity is 0\n";
               myCapacity = 2;
               allocate(myCapacity);
               newBack = (myBack + 1) % myCapacity;
@@ -83,7 +86,7 @@ class Queue
            }
            else if (mySize >= myCapacity)
            {
-            //    cout << "push -- size greater than capacity\n";
+                // cout << "\n\tpush -- size greater than capacity\n";
               int oldCapacity = myCapacity;
               //double capacity
               myCapacity *= 2;
@@ -102,7 +105,7 @@ class Queue
               }
 
                           
-              for (int i = 0; i < mySize; i++)
+              for (int i = 0; i <= mySize; i++)
               {
                  temp[i] = myArray[i];
               }
@@ -113,32 +116,37 @@ class Queue
            }
            else
            {
-            //    cout << "push -- size is less than capacity (aka, else)\n";
-             newBack = myBack + 1;
+                // cout << "\n\tpush -- size is less than capacity (aka, else)\n";
+             newBack = (myBack + 1) % myCapacity;
            }
            
-        //    cout << newBack << " newBack, right before end of copy\n";
-        //    cout << myBack << " this is myBack that we're using for the array\n";
+            // cout << newBack << " newBack, right before end of copy\n";
+            // cout << myBack << " this is myBack that we're using for the array\n";
         //    cout << value << " this is the value yo\n";
            myArray[myBack] = value;
            myBack = newBack;
            mySize++;
-        //    cout << "mySize is " << mySize << " end of push\n";
+            //  cout << "push end: Font, Back, Size, Capacity -  " << myFront << ", " << myBack << ", " << mySize << ", " << myCapacity << endl;
+            //  cout << "push end: \n\tFrontVal - " << front() << "\n\tBackVal - " << back() << endl;
         }
         
         // pop from Queue
         void pop() throw (const char *)
         {
+            // cout << "pop begin -- size is " << mySize << " front is " << myFront << endl;
+            // cout << "pop end: \nFrontVal - " << front() << "\nBackVal - " << back() << endl;
             if (!empty())
             {
+                // cout << "\nInside Pop - Before Pop\n\tFrontVal - " << myArray[myFront] << "\n\tFrontIndex - " << myFront << endl;
                myFront = (myFront + 1) % myCapacity;
                mySize--;
-               //myBack = (myBack - 1) % myCapacity;
+            //    cout << "\nInside Pop - After Pop\n\tFrontVal - " << myArray[myFront] << "\n\tFrontIndex - " << myFront << endl;
              }
             else
             {
                 throw "ERROR: attempting to pop from an empty queue";
             }
+            // cout << "pop end: \nFrontVal - " << front() << "\nBackVal - " << back() << endl;
         }
 
         // front
@@ -146,6 +154,7 @@ class Queue
         {
             if (!empty())
             {
+                // cout << "\nInside Front Display\n\tFrontVal - " << myArray[myFront] << "\n\tFrontIndex - " << myFront << endl;
                 return myArray[myFront];
             }
             else
@@ -198,7 +207,7 @@ class Queue
             myCapacity = rhs.myCapacity;
 
             //copy the items
-            for (int i = 0; i < myBack; i++)
+            for (int i = 0; i < rhs.myCapacity; i++)
             {
                 myArray[i] = rhs.myArray[i];
             }
@@ -288,7 +297,7 @@ Queue <T> :: Queue(int myCapacity) throw (const char *)
     myBack = rhs.myBack;
 
     // copy the items over one at a time
-    for (int i = 0; i < mySize; i++)
+    for (int i = 0; i < rhs.myCapacity; i++)
     {
         myArray[i] = rhs.myArray[i];
         
