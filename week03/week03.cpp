@@ -31,7 +31,7 @@ void testErrors();
 #define TEST1   // for testSimple()
 #define TEST2   // for testPushPopTop()
 #define TEST3   // for testCircular()
-#define TEST4   // for testErrors()
+//#define TEST4   // for testErrors()
 
 /**********************************************************************
  * MAIN
@@ -54,7 +54,7 @@ int main()
    switch (choice)
    {
       case 'a':
-         stocksBuySell();
+//         stocksBuySell();
          break;
       case '1':
          testSimple();

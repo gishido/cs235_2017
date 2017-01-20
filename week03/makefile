@@ -42,8 +42,8 @@ endif
 # The main rule
 ##############################################################
 $(PROGRAM): queue.h week03.o dollars.o stock.o
-        g++ -o $(PROGRAM) week03.o dollars.o stock.o
-        $(TAR)
+	g++ -o $(PROGRAM) week03.o dollars.o stock.o
+	$(TAR)
 
 dollarsTest: dollars.o dollarsTest.cpp
 	g++ -o dollarsTest dollars.o dollarsTest.cpp
@@ -68,6 +68,6 @@ stock.o: stock.h stock.cpp queue.h
 # General rules                                                                 
 ###############################################################                 
 clean :
-        $(RM) *$(P_EXT) *.o *.out *.tar *~
+	$(RM) *$(P_EXT) *.o *.out *.tar *~
 
 
