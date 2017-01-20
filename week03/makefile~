@@ -41,6 +41,10 @@ endif
 ##############################################################
 # The main rule
 ##############################################################
+$(PROGRAM): stack.h week02.o infix.o
+        g++ -o $(PROGRAM) week02.o infix.o
+        $(TAR)
+
 a.out: queue.h week03.o dollars.o stock.o
 	g++ -o a.out week03.o dollars.o stock.o
 	tar -cf week03.tar *.h *.cpp makefile

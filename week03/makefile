@@ -9,13 +9,41 @@
 # Time:
 #     <how long did it take to complete this program>?
 ###############################################################
+##############################################################                 
+# Makefile variables for windows, mac, or linux                                 
+###############################################################                 
+ifeq ($(OS),Windows_NT)
+    #Windows stuff                                                              
+    RM = del /f
+    PROGRAM = a.exe
+    P_EXT = .exe
+else
+    ifeq ($(shell uname), Linux)
+        #Linux stuff                                                            
+        RM = rm -f
+        PROGRAM = a.out
+        P_EXT = .out
+        POSITIONTEST = positionText.out
+        MOVETEST = moveTest.out
+        TAR = tar -cf week03.tar *.h *.cpp makefile
+    endif
+    ifeq ($(shell uname),Darwin)
+        #Mac stuff                                                              
+        RM = rm -f
+        PROGRAM = a.out
+        P_EXT = .out
+        POSITIONTEST = positionText.out
+        MOVETEST = moveTest.out
+        TAR = tar -cf week03.tar *.h *.cpp makefile
+    endif
+endif
 
 ##############################################################
 # The main rule
 ##############################################################
-a.out: queue.h week03.o dollars.o stock.o
-	g++ -o a.out week03.o dollars.o stock.o
-	tar -cf week03.tar *.h *.cpp makefile
+$(PROGRAM): queue.h week03.o dollars.o stock.o
+        g++ -o $(PROGRAM) week03.o dollars.o stock.o
+        $(TAR)
 
 dollarsTest: dollars.o dollarsTest.cpp
 	g++ -o dollarsTest dollars.o dollarsTest.cpp
@@ -34,3 +62,12 @@ dollars.o: dollars.h dollars.cpp
 
 stock.o: stock.h stock.cpp queue.h
 	g++ -c stock.cpp
+
+
+###############################################################                 
+# General rules                                                                 
+###############################################################                 
+clean :
+        $(RM) *$(P_EXT) *.o *.out *.tar *~
+
+
