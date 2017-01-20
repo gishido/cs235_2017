@@ -151,6 +151,116 @@ string convertPostfixToAssembly(const string & postfix)
 {
    string assembly;
 
+   /**********************************
+   Implement code for infix to assembly
+   **********************************/
+   //create char variables for input
+   char token,
+         tOperator; //for the math
+   //create working stack...still determining if we need a char or a string
+   Stack<char> myStack;
+   //add spaces to output
+   const string BLANK = " ";
+
+   //begin looping through string
+   for (int i = 0; i < postfix.length(); i++)
+   {
+      token = postfix[i];
+      switch(token)
+      {
+         case ' ' : break;    //do nothing skip blanks
+//commented out portion that we may not need for infixtoassembly
+/*         case '(' : myStack.push(token);
+                    break;
+         case ')' : for (;;)
+            {
+               assert (!myStack.empty());
+               topToken = myStack.top();
+               myStack.pop();
+               if (topToken == '(') break;
+               assembly.append(BLANK + topToken);
+            }
+            break;*/
+         case '+' : case '-' :
+         case '^' : case '*' : case '/' : case '%':
+                    for (;;)
+                    {
+                        string wrkString;
+
+                        switch(token)
+                        {
+                            case '+' :
+                            {
+                                wrkString = "LOAD " + myStack.top()-1 + '\n';
+                                assembly.append(wrkString);
+
+                                wrkString = "ADD " + myStack.top() + '\n';
+                                assembly.append(wrkString);
+
+                                int value = myStack.top()-1 + myStack.top();
+                                wrkString = "STORE VALUE" + i + BLANK + (char)value;
+                                assembly.append(wrkString);
+                                break;
+                            }
+                        }
+                        /*if (myStack.empty() ||
+                           myStack.top() == '(' ||
+                           ((token == '^' || token == '*' || token == '/' || token == '%') &&
+                           (myStack.top() == '*' || myStack.top() == '+' || myStack.top() == '-')))
+                        {
+                           myStack.push(token);
+                           break;
+                        }
+                        else
+                        {
+                           topToken = myStack.top();
+                           myStack.pop();
+                           assembly.append(BLANK + topToken);
+                        }*/
+                    }
+                    break;
+         default : //operand
+                  // assembly.append(BLANK + token);
+                  if ( isdigit(postfix[i-1]) )
+                  {
+                     myStack.push(token); //add number to the stack
+                     //assembly.append(1, token);
+                  }
+                  else
+                  {
+                     //I don't yet want to build my output string
+                     //assembly.append(BLANK + token);
+                  }
+
+//not sure I need this yet either
+/*                  for(;;)
+                  {
+                     if ( !isalnum(postfix[i+1]) ) break; //end of identifier
+                     i++;
+                     token = postfix[i];
+                     assembly.append(1, token);
+                  }*/
+      }
+   }
+   //not sure I need this yet
+   // pop remaining operators on the stack
+   for (;;)
+   {
+      if (myStack.empty()) break;
+      //topToken = myStack.top();
+      myStack.pop();
+/*      if (topToken != '(')
+      {
+         assembly.append(BLANK + topToken);
+      }
+      else
+      {
+         std::cout << " *** Error in postfix expression ***\n";
+         break;
+      }*/
+   }
+
+
    return assembly;
 }
 
