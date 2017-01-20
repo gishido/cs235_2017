@@ -104,15 +104,20 @@ class Queue
                  throw "ERROR: Unable to allocate a new buffer for queue";
               }
 
-                          
-              for (int i = 0; i <= mySize; i++)
+            //   cout << "\nCapacityValues: " << "\n\toldCapacity - " << oldCapacity << "\n\tnewCapacity - " << myCapacity << endl; 
+              for (int i = myFront; i <= oldCapacity; i++)
               {
-                 temp[i] = myArray[i];
+                //   cout << "\ncopy item number: " << i << " and value: " << myArray[i % oldCapacity] << endl;
+                 temp[(i - 1) % oldCapacity] = myArray[i % oldCapacity];
               }
+
 
               delete [] myArray;
               myArray = temp;
-              newBack = (myBack + 1) % myCapacity;
+              myFront = 0; //reset front after copy
+              myBack = oldCapacity; //rest back after copy
+              newBack = oldCapacity + 1; //reset newBack after copy
+            //   cout << "\npush end: Font, Back, newBack, Capacity -  " << myFront << ", " << myBack << ", " << newBack << ", " << myCapacity << endl;
            }
            else
            {
