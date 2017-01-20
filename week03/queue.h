@@ -98,18 +98,32 @@ class Queue
               {
                  throw "ERROR: Unable to allocate a new buffer for queue";
               }
-
-              for (int i = myFront; i <= oldCapacity; i++)
+              if(myFront != 0)
               {
-                 temp[(i - 1) % oldCapacity] = myArray[i % oldCapacity];
+                  for (int i = myFront; i <= oldCapacity; i++)
+                  {
+                      temp[(i - 1) % oldCapacity] = myArray[i % oldCapacity];
+                  }
+                  
+                delete [] myArray;
+                myArray = temp;
+                myFront = 0; //reset front after copy
+                myBack = oldCapacity; //rest back after copy
+                newBack = oldCapacity + 1; //reset newBack after copy
               }
+              else
+              {
+                  for (int i = 0; i < mySize; i++)
+                  {
+                         temp[i] = myArray[i];
+                  }
 
+                delete [] myArray;
+                myArray = temp;
+                myBack = oldCapacity; //rest back after copy
+                newBack = oldCapacity + 1; //reset newBack after copy
 
-              delete [] myArray;
-              myArray = temp;
-              myFront = 0; //reset front after copy
-              myBack = oldCapacity; //rest back after copy
-              newBack = oldCapacity + 1; //reset newBack after copy
+              }
            }
            else
            {
