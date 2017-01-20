@@ -192,7 +192,7 @@ class Queue
             myCapacity = rhs.myCapacity;
 
             //copy the items
-            for (int i = 0; i < rhs.myCapacity; i++)
+            for (int i = 0; i < mySize; i++)
             {
                 myArray[i] = rhs.myArray[i];
             }
@@ -270,7 +270,7 @@ Queue <T> :: Queue(int myCapacity) throw (const char *)
     myBack = rhs.myBack;
 
     // copy the items over one at a time
-    for (int i = 0; i < rhs.myCapacity; i++)
+    for (int i = 0; i < mySize; i++)
     {
         myArray[i] = rhs.myArray[i];
         
