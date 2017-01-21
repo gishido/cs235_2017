@@ -48,9 +48,6 @@ class Queue
                 pop();
         }
 
-        //temp getters
-        int theFront() const {return myFront;}
-
         // how many items are in the Queue
         int size() const {return mySize;}
 
@@ -161,7 +158,7 @@ class Queue
             }
             else
             {
-                throw "ERROR: attempting to access and item in an empty queue";
+                throw "ERROR: attempting to access an item in an empty queue";
             }
         }
         
@@ -174,7 +171,7 @@ class Queue
             }
             else
             {
-                throw "ERROR: attempting to access and item in an empty queue";
+                throw "ERROR: attempting to access an item in an empty queue";
             }
         }
     
