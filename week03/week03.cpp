@@ -54,7 +54,7 @@ int main()
    switch (choice)
    {
       case 'a':
-//         stocksBuySell();
+         stocksBuySell();
          break;
       case '1':
          testSimple();
@@ -101,7 +101,7 @@ void testSimple()
       cout << "\tSize:     " << q2.size()                   << endl;
       cout << "\tCapacity: " << q2.capacity()               << endl;
       cout << "\tEmpty?    " << (q2.empty() ? "Yes" : "No") << endl;
-
+ 
       // Test 1.c: copy the Queue using the copy constructor
       {
          cout << "Create a double Queue using the copy constructor\n";

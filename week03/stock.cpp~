@@ -36,11 +36,11 @@ void stocksBuySell()
    string userInput;
    Dollars proceeds = 0;
    string choice;
-   int quantity;
-   Queue <int> quantityArray;
+   string quantity;
+   Queue <string> quantityArray;
    Dollars price;
    Queue <Dollars> priceArray;
-   Queue <int> sellQuantityArray;
+   Queue <string> sellQuantityArray;
    Queue <Dollars> sellPriceArray;
    
    do
@@ -66,19 +66,19 @@ void stocksBuySell()
 
 
       choice = inputVector[0];
-//      quantity = inputVector[1];
+      quantity = inputVector[1];
 //      price = static_cast<Dollars>(inputVector[2]);
       
       if (choice == "buy")
       {
          quantityArray.push(quantity);
-         priceArray.push(price);
+//         priceArray.push(price);
       }
       else if (choice == "sell")
       {
          sellQuantityArray.push(quantity);
-         sellPriceArray.push(price);
-
+         //       sellPriceArray.push(price);
+         
       }
       else if (choice == "display\n")
       {

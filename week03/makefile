@@ -68,6 +68,6 @@ stock.o: stock.h stock.cpp queue.h
 # General rules                                                                 
 ###############################################################                 
 clean :
-	$(RM) *$(P_EXT) *.o *.out *.tar *~
+	$(RM) *$(P_EXT) *.o *.out *.tar *~ *.gch
 
 
