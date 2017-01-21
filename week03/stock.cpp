@@ -43,36 +43,56 @@ void stocksBuySell()
    Queue <int> sellQuantityArray;
    Queue <Dollars> sellPriceArray;
    
+
+string parse;
+vector<string>inputVector;
+
    do
    {
       cout << "> ";
 //      cin >> choice >> quantity >> price;
-      cin.ignore(255, '\n');
-      getline(cin, userInput);
+      //cin.ignore(255, '\n');
+      cin >> userInput;
 
-      string parse;
+      cout << "debug: inputVecotr before loop size - " << inputVector.size()<< endl;
+      cout << "debug: userInput - " << userInput << endl;
+
       stringstream ss(userInput);
-
-      vector<string>inputVector;
 
       while (ss >> parse)
       {
          inputVector.push_back(parse);
       }
 
+      cout << "debug: inputVecotr after loop size - " << inputVector.size() << endl;
+      //debug
+      for (int i = 0; i < inputVector.size(); i++)
+      {
+            cout << "debug: inputVector - " << inputVector[i] << endl;
+      }
 //      cout << "end while " << inputVector[0] << endl;
 //      cout << "end while " << inputVector[1] << endl;
 //      cout << "end while " << inputVector[2] << endl;
+      
+      for (int i = 0; i < quantityArray.size(); i++)
+      {
+            cout << "debug: quantityArray - " << quantityArray.front() << endl;
+      }
 
+      for (int i = 0; i < quantityArray.size(); i++)
+      {
+            cout << "debug: priceArray - " << priceArray.front() << endl;
+      }
 
       choice = inputVector[0];
-//      quantity = inputVector[1];
+      quantity = atoi(inputVector[1].c_str());
 //      price = static_cast<Dollars>(inputVector[2]);
       
       if (choice == "buy")
       {
+      cout << "debug: I'm in the 'buy' choice\n";
          quantityArray.push(quantity);
-         priceArray.push(price);
+         //priceArray.push(inputVector[2]);
       }
       else if (choice == "sell")
       {
@@ -80,7 +100,7 @@ void stocksBuySell()
          sellPriceArray.push(price);
 
       }
-      else if (choice == "display\n")
+      else if (choice == "display")
       {
          cout << "enter display\n";
 

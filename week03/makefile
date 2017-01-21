@@ -5,9 +5,9 @@
 # Author:
 #     Adam Shumway, Jenaca Willans
 # Most Difficult Part:
-#     <put a description here>
+#     the push and copy methods along with the stock program
 # Time:
-#     <how long did it take to complete this program>?
+#     around 20 hours
 ###############################################################
 ##############################################################                 
 # Makefile variables for windows, mac, or linux                                 
