@@ -114,21 +114,22 @@ class Queue
               //}
               //else
               //{
-                  for (int i = 0; i <= mySize; i++)
+                  for (int i = 0; i < oldCapacity; i++)
                   {
-                         temp[i] = myArray[i];
+                         temp[i] = myArray[(myFront + i) % oldCapacity];
                   }
 
                 delete [] myArray;
                 myArray = temp;
-                //myBack = oldCapacity; //rest back after copy
-                newBack = (myBack + 1) % myCapacity;; //reset newBack after copy
+                myFront = 0; //reset front after copy
+                myBack = oldCapacity; //rest back after copy
+                newBack = (oldCapacity + 1) % myCapacity;; //reset newBack after copy
 
               //}
            }
            else
            {
-             newBack = myBack + 1;
+             newBack = (myBack + 1) % myCapacity;
            }
            
            myArray[myBack] = value;
@@ -207,7 +208,7 @@ class Queue
             myCapacity = rhs.myCapacity;
 
             //copy the items
-            for (int i = 0; i <= mySize; i++)
+            for (int i = 0; i < myCapacity; i++)
             {
                 myArray[i] = rhs.myArray[i];
             }
@@ -279,13 +280,13 @@ Queue <T> :: Queue(int myCapacity) throw (const char *)
 
     // copy over the capacity and size
     assert(rhs.mySize >= 0 && rhs.mySize <= rhs.myCapacity);
-    this->myCapacity = rhs.myCapacity;
-    this->mySize = rhs.mySize;
+    myCapacity = rhs.myCapacity;
+    mySize = rhs.mySize;
     myFront = rhs.myFront;
     myBack = rhs.myBack;
 
     // copy the items over one at a time
-    for (int i = 0; i <= mySize; i++)
+    for (int i = 0; i < myCapacity; i++)
     {
         myArray[i] = rhs.myArray[i];
         
