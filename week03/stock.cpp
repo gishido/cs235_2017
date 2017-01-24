@@ -171,10 +171,11 @@ void stocksBuySell()
          Queue <Dollars> pList(portfolio); //portfolio queue
          
          //display(bQ, bP, sQ, sP);
-         cout << "Currently held:\n";
+         
         //output holdings
          if (buyTran > 0)
          {
+            cout << "Currently held:\n";
              //cout << "debug: inside buy display loop\n";
             for (int i = 0; i < buyTran; i++)
             {
