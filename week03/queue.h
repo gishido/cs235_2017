@@ -49,8 +49,10 @@ class Queue
         }
 
         //set and get
-        void setMyFront(int value) {myFront = value;}
+        void setMyFront (int value) {myFront = value;}
+        void setMyBack (int value) {myBack = value;}
         int getMyFront() {return myFront;}
+        int getMyBack() {return myBack;}
 
         // how many items are in the Queue
         int size() const {return mySize;}

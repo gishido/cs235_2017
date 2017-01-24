@@ -67,44 +67,69 @@ void stocksBuySell()
       }
       else if (choice == "sell")
       {
-         
+        Queue <int> wrkQ;
+        Queue <Dollars> wrkP;
         //cout << "debug: I'm in the 'sell' choice\n";
         cin >> quantity >> price;
-        sellQueue.push(quantity);
-        sellPriceQueue.push(price);
+        wrkQ.push(quantity);
+        wrkP.push(price);
         sellTran++;
 
+        //cout << "debug: sell price is - " << wrkP.front() << endl;
         int sellShares = 0;
         int buyShares = 0;
         //calculate proceeds
 
         if (sellTran > 0)
-            sellShares = sellQueue.front();
+            sellShares = wrkQ.front();
 
+        //debug
+        int i = 0;
 
         while (sellShares != buyShares)
         {
             //cout << "debug: inside sell while loop\n";
             buyShares = buyQueue.front(); //get share count
             Dollars proceeds = 0; 
+            //cout << "debug: buyShares quantity is - " << buyShares << " and while count is: " << i << endl;
             
             if(sellShares < buyShares)
             {
                 //cout << "debug: sellshares less than buy shares\n";
                 int tempFront = buyQueue.getMyFront(); //get current position
-                proceeds = (sellPriceQueue.front() - buyPriceQueue.front()) * sellShares;
+                int tempBack = buyQueue.getMyBack();
+                //cout << "debug: old front and back - " << tempFront << ", " << tempBack << endl;
+                //cout << "debug: sell price - " << wrkP.front() << " buy price - " 
+                //    << buyPriceQueue.front() << " sell shares - " << sellShares << endl;
+                proceeds = (wrkP.front() - buyPriceQueue.front()) * sellShares;
+                //cout << "debug: proceeds are - " << proceeds << endl;
+                //move items from workQ to sell and price queues
+                sellQueue.push(wrkQ.front());
+                sellPriceQueue.push(wrkP.front());
+                wrkQ.pop();
+                wrkP.pop();
+                //set buy queues properly
                 buyQueue.pop();
+                buyQueue.setMyBack(tempFront);
+                buyShares -= sellShares;
+                buyQueue.push(buyShares); //push new share count
                 buyQueue.setMyFront(tempFront);
-                buyQueue.push(buyShares - sellShares); //push new share count
+                buyQueue.setMyBack(tempBack);
                 buyShares = sellShares;  //setting the same to break the loops
                 portfolio.push(proceeds); //pushing proceeds of sale to portfolio queue
+                //cout << "debug: new front and back - " << buyQueue.getMyFront() << ", " << buyQueue.getMyBack() << endl;
+                //cout << "debug: portfolio amount is - " << portfolio.front() << endl;
             }
             else if (sellShares == buyShares)
             {
                 //cout << "debug: sellshares are equal to buyshares\n";
                 //buyShares = buyQueue.front();
                 //assuming multiple iterations, adding proceds to itself and result of math
-                proceeds = ((sellPriceQueue.front() - buyPriceQueue.front()) * sellShares);
+                proceeds = ((wrkP.front() - buyPriceQueue.front()) * sellShares);
+                sellQueue.push(wrkQ.front());
+                sellPriceQueue.push(wrkP.front());
+                wrkQ.pop();
+                wrkP.pop();
                 buyQueue.pop();         //pop all purchased shares at this price
                 buyPriceQueue.pop();    //pop all share prices at this quantity
                 buyShares = sellShares;  //setting the same to break the loops
@@ -115,11 +140,12 @@ void stocksBuySell()
                 //cout << "debug: sellshares are greater than buyshares\n";
                 //assuming multiple iterations, adding proceds to itself and result of math
                 //using buy shares until sellshares are less than buyshares
-                proceeds = ((sellPriceQueue.front() - buyPriceQueue.front()) * buyShares);
+                proceeds = ((wrkP.front() - buyPriceQueue.front()) * buyShares);
                 buyQueue.pop();         //pop all purchased shares at this price
                 buyPriceQueue.pop();    //pop all share prices at this quantity
                 portfolio.push(proceeds); //pushing proceeds of sale to portfolio queue
             }
+            i++;
         }
 
       }
@@ -136,7 +162,7 @@ void stocksBuySell()
          Queue <Dollars> pList(portfolio); //portfolio queue
          
          //display(bQ, bP, sQ, sP);
-         cout << "Currently Held:\n";
+         cout << "Currently held:\n";
         //output holdings
          if (buyTran > 0)
          {
@@ -158,7 +184,7 @@ void stocksBuySell()
             {
                 cout << "\tSold " << sQ.front()
                     << " shares at " << sP.front()
-                    << " for a profit of " << pList.front() << endl; //still have to work out the profit piece
+                    << " for a profit of " << pList.front() << endl; 
                 portSum += pList.front();
                 sQ.pop();
                 sP.pop();
