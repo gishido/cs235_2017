@@ -48,6 +48,10 @@ class Queue
                 pop();
         }
 
+        //set and get
+        void setMyFront(int value) {myFront = value;}
+        int getMyFront() {return myFront;}
+
         // how many items are in the Queue
         int size() const {return mySize;}
 
