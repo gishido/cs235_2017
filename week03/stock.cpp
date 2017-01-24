@@ -80,16 +80,12 @@ void stocksBuySell()
         int buyShares = 0;
         //calculate proceeds
 
-        if (sellTran > 0)
-            sellShares = wrkQ.front();
-
-        //debug
-        int i = 0;
-
+        sellShares = wrkQ.front();
         while (sellShares != buyShares)
         {
             //cout << "debug: inside sell while loop\n";
             buyShares = buyQueue.front(); //get share count
+            sellShares = wrkQ.front();
             Dollars proceeds = 0; 
             //cout << "debug: buyShares quantity is - " << buyShares << " and while count is: " << i << endl;
             
@@ -134,18 +130,31 @@ void stocksBuySell()
                 buyPriceQueue.pop();    //pop all share prices at this quantity
                 buyShares = sellShares;  //setting the same to break the loops
                 portfolio.push(proceeds); //pushing proceeds of sale to portfolio queue
+                buyTran--;
             }
             else
             {
                 //cout << "debug: sellshares are greater than buyshares\n";
+                int tempFront = wrkQ.getMyFront(); //get current position
+                int tempBack = wrkQ.getMyBack();
                 //assuming multiple iterations, adding proceds to itself and result of math
                 //using buy shares until sellshares are less than buyshares
                 proceeds = ((wrkP.front() - buyPriceQueue.front()) * buyShares);
                 buyQueue.pop();         //pop all purchased shares at this price
                 buyPriceQueue.pop();    //pop all share prices at this quantity
                 portfolio.push(proceeds); //pushing proceeds of sale to portfolio queue
+                sellShares -= buyShares; //decrements the sell Shares buy the buy share amt.
+                sellQueue.push(buyShares);
+                sellPriceQueue.push(wrkP.front());
+                wrkQ.pop();
+                wrkQ.setMyBack(tempFront);
+                wrkQ.push(sellShares);
+                wrkQ.setMyFront(tempFront);
+                wrkQ.setMyBack(tempBack);
+                buyTran--;
+                sellTran++;
             }
-            i++;
+
         }
 
       }
@@ -166,8 +175,10 @@ void stocksBuySell()
         //output holdings
          if (buyTran > 0)
          {
+             //cout << "debug: inside buy display loop\n";
             for (int i = 0; i < buyTran; i++)
             {
+                //cout << "debug: buytran display loop\n";
                 cout << "\tBought " << bQ.front()
                     << " shares at " << bP.front()
                     << endl;
@@ -179,9 +190,11 @@ void stocksBuySell()
          //output sell history
          if (sellTran > 0)
          {
+             //cout << "debug: sellTran is - " << sellTran << endl;
              cout << "Sell History:\n";
             for (int i = 0; i < sellTran; i++)
             {
+                //cout << "debug: inside sell display loop\n";
                 cout << "\tSold " << sQ.front()
                     << " shares at " << sP.front()
                     << " for a profit of " << pList.front() << endl; 
