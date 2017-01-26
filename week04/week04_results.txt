@@ -1,0 +1,252 @@
+
+week04.out:
+
+[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 1
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Deque
+   > 	2. The above plus push, pop, top
+   > 	3. The above plus test implementation of wrapping
+   > 	4. The above plus exercise the error Deque
+   > 	a. Now Serving
+   > > [4m1
+[0m[0;90mCreate, destory, and copy a Deque
+[0m   > Create a bool Deque using default constructor
+   > 	Size:     0
+   > 	Capacity: 0
+   > 	Empty?    Yes
+   > Create a double Deque using the non-default constructor
+   > 	Size:     0
+   > 	Capacity: 10
+   > 	Empty?    Yes
+   > Create a double Deque using the copy constructor
+   > 	Size:     0
+   > 	Capacity: 0
+   > 	Empty?    Yes
+   > Copy a double Deque using the assignment operator
+   > 	Size:     0
+   > 	Capacity: 2
+   > 	Empty?    Yes
+   > Test 1 complete
+[1;92m
+Test 1 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 2
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Deque
+   > 	2. The above plus push, pop, top
+   > 	3. The above plus test implementation of wrapping
+   > 	4. The above plus exercise the error Deque
+   > 	a. Now Serving
+   > > [4m2
+[0m[0;90mCreate an integer Deque with the default constructor\n
+[0m   > Enter integer values, type 0 when done
+[0;90mInitially empty
+[0m   > 	{ } > [4m10
+[0m[0;90mFirst resize should set the capacity to one
+[0m   > 	{ 10 } > [4m11
+[0m[0;90mNow the capacity should be two
+[0m   > 	{ 10 11 } > [4m12
+[0m[0;90mDouble again to four
+[0m   > 	{ 10 11 12 } > [4m13
+[0m   > 	{ 10 11 12 13 } > [4m14
+[0m[0;90mDouble again to 8
+[0m   > 	{ 10 11 12 13 14 } > [4m0
+[0m   > 	Size:     5
+   > 	Empty?    No
+   > 	Capacity: 8
+[0;90mWhen we clear d1, then d2 and d3 should keep their data
+[0m   > 	d1 = { }
+   > 	d2 = { 10 11 12 13 14 }
+   > 	d3 = { 10 11 12 13 14 }
+   > Test 2 complete
+[1;92m
+Test 2 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 3
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Deque
+   > 	2. The above plus push, pop, top
+   > 	3. The above plus test implementation of wrapping
+   > 	4. The above plus exercise the error Deque
+   > 	a. Now Serving
+   > > [4m3
+[0m[0;90mCreate a string Deque with the non-default constructor\n
+[0m   > instructions:
+   > 	+f dog   pushes dog onto the front
+   > 	+b cat   pushes cat onto the back
+   > 	-f       pops off the front
+   > 	-b       pops off the back
+   > 	*        clear the deque
+   > 	?        shows the statistics of the deque
+   > 	!        quit
+[0;90m
+[0m[0;90mThis first test will work much like a stack. We are pushing onto the
+[0m[0;90mback and popping off of the back.
+[0m   > { } > [4m+b one
+[0m   > { one } > [4m+b two
+[0m   > { one two } > [4m+b three
+[0m   > { one two three } > [4m?
+[0m   > 	Size:     3
+   > 	Capacity: 4
+   > { one two three } > [4m-b
+[0m   > 	pop: three
+   > { one two } > [4m-b
+[0m   > 	pop: two
+   > { one } > [4m-b
+[0m   > 	pop: one
+   > { } > [4m?
+[0m   > 	Size:     0
+   > 	Capacity: 4
+[0;90m
+[0m[0;90mNow we will be pushing onto the front. This will require our index
+[0m[0;90mto go negative. We will need some logic to turn a negative deque index
+[0m[0;90minto a positive array index
+[0m   > { } > [4m+f alfa
+[0m   > { alfa } > [4m+f beta
+[0m   > { beta alfa } > [4m+f charlie
+[0m   > { charlie beta alfa } > [4m?
+[0m   > 	Size:     3
+   > 	Capacity: 4
+[0;90m
+[0m[0;90mNow we will do a full wrap round the front. After we
+[0m[0;90madd the 4th item, we will remove an item off the back.
+[0m[0;90mThe very next item we push off the front will be the 
+[0m[0;90msecond wrap.
+[0m   > { charlie beta alfa } > [4m+f delta
+[0m   > { delta charlie beta alfa } > [4m-b
+[0m   > 	pop: alfa
+   > { delta charlie beta } > [4m+f echo
+[0m   > { echo delta charlie beta } > [4m?
+[0m   > 	Size:     4
+   > 	Capacity: 4
+[0;90m
+[0m[0;90mAs we add the 5th item, we will cause a resize. In order to not mess
+[0m[0;90mup the order, we will have to unroll the deque so the front is at 0 again
+[0m   > { echo delta charlie beta } > [4m+f foxtrot
+[0m   > { foxtrot echo delta charlie beta } > [4m?
+[0m   > 	Size:     5
+   > 	Capacity: 8
+[0;90m
+[0m[0;90mNow we will unroll the deque to empty it
+[0m   > { foxtrot echo delta charlie beta } > [4m-b
+[0m   > 	pop: beta
+   > { foxtrot echo delta charlie } > [4m-f
+[0m   > 	pop: foxtrot
+   > { echo delta charlie } > [4m-b
+[0m   > 	pop: charlie
+   > { echo delta } > [4m-f
+[0m   > 	pop: echo
+   > { delta } > [4m-b 
+[0m   > 	pop: delta
+[0;90m
+[0m[0;90mEmpty again. Now we will put 6 items in the deque
+[0m   > { } > [4m+b four
+[0m   > { four } > [4m+f three
+[0m   > { three four } > [4m+b five
+[0m   > { three four five } > [4m+f two
+[0m   > { two three four five } > [4m+b six
+[0m   > { two three four five six } > [4m+f one
+[0m   > { one two three four five six } > [4m+b seven
+[0m   > { one two three four five six seven } > [4m+f zero
+[0m   > { zero one two three four five six seven } > [4m+b eight
+[0m[0;90m
+[0m[0;90mone more reallocate. Again we must preserve the order
+[0m   > { zero one two three four five six seven eight } > [4m?
+[0m   > 	Size:     9
+   > 	Capacity: 16
+   > { zero one two three four five six seven eight } > [4m*
+[0m   > { } > [4m?
+[0m   > 	Size:     0
+   > 	Capacity: 16
+   > { } > [4m!
+[0m   > Test 3 complete
+[1;92m
+Test 3 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 4
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Deque
+   > 	2. The above plus push, pop, top
+   > 	3. The above plus test implementation of wrapping
+   > 	4. The above plus exercise the error Deque
+   > 	a. Now Serving
+   > > [4m4
+[0m[0;90m
+[0m[0;90mTest front() from an empty deque
+[0m   > 	Deque::front() error message correctly caught.
+   > 	"ERROR: unable to access data from an empty deque"
+[0;90m
+[0m[0;90mTest back() from an empty deque
+[0m   > 	Deque::back() error message correctly caught.
+   > 	"ERROR: unable to access data from an empty deque"
+[0;90m
+[0m[0;90mTest pop_front from an empty deque
+[0m   > 	Deque::pop_front() error message correctly caught.
+   > 	"ERROR: unable to pop from the front of empty deque"
+[0;90m
+[0m[0;90mTest pop_back from an empty deque
+[0m   > 	Deque::pop_back() error message correctly caught.
+   > 	"ERROR: unable to pop from the back of empty deque"
+   > Test 4 complete
+[1;92m
+Test 4 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 5
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Deque
+   > 	2. The above plus push, pop, top
+   > 	3. The above plus test implementation of wrapping
+   > 	4. The above plus exercise the error Deque
+   > 	a. Now Serving
+   > > [4ma
+[0m   > Every prompt is one minute.  The following input is accepted:
+   > 	<class> <name> <#minutes>    : a normal help request
+   > 	!! <class> <name> <#minutes> : an emergency help request
+   > 	none                         : no new request this minute
+   > 	finished                     : end simulation
+   > <0> [4mcs124 Sam 2
+[0m   > 	Currently serving Sam for class cs124. Time left: 2
+   > <1> [4mnone
+[0m   > 	Currently serving Sam for class cs124. Time left: 1
+   > <2> [4mnone
+[0m   > <3> [4mcs124 Sue 3
+[0m   > 	Currently serving Sue for class cs124. Time left: 3
+   > <4> [4mcs165 Steve 2
+[0m   > 	Currently serving Sue for class cs124. Time left: 2
+   > <5> [4m!! cs124 Joseph 1
+[0m   > 	Currently serving Sue for class cs124. Time left: 1
+   > <6> [4mnone
+[0m   > 	Emergency for Joseph for class cs124. Time left: 1
+   > <7> [4mnone
+[0m   > 	Currently serving Steve for class cs165. Time left: 2
+   > <8> [4mcs124 Sam 1
+[0m   > 	Currently serving Steve for class cs165. Time left: 1
+   > <9> [4mnone
+[0m   > 	Currently serving Sam for class cs124. Time left: 1
+   > <10> [4mnone
+[0m   > <11> [4mfinished
+[0m   > End of simulation
+[1;92m
+Test 5 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[1;92m
+============================================================
+[0m[1;92mPassed all tests with no errors.
+[0m[1;92m============================================================
+
+[0m
