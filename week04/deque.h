@@ -183,20 +183,12 @@ class Deque
         {
            if (!empty())
            {
-<<<<<<< HEAD
-              myBack--;
-           }
-           else
-           {
-              throw "ERROR: unable to pop from the back of empty deque";
-=======
               myBack  = (myBack + 1) %  myCapacity;
               mySize--;
            }
            else
            {
               throw "ERROR: attempting to pop from an empty deque";
->>>>>>> parent of 1e312fa... changes to push_back + ifind()
            }
         }
         
@@ -211,11 +203,7 @@ class Deque
              }
             else
             {
-<<<<<<< HEAD
-               throw "ERROR: unable to pop from the front of empty deque";
-=======
                 throw "ERROR: attempting to pop from an empty deque";
->>>>>>> parent of 1e312fa... changes to push_back + ifind()
             }
         }
 
@@ -228,11 +216,7 @@ class Deque
             }
             else
             {
-<<<<<<< HEAD
-               throw "ERROR: unable to access data from an empty deque";
-=======
                 throw "ERROR: attempting to access an item in an empty deque";
->>>>>>> parent of 1e312fa... changes to push_back + ifind()
             }
         }
         
@@ -245,11 +229,7 @@ class Deque
             }
             else
             {
-<<<<<<< HEAD
-               throw "ERROR: unable to access data from an empty deque";
-=======
                 throw "ERROR: attempting to access an item in an empty deque";
->>>>>>> parent of 1e312fa... changes to push_back + ifind()
             }
         }
     
