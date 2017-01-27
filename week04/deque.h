@@ -183,7 +183,8 @@ class Deque
         {
            if (!empty())
            {
-              myBack--;
+              myBack  = (myBack + 1) %  myCapacity;
+              mySize--;
            }
            else
            {
