@@ -24,7 +24,7 @@ class Deque
 {
   public:
     // default contructor
-    Deque() : myFront(0), myBack(0), myCapacity(0), mySize(0)
+    Deque() : myFront(0), myBack(-1), myCapacity(0), mySize(0)
     {
         allocate(myCapacity);
     }
@@ -48,8 +48,8 @@ class Deque
     // remove all items from the Deque
     void clear()
     {
-        while (!empty())
-            pop_front();
+        myFront = 0;
+        myBack = -1;
     }
 
     //set and get
@@ -85,7 +85,7 @@ class Deque
         {
             myCapacity = 2;
             allocate(myCapacity);
-            newBack = ifind(myBack + 1);
+            newBack = iFind(myBack + 1);
         }
         else if (mySize >= myCapacity)
         {
@@ -108,23 +108,23 @@ class Deque
 
             for (int i = 0; i < oldCapacity; i++)
             {
-                temp[i] = myArray[ifind(myFront + i)];
+                temp[i] = myArray[iFind(myFront + i)];
             }
 
             delete[] myArray;
             myArray = temp;
             myFront = 0;          //reset front after copy
             myBack = oldCapacity; //rest back after copy
-            newBack = ifind(oldCapacity + 1);
+            newBack = iFind(oldCapacity + 1);
             ;
             //reset newBack after copy
         }
         else
         {
-            newBack = (myBack + 1) % myCapacity;
+            newBack = iFind(myBack + 1);
         }
 
-        myArray[myBack] = value;
+        myArray[iFind(myBack)] = value;
         myBack = newBack;
         mySize++;
     }
@@ -185,9 +185,10 @@ class Deque
     // pop from the back of the deque
     void pop_back() throw(const char *)
     {
+        cout << "debug: inside pop_back()\n";
         if (!empty())
         {
-            myBack = ifind(myBack + 1);
+            myBack = iFind(myBack + 1);
             mySize--;
         }
         else
@@ -199,16 +200,16 @@ class Deque
     // pop_front from Deque
     void pop_front() throw(const char *)
     {
-
-        // if (!empty())
-        // {
-        //     myFront = (myFront + 1) % myCapacity;
-        //     mySize--;
-        // }
-        // else
-        // {
-        //     throw "ERROR: attempting to pop from an empty deque";
-        // }
+        cout << "debug: inside pop_front()\n";
+        if (!empty())
+        {
+            myFront = iFind(myFront + 1);
+            mySize--;
+        }
+        else
+        {
+            throw "ERROR: attempting to pop from an empty deque";
+        }
     }
 
     // front
@@ -216,6 +217,11 @@ class Deque
     {
         if (!empty())
         {
+            cout << "debug: size is = " << mySize << endl;
+            cout << "debug: front mod recurse val - " 
+                <<  iFind(myFront) << endl;
+            cout << "debug: iFind(front val) is = " << iFind(myFront) << endl;
+            myFront = iFind(myFront);
             return myArray[myFront];
         }
         else
@@ -229,7 +235,9 @@ class Deque
     {
         if (!empty())
         {
-            return myArray[myBack];
+            cout << "debug: back mod recurse val - \n\t" 
+                <<  iFind(myBack) << endl;
+            return myArray[iFind(myBack)];
         }
         else
         {
