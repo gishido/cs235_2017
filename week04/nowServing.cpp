@@ -78,12 +78,8 @@ void nowServing()
          minDeque.pop_front();
          minDeque.push_front(newFront);
 
-//         cout << "newFront= " << newFront << " minDeque.front()= " << minDeque.front() << endl;
 
-         
-         minutes--;
-         
-         if(!minutes)
+         if(!newFront)
          {
             nameDeque.pop_front();
             choiceDeque.pop_front();
@@ -107,10 +103,8 @@ void nowServing()
             newFront -= 1;
             minDeque.pop_front();
             minDeque.push_front(newFront);
-            
-            minutes--;
-            
-            if(!minutes)
+                        
+            if(!newFront)
             {
                nameDeque.pop_front();
                choiceDeque.pop_front();
@@ -139,19 +133,15 @@ void nowServing()
             newFront -= 1;
             minDeque.pop_front();
             minDeque.push_front(newFront);
-           
-            minutes--;
-            
-            if(!minutes)
+                       
+            if(!newFront)
             {
                nameDeque.pop_front();
                choiceDeque.pop_front();
                minDeque.pop_front();
             }
-
             
          }
-         
          
       }
       else if(choice == "none")
@@ -179,16 +169,13 @@ void nowServing()
             minDeque.pop_front();
             minDeque.push_front(newFront);
 
-            minutes--;
-            
-            if(!minutes)
+            if(!newFront)
             {
                nameDeque.pop_front();
                choiceDeque.pop_front();
                minDeque.pop_front();
             }
-            
-            
+                        
          }
          
       }

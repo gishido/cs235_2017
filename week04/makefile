@@ -5,11 +5,12 @@
 # Author:                                                                     
 #     Adam Shumway, Jenaca Willans                                            
 # Most Difficult Part:                                                        
-# 
+#     We struggled to write the pseudocode for push_front() to 
+#     map the front and back properly in the deque.
 # Pair Programming Time:                                                      
-#
+#     5 Hours 
 # Total Time:                                                                 
-#
+#     21 Hours
 ###############################################################
 ##############################################################                 
 # Makefile variables for windows, mac, or linux                   
