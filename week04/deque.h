@@ -110,7 +110,7 @@ class Deque
 
             for (int i = 0; i < myCapacity; i++)
             {
-                myFront = iFind(myFront + 1);
+                myFront = iFind(myFront + i);
                 temp[i] = myArray[myFront];
             }
 
@@ -135,19 +135,19 @@ class Deque
     // push items to the front of the Deque
     void push_front(const T &value) throw(const char *)
     {
-        int newBack;
+        int newFront;
 
         if (myCapacity == 0)
         {
             myCapacity = 2;
             allocate(myCapacity);
-            newBack = (myBack + 1) % myCapacity;
+            newFront = iFind(myFront - 1);
         }
         else if (mySize >= myCapacity)
         {
-            int oldCapacity = myCapacity;
+            int newCapacity = myCapacity;
             //double capacity
-            myCapacity *= 2;
+            newCapacity *= 2;
 
             //create tempory object for deque copy
             T *temp;
@@ -155,33 +155,34 @@ class Deque
             // try to push to the back of the deque
             try
             {
-                temp = new T[myCapacity];
+                temp = new T[newCapacity];
             }
             catch (std::bad_alloc)
             {
                 throw "ERROR: Unable to allocate a new buffer for deque";
             }
 
-            for (int i = 0; i < oldCapacity; i++)
+            for (int i = 0; i < myCapacity; i++)
             {
-                temp[i] = myArray[(myFront + i) % oldCapacity];
-            } //myBack??
+                myFront = iFind(myFront + i);
+                temp[i] = myArray[myFront];
+            }
 
             delete[] myArray;
             myArray = temp;
-            myFront = 0;          //reset front after copy
-            myBack = oldCapacity; //rest back after copy
-            newBack = (oldCapacity + 1) % myCapacity;
-            ;
+            myFront = iFind(myFront -1); //reset front after copy
+            myFront = myCapacity; //rest back after copy
+            newBack = (myCapacity - 1);
+            myCapacity = newCapacity;
             //reset newBack after copy
         }
         else
         {
-            newBack = (myBack + 1) % myCapacity;
+            newFront = iFind(myFront - 1);
         }
 
-        myArray[myBack] = value;
-        myBack = newBack;
+        myFront = newFront;
+        myArray[myFront] = value;
         mySize++;
     }
 
@@ -190,7 +191,7 @@ class Deque
     {
         if (!empty())
         {
-            myBack = (myBack + 1) % myCapacity;
+            myBack = iFind(myBack - 1);
             mySize--;
         }
         else
@@ -205,7 +206,7 @@ class Deque
 
         if (!empty())
         {
-            myFront = (myFront + 1) % myCapacity;
+            myFront = iFind(myFront + 1);
             mySize--;
         }
         else
