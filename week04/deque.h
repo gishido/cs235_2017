@@ -48,10 +48,8 @@ class Deque
     // remove all items from the Deque
     void clear()
     {
-        myFront = 0;
-        myBack = -1;
-        // while (!empty())
-        //     pop_front();
+        while (!empty())
+            pop_front();
     }
 
     //set and get
@@ -87,6 +85,7 @@ class Deque
         {
             myCapacity = 2;
             allocate(myCapacity);
+            //myBack = 0;
             newBack = iFind(myBack + 1);
         }
         else if (mySize >= myCapacity)
@@ -108,27 +107,35 @@ class Deque
                 throw "ERROR: Unable to allocate a new buffer for deque";
             }
 
+
             for (int i = 0; i < myCapacity; i++)
-            {
-                myFront = iFind(myFront + i);
-                temp[i] = myArray[myFront];
+            {   
+                temp[i] = myArray[iFind(myFront + i)];
+                // cout << "temp[i] " << temp[i] << " i " << i << endl;
             }
 
             delete[] myArray;
             myArray = temp;
             myFront = 0;          //reset front after copy
-            myBack = myCapacity; //rest back after copy
-            newBack = (myCapacity + 1);
+            // myBack = myCapacity; //rest back after copy
+            newBack = myCapacity;
             myCapacity = newCapacity;
-            //reset newBack after copy
+            // cout << "debug: we've grown! - newBack:myCapacity " << newBack << ":" << myCapacity 
+            //     << "\n mySize - " << mySize 
+            //     << "\n myBack:newBack - " << myBack << ", " << newBack<< endl;
+
         }
         else
         {
+            // if(mySize == 0)
+            //     myBack = 0;
             newBack = iFind(myBack + 1);
         }
-
-        myArray[myBack] = value;
+        //cout << "debug: myBack:newBack - " << myBack << ", " << newBack << endl;
+        // cout << "debug: myBack:newBack - " << myBack << ", " << newBack << endl;
+        // cout << "debug: value - " << value << endl;
         myBack = newBack;
+        myArray[myBack] = value;
         mySize++;
     }
 
@@ -164,21 +171,29 @@ class Deque
 
             for (int i = 0; i < myCapacity; i++)
             {
-                myFront = iFind(myFront + i);
-                temp[i] = myArray[myFront];
+                temp[i] = myArray[iFind(myFront + i)];
             }
 
             delete[] myArray;
             myArray = temp;
-            myFront = iFind(myFront -1); //reset front after copy
-            myFront = myCapacity; //rest back after copy
-            newBack = (myCapacity - 1);
+            myBack = (myCapacity - 1);
             myCapacity = newCapacity;
+            myFront = 0;
+            newFront = iFind(myFront - 1); //reset front after copy, assumes a myFront == 0 start
             //reset newBack after copy
         }
         else
         {
             newFront = iFind(myFront - 1);
+        }
+
+        // cout << "debug: myFront:newFront - " << myFront << ", " << newFront << endl;
+        // cout << "debug: myBack - " << myBack << endl;
+        // cout << "debug: value - " << value << endl;
+        if(mySize == 0)
+        {
+            newFront = 0;
+            myBack = 0;
         }
 
         myFront = newFront;
@@ -220,6 +235,9 @@ class Deque
     {
         if (!empty())
         {
+            // myFront = iFind(myFront + 1);
+            // cout << "debug: front - myFront - " << myFront << endl;
+            // cout << "debug: front - myArray[myFront] is " << myArray[myFront] << endl;
             return myArray[myFront];
         }
         else
@@ -233,6 +251,7 @@ class Deque
     {
         if (!empty())
         {
+            //myBack = iFind(myBack);
             return myArray[myBack];
         }
         else
@@ -298,7 +317,8 @@ Deque<T>::Deque(int myCapacity) throw(const char *)
     {
         this->myCapacity = this->mySize = 0;
         this->myArray = NULL;
-        this->myFront = this->myBack = 0;
+        this->myFront = 0;
+        this->myBack = -1;
         return;
     }
 
@@ -315,7 +335,8 @@ Deque<T>::Deque(int myCapacity) throw(const char *)
     //copy over the stuff
     this->myCapacity = myCapacity;
     this->mySize = 0;
-    this->myFront = this->myBack = 0;
+    this->myFront = 0;
+    this->myBack = -1;
 }
 
 /*******************************************
