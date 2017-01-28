@@ -32,12 +32,13 @@ void nowServing()
    // your code here
    Deque <string> choiceDeque;
    Deque <string> nameDeque;
+   Deque <int> minDeque;
    string choice;
    string name;
    int minutes = 0;
    int request = 0;
-   int timeLeft = 0;
    int emergency = 0;
+   int newFront = 0;
    
    do
    {
@@ -50,37 +51,45 @@ void nowServing()
       {
          cin >> name >> minutes;
          
-         if(!timeLeft)
+         if(choiceDeque.size() == 0)
          {
             choiceDeque.push_front(choice);
             nameDeque.push_front(name);
+            minDeque.push_front(minutes);
             
             cout << "\tCurrently serving " << nameDeque.front()
                  << " for class " << choiceDeque.front()
-                 << ". Time left: " << minutes << endl;
+                 << ". Time left: " << minDeque.front() << endl;
 
          }
          else
          {
             choiceDeque.push_back(choice);
             nameDeque.push_back(name);
+            minDeque.push_back(minutes);
             
             cout << "\tCurrently serving " << nameDeque.front()
                  << " for class " << choiceDeque.front()
-                 << ". Time left: " << timeLeft << endl;
+                 << ". Time left: " <<  minDeque.front() << endl;
          }
 
-//         timeLeft = minutes;
-         timeLeft--;
+         newFront = minDeque.front();
+         newFront -= 1;
+         minDeque.pop_front();
+         minDeque.push_front(newFront);
+
+//         cout << "newFront= " << newFront << " minDeque.front()= " << minDeque.front() << endl;
+
          
-         if(!timeLeft)
+         minutes--;
+         
+         if(!minutes)
          {
             nameDeque.pop_front();
             choiceDeque.pop_front();
+            minDeque.pop_front();
          }
 
-         timeLeft += minutes;
-         
          
       }
       else if(choice == "!!")
@@ -88,48 +97,57 @@ void nowServing()
          cin >> choice >> name >> minutes;
          emergency = 1;
          
-         if(timeLeft)
+         if(nameDeque.size() > 0)
          {
             cout << "\tCurrently serving " << nameDeque.front()
                  << " for class " << choiceDeque.front()
-                 << ". Time left: " << minutes << endl;
+                 << ". Time left: " <<  minDeque.front() << endl;
             
-            timeLeft--;
-
-            if(!timeLeft)
+            newFront = minDeque.front();
+            newFront -= 1;
+            minDeque.pop_front();
+            minDeque.push_front(newFront);
+            
+            minutes--;
+            
+            if(!minutes)
             {
                nameDeque.pop_front();
                choiceDeque.pop_front();
+               minDeque.pop_front();
             }
-            
-            timeLeft += minutes;
-            
+                        
             choiceDeque.push_front(choice);
             nameDeque.push_front(name);         
+            minDeque.push_front(minutes);
             
          }
          else
          {
-            timeLeft += minutes;
             choiceDeque.push_front(choice);
-            nameDeque.push_front(name);         
+            nameDeque.push_front(name);
+            minDeque.push_front(minutes);         
             
             cout << "\tEmergency for " << nameDeque.front()
                  << " for class " << choiceDeque.front()
-                 << ". Time left: " << timeLeft << endl;
+                 << ". Time left: " <<  minDeque.front() << endl;
             
             emergency = 0;
             
             
-            timeLeft--;
+            newFront = minDeque.front();
+            newFront -= 1;
+            minDeque.pop_front();
+            minDeque.push_front(newFront);
+           
+            minutes--;
             
-            if(!timeLeft)
+            if(!minutes)
             {
                nameDeque.pop_front();
                choiceDeque.pop_front();
+               minDeque.pop_front();
             }
-            
-            timeLeft += minutes;
 
             
          }
@@ -138,39 +156,38 @@ void nowServing()
       }
       else if(choice == "none")
       {
-         if(timeLeft)
+         if(nameDeque.size() > 0)
          {
             if(!emergency)
             {
             cout << "\tCurrently serving " << nameDeque.front()
                  << " for class " << choiceDeque.front()
-                 << ". Time left: " << minutes << endl;
+                 << ". Time left: " <<  minDeque.front() << endl;
             }
             else
             {
                cout << "\tEmergency for " << nameDeque.front()
                     << " for class " << choiceDeque.front()
-                    << ". Time left: " << minutes << endl;
+                    << ". Time left: " <<  minDeque.front() << endl;
 
                emergency = 0;
 
-               minutes--;
-            
-               if(!minutes)
-               {
-                  nameDeque.pop_front();
-                  choiceDeque.pop_front();
-               }
-               
             }
-
-            timeLeft--;
             
-            if(!timeLeft)
+            newFront = minDeque.front();
+            newFront -= 1;
+            minDeque.pop_front();
+            minDeque.push_front(newFront);
+
+            minutes--;
+            
+            if(!minutes)
             {
                nameDeque.pop_front();
                choiceDeque.pop_front();
+               minDeque.pop_front();
             }
+            
             
          }
          
