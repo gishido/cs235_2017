@@ -43,6 +43,8 @@ public:
 
    //assignment operator
    Set<T>& operator= (const Set<T> &rhs) throw (const char *);
+   Set<T>& operator&& (const Set<T> &rhs);
+   Set<T>& operator|| (const Set<T> &rhs);
 
    //bracket [] operator
    T& operator [](int index) throw (const char *);
@@ -59,6 +61,12 @@ public:
 
    // how many items are currently in the container?
    int size() const    { return numItems;              }
+
+   //Help help please fix me
+   SetIterator<T> find(const T & t) {return SetIterator<T>(data);} //takes template item, returns iterator
+   void erase(SetIterator<T> & t) {}; //takes iterator item, returns nothing
+
+
 
    // add an item to the container
    void insert(const T & t) throw (const char *);
