@@ -43,8 +43,9 @@ public:
 
    //assignment operator
    Set<T>& operator= (const Set<T> &rhs) throw (const char *);
-   Set<T>& operator&& (const Set<T> &rhs);
-   Set<T>& operator|| (const Set<T> &rhs);
+   
+   Set<T> operator&& (const Set<T> rhs) const;
+   Set<T> operator|| (const Set<T> rhs) const;
 
    //bracket [] operator
    T& operator [](int index) throw (const char *);

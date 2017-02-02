@@ -31,7 +31,7 @@ void testDifference();
 #define TEST1   // for testSimple()
 #define TEST2   // for testFill()
 #define TEST3   // for testFind()
-#define TEST4   // for testUnionItersection()
+//#define TEST4   // for testUnionItersection()
 //#define TEST5   // for testConstIterator()
 //#define TEST6   // for testDifference()
 
