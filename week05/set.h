@@ -48,8 +48,8 @@ class Set
     //assignment operator
     Set<T> &operator=(const Set<T> &rhs) throw(const char *);
 
-    Set<T> operator&&(const Set<T> rhs) const;
-    Set<T> operator||(const Set<T> rhs) const;
+    // Set<T> operator&&(const Set<T> rhs) const;
+    // Set<T> operator||(const Set<T> rhs) const;
 
     //bracket [] operator
     T &operator[](int index) throw(const char *);
@@ -68,8 +68,8 @@ class Set
     int size() const { return numItems; }
 
     //Help help please fix me
-    SetIterator<T> find(const T &t); //takes template item, returns iterator
-    void erase(SetIterator<T> &t){};//takes iterator item, returns nothing...will need to work on this one a bit
+    // SetIterator<T> find(const T &t); //takes template item, returns iterator
+    // void erase(SetIterator<T> &t){};//takes iterator item, returns nothing...will need to work on this one a bit
 
     // add an item to the container
     void insert(const T &t) throw(const char *); //there's a bunch of work needed for this one
@@ -379,24 +379,28 @@ const T &Set<T>::operator[](int index) const throw(const char *)
 template <class T>
 void Set<T>::insert(const T &t) throw(const char *)
 {
-    
+    // do we have space?
+    if (theCapacity == 0 || theCapacity == numItems)
+        throw "ERROR: Insufficient space";
+
+    // add an item to the end
+    data[numItems++] = t;
 }
 
-/***************************************************
- * Set :: && Operator
- **************************************************/
-template <class T>
-Set<T> Set<T>::operator&&(const Set<T> rhs) const
-{
-}
+// /***************************************************
+//  * Set :: && Operator
+//  **************************************************/
+// template <class T>
+// Set<T> Set<T>::operator&&(const Set<T> rhs) const
+// {
+// }
 
-/***************************************************
- * Set :: || Operator|
- **************************************************/
-template <class T>
-Set<T> Set<T>::operator||(const Set<T> rhs) const
-{
-}
-
+// /***************************************************
+//  * Set :: || Operator|
+//  **************************************************/
+// template <class T>
+// Set<T> Set<T>::operator||(const Set<T> rhs) const
+// {
+// }
 
 #endif //SET_H
