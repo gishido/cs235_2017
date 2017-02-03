@@ -62,18 +62,19 @@ class Set
     int capacity() const { return theCapacity; }
 
     // remove all the items from the container
-    void clear() { numItems = 0; }
+    void clear() { numItems = 0; } //may need to change this one
 
     // how many items are currently in the container?
     int size() const { return numItems; }
 
     //Help help please fix me
-    SetIterator<T> find(const T &t) { return SetIterator<T>(data); } //takes template item, returns iterator
-    void erase(SetIterator<T> &t){};                                 //takes iterator item, returns nothing
+    SetIterator<T> find(const T &t); //takes template item, returns iterator
+    void erase(SetIterator<T> &t){};//takes iterator item, returns nothing...will need to work on this one a bit
 
     // add an item to the container
-    void insert(const T &t) throw(const char *);
-    void push_back(const T &t) throw(const char *);
+    void insert(const T &t) throw(const char *); //there's a bunch of work needed for this one
+    //void push_back(const T &t) throw(const char *);
+    //SetIterator<T> binSearch(const T &t); //used by both find and insert...and erase, I think
 
     // return an iterator to the beginning of the list
     SetIterator<T> begin() { return SetIterator<T>(data); }
@@ -304,7 +305,7 @@ Set<T>::Set(int theCapacity) throw(const char *)
 }
 
 /***************************************************
- * Set :: operator=
+ * Set :: = Operator
  **************************************************/
 template <class T>
 Set<T> &Set<T>::operator=(const Set<T> &rhs) throw(const char *)
@@ -327,7 +328,7 @@ Set<T> &Set<T>::operator=(const Set<T> &rhs) throw(const char *)
     }
     catch (std::bad_alloc)
     {
-        throw "ERROR: unable to allocate buffer";
+        throw "ERROR: unable to allocate new buffer for Set";
     }
 
     //copy size and capacity
@@ -379,23 +380,13 @@ template <class T>
 void Set<T>::insert(const T &t) throw(const char *)
 {
     // do we have space?
-    if (theCapacity == 0 || theCapacity == numItems)
-        throw "ERROR: Insufficient space";
+    // if (theCapacity == 0 || theCapacity == numItems)
+    //     throw "ERROR: Insufficient space";
 
-    // add an item to the end
-    data[numItems++] = t;
-}
-
-/***************************************************
- * Set :: PUSH_BACK
- * Extends the array size prior to an insert
- **************************************************/
-template <class T>
-void Set<T>::push_back(const T &t) throw(const char *)
-{
-    //create a new, temp empty array
-    T *moreData;
-
+    
+    T* moreData;
+    
+    //make sure we have enough capacity
     if (numItems >= theCapacity)
     {
         if (theCapacity == 0)
@@ -414,16 +405,69 @@ void Set<T>::push_back(const T &t) throw(const char *)
         for (int i = 0; i < numItems; ++i)
             moreData[i] = data[i];
 
-        delete[] data;
+        delete [] data;
         data = moreData;
-    }
+    }    
 
-    insert(t);
+    //need to do some work on this still... but 
+    // find result should not result in end.
+    T* result = find(t);
+    
+    //cout << "debug: result - " << result << endl;
+
+    // if (*result != t)
+    // {
+    //     for (int i = 0; i < result; i++)
+    //     {
+    //         // add an item to the end
+    //         //data[numItems++] = *result;
+    //         cout << "debug: data items - " << data[numItems - 1] << endl;
+    //     }
+    // }
+
+
+
+
+
 }
 
+// /***************************************************
+//  * Set :: PUSH_BACK
+//  * Extends the array size prior to an insert
+//  **************************************************/
+// template <class T>
+// void Set<T>::push_back(const T &t) throw(const char *)
+// {
+//     //create a new, temp empty array
+//     T *moreData;
+
+//     if (numItems >= theCapacity)
+//     {
+//         if (theCapacity == 0)
+//         {
+//             //initialize size to at least 1
+//             theCapacity = 1;
+//         }
+//         else
+//         {
+//             //double size
+//             theCapacity *= 2;
+//         }
+
+//         moreData = new T[theCapacity];
+//         //copy existing items to the new array
+//         for (int i = 0; i < numItems; ++i)
+//             moreData[i] = data[i];
+
+//         delete[] data;
+//         data = moreData;
+//     }
+
+//     insert(t);
+// }
+
 /***************************************************
- * Set :: PUSH_BACK
- * Extends the array size prior to an insert
+ * Set :: && Operator
  **************************************************/
 template <class T>
 Set<T> Set<T>::operator&&(const Set<T> rhs) const
@@ -431,12 +475,71 @@ Set<T> Set<T>::operator&&(const Set<T> rhs) const
 }
 
 /***************************************************
- * Set :: PUSH_BACK
- * Extends the array size prior to an insert
+ * Set :: || Operator|
  **************************************************/
 template <class T>
 Set<T> Set<T>::operator||(const Set<T> rhs) const
 {
 }
+
+/***************************************************
+ * Set :: Find
+ * Find if an item exists in the set
+ **************************************************/
+SetIterator<T> Set<T>::find(const T &t)
+{ 
+//     int iBegin = 0;
+//     int iEnd = numItems - 1;
+    
+//     while (iBegin <= iEnd)
+//     {
+//         int iMiddle = (iBegin + iEnd) / 2;
+//         if (t == this->data[iMiddle])
+//         {
+//             return SetIterator<T>(data + iMiddle);
+//         }
+//         if (t < data[iMiddle])
+//         {
+//             iEnd = iMiddle - 1;
+//         }
+//         else
+//         {
+//             iBegin = iMiddle - 1;
+//         }
+
+//     }
+//     return end();
+    
+}
+
+// /***************************************************
+//  * Set :: binSearch
+//  * binary search used by Find, Insert, and empty
+//  *   returns SetIterator
+//  **************************************************/
+// SetIterator<T> binSearch(const T &t)
+// {
+//     int i = 0;
+//     int iBegin = *this->begin();
+//     int iEnd = *this->end();
+//     int iMiddle = (iBegin + iEnd) / 2;
+//     while (iBegin <= iEnd)
+//     {
+//         if (t == data[iMiddle])
+//         {
+//             return SetIterator<T>(data + iMiddle);
+//         }
+//         if (t < data[iMiddle])
+//         {
+//             iEnd = iMiddle - 1;
+//         }
+//         else
+//         {
+//             iBegin = iMiddle - 1;
+//         }
+//         i++;
+//     }
+//     return SetIterator<T>(data + i);
+// }
 
 #endif //SET_H
