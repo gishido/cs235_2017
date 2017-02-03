@@ -379,8 +379,92 @@ const T &Set<T>::operator[](int index) const throw(const char *)
 template <class T>
 void Set<T>::insert(const T &t) throw(const char *)
 {
+    // do we have space?
+    // if (theCapacity == 0 || theCapacity == numItems)
+    //     throw "ERROR: Insufficient space";
+
     
+    T* moreData;
+    
+    //make sure we have enough capacity
+    if (numItems >= theCapacity)
+    {
+        if (theCapacity == 0)
+        {
+            //initialize size to at least 1
+            theCapacity = 1;
+        }
+        else
+        {
+            //double size
+            theCapacity *= 2;
+        }
+
+        moreData = new T[theCapacity];
+        //copy existing items to the new array
+        for (int i = 0; i < numItems; ++i)
+            moreData[i] = data[i];
+
+        delete [] data;
+        data = moreData;
+    }    
+
+    //need to do some work on this still... but 
+    // find result should not result in end.
+    T* result = find(t);
+    
+    //cout << "debug: result - " << result << endl;
+
+    // if (*result != t)
+    // {
+    //     for (int i = 0; i < result; i++)
+    //     {
+    //         // add an item to the end
+    //         //data[numItems++] = *result;
+    //         cout << "debug: data items - " << data[numItems - 1] << endl;
+    //     }
+    // }
+
+
+
+
+
 }
+
+// /***************************************************
+//  * Set :: PUSH_BACK
+//  * Extends the array size prior to an insert
+//  **************************************************/
+// template <class T>
+// void Set<T>::push_back(const T &t) throw(const char *)
+// {
+//     //create a new, temp empty array
+//     T *moreData;
+
+//     if (numItems >= theCapacity)
+//     {
+//         if (theCapacity == 0)
+//         {
+//             //initialize size to at least 1
+//             theCapacity = 1;
+//         }
+//         else
+//         {
+//             //double size
+//             theCapacity *= 2;
+//         }
+
+//         moreData = new T[theCapacity];
+//         //copy existing items to the new array
+//         for (int i = 0; i < numItems; ++i)
+//             moreData[i] = data[i];
+
+//         delete[] data;
+//         data = moreData;
+//     }
+
+//     insert(t);
+// }
 
 /***************************************************
  * Set :: && Operator
@@ -398,5 +482,64 @@ Set<T> Set<T>::operator||(const Set<T> rhs) const
 {
 }
 
+/***************************************************
+ * Set :: Find
+ * Find if an item exists in the set
+ **************************************************/
+SetIterator<T> Set<T>::find(const T &t)
+{ 
+//     int iBegin = 0;
+//     int iEnd = numItems - 1;
+    
+//     while (iBegin <= iEnd)
+//     {
+//         int iMiddle = (iBegin + iEnd) / 2;
+//         if (t == this->data[iMiddle])
+//         {
+//             return SetIterator<T>(data + iMiddle);
+//         }
+//         if (t < data[iMiddle])
+//         {
+//             iEnd = iMiddle - 1;
+//         }
+//         else
+//         {
+//             iBegin = iMiddle - 1;
+//         }
+
+//     }
+//     return end();
+    
+}
+
+// /***************************************************
+//  * Set :: binSearch
+//  * binary search used by Find, Insert, and empty
+//  *   returns SetIterator
+//  **************************************************/
+// SetIterator<T> binSearch(const T &t)
+// {
+//     int i = 0;
+//     int iBegin = *this->begin();
+//     int iEnd = *this->end();
+//     int iMiddle = (iBegin + iEnd) / 2;
+//     while (iBegin <= iEnd)
+//     {
+//         if (t == data[iMiddle])
+//         {
+//             return SetIterator<T>(data + iMiddle);
+//         }
+//         if (t < data[iMiddle])
+//         {
+//             iEnd = iMiddle - 1;
+//         }
+//         else
+//         {
+//             iBegin = iMiddle - 1;
+//         }
+//         i++;
+//     }
+//     return SetIterator<T>(data + i);
+// }
 
 #endif //SET_H
