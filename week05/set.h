@@ -416,16 +416,16 @@ const T &Set<T>::operator[](int index) const throw(const char *)
     int inner = 0;
     int outter = 0;
 
-    for (int i = 0; i < theCapacity - 1; i++)
+    for (int i = 0; i < numItems; i++)
     {
         inner = i;
 
-        for (outter = i + 1; outter < theCapacity; outter++)
+        for (outter = i + 1; outter < numItems; outter++)
         {
-            if (data[inner] < data[outter])
+            if (data[outter] < data[inner])
                 inner = outter;
             
-            swap(data[i], data[outter]);
+            swap(data[i], data[inner]);
         }
     }
 
