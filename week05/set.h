@@ -413,6 +413,7 @@ void Set<T>::insert(const T &t)
 {
     //create a new, temp empt array
     T* moreData;
+    T testItem = t;
 
     // do we have space?
     if (theCapacity == 0 || numItems >= theCapacity)
@@ -427,17 +428,20 @@ void Set<T>::insert(const T &t)
             //double size
             theCapacity *= 2;
         }
-    }
-
-    moreData = new T[theCapacity];
-    if (numItems == 0)
-    {
-        //copy exiting items to the new array
-        for (int i = 0; i < numItems; i++)
+        
+        moreData = new T[theCapacity];
+        //copy existing items to the new array
+        for (int i = 0; i < numItems; ++i)
             moreData[i] = data[i];
 
         delete [] data;
         data = moreData;
+    }
+
+    if (numItems == 0)
+    {
+        // add an item to the end
+        data[numItems++] = testItem;  
     }
     else
     {
@@ -448,18 +452,32 @@ void Set<T>::insert(const T &t)
         // cout << *result << " : " << data + numItems<< endl;
         // cout << '}';
 
-        if(*find(t) != t)
+        if(*find(t) != testItem)
         {
+            T* sortData = new T[theCapacity];
+
             cout << "debug: find() *result != t\n";
+
+            //copy exiting items to the new array
+            for (int i = 0; i < numItems + 1; i++)
+            {
+                if(t < data[i])
+                {
+                    sortData[i] = testItem;
+                    testItem = T();
+                }
+                else
+                    sortData[i] = data[i];
+            }
+
+            delete [] data;
+            data = sortData;   
+            numItems++;
         }
-    
+        
+ 
     }
 
-
-
-
-    // add an item to the end
-    data[numItems++] = t;  
 }
 
 // /***************************************************
