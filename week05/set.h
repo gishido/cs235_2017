@@ -561,6 +561,31 @@ Set<T> Set<T>::operator&&(const Set<T> rhs) const
 template <class T>
 Set<T> Set<T>::operator||(const Set<T> rhs) const
 {
+    //new dynamic set
+    Set<T> rtnData;
+
+    int iSet1 = 0;
+    int iSet2 = 0;
+
+    while (iSet1 < numItems || iSet2 < rhs.numItems)
+    {
+        if (iSet1 == numItems)
+            return rtnData;
+        else if (iSet2 == rhs.numItems)
+            return rtnData;
+        else if (data[iSet1] == rhs.data[iSet2])
+        {
+            rtnData.insert(data[iSet1]);
+            iSet1++;
+            iSet2++;
+        }
+        else if (data[iSet1] < rhs.data[iSet2])
+            iSet1++;
+        else
+            iSet2++;
+    }
+
+    return rtnData;
 }
 
 #endif //SET_H
