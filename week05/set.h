@@ -502,10 +502,6 @@ void Set<T>::insert(const T &t)
      //creating temp
      T* delData = new T[theCapacity];
 
-    //  for (int i = 0; i < numItems; i++)
-    //  {
-    //      delData[i] = data[i];
-    //  }
     int p = 0;
 
      for (int i = 0; i < numItems; i++)
@@ -532,6 +528,31 @@ void Set<T>::insert(const T &t)
 template <class T>
 Set<T> Set<T>::operator&&(const Set<T> rhs) const
 {
+    //new dynamic set
+    Set<T> rtnData;
+
+    int iSet1 = 0;
+    int iSet2 = 0;
+
+    while (iSet1 < numItems || iSet2 < rhs.numItems)
+    {
+        if (iSet1 == numItems)
+            rtnData.insert(rhs.data[iSet2++]);
+        else if (iSet2 == rhs.numItems)
+            rtnData.insert(data[iSet1++]);
+        else if (data[iSet1] == rhs.data[iSet2])
+        {
+            rtnData.insert(data[iSet1]);
+            iSet1++;
+            iSet2++;
+        }
+        else if (data[iSet1] < rhs.data[iSet2])
+            rtnData.insert(data[iSet1++]);
+        else
+            rtnData.insert(rhs.data[iSet2++]);
+    }
+
+    return rtnData;
 }
 
 /***************************************************
