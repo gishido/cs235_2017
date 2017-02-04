@@ -537,9 +537,9 @@ Set<T> Set<T>::operator&&(const Set<T> rhs) const
     while (iSet1 < numItems || iSet2 < rhs.numItems)
     {
         if (iSet1 == numItems)
-            rtnData.insert(rhs.data[iSet2++]);
+            return rtnData;
         else if (iSet2 == rhs.numItems)
-            rtnData.insert(data[iSet1++]);
+            return rtnData;
         else if (data[iSet1] == rhs.data[iSet2])
         {
             rtnData.insert(data[iSet1]);
@@ -547,9 +547,9 @@ Set<T> Set<T>::operator&&(const Set<T> rhs) const
             iSet2++;
         }
         else if (data[iSet1] < rhs.data[iSet2])
-            rtnData.insert(data[iSet1++]);
+            iSet1++;
         else
-            rtnData.insert(rhs.data[iSet2++]);
+            iSet2++;
     }
 
     return rtnData;
@@ -570,9 +570,9 @@ Set<T> Set<T>::operator||(const Set<T> rhs) const
     while (iSet1 < numItems || iSet2 < rhs.numItems)
     {
         if (iSet1 == numItems)
-            return rtnData;
+            rtnData.insert(rhs.data[iSet2++]);
         else if (iSet2 == rhs.numItems)
-            return rtnData;
+            rtnData.insert(data[iSet1++]);
         else if (data[iSet1] == rhs.data[iSet2])
         {
             rtnData.insert(data[iSet1]);
@@ -580,12 +580,13 @@ Set<T> Set<T>::operator||(const Set<T> rhs) const
             iSet2++;
         }
         else if (data[iSet1] < rhs.data[iSet2])
-            iSet1++;
+            rtnData.insert(data[iSet1++]);
         else
-            iSet2++;
+            rtnData.insert(rhs.data[iSet2++]);
     }
 
     return rtnData;
+    
 }
 
 #endif //SET_H
