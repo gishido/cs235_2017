@@ -13,6 +13,8 @@
 #include <cassert> //for asserts
 #include <iostream>
 
+using namespace std;
+
 //forward declaration for SetIterator
 template <class T>
 class SetIterator;
@@ -68,7 +70,7 @@ class Set
     int size() const { return numItems; }
 
     //Help help please fix me
-    // SetIterator<T> find(const T &t); //takes template item, returns iterator
+    SetIterator<T> find(const T &t); //takes template item, returns iterator
     // void erase(SetIterator<T> &t){};//takes iterator item, returns nothing...will need to work on this one a bit
 
     // add an item to the container
@@ -345,6 +347,32 @@ Set<T> &Set<T>::operator=(const Set<T> &rhs) throw(const char *)
         this->data[i] = T();
 
     return *this;
+}
+
+/***************************************************
+ * Set :: find
+ * traverses the Set to find an item
+ **************************************************/
+ template <class T>
+ SetIterator<T> Set<T>::find(const T &t)
+{ 
+    int iBegin = 0;
+    int iEnd = numItems - 1;
+
+    while (iBegin <= iEnd)
+    {
+        int iMiddle = (iBegin + iEnd) / 2;
+        if (t == data[iMiddle])
+            return SetIterator<T>(data + iMiddle);
+        else if (t < data[iMiddle])
+            iEnd = iMiddle - 1;
+        else 
+            iBegin = iMiddle + 1;
+    }
+
+    cout << "debug: find(); what is end() - " << end() << endl;
+    return SetIterator<T>(end());
+
 }
 
 /***************************************************
