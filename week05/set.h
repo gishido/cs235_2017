@@ -74,7 +74,7 @@ class Set
     // void erase(SetIterator<T> &t){};//takes iterator item, returns nothing...will need to work on this one a bit
 
     // add an item to the container
-    void insert(const T &t) throw(const char *); //there's a bunch of work needed for this one
+    void insert(const T &t); //there's a bunch of work needed for this one
     //void push_back(const T &t) throw(const char *);
     //SetIterator<T> binSearch(const T &t); //used by both find and insert...and erase, I think
 
@@ -363,15 +363,19 @@ Set<T> &Set<T>::operator=(const Set<T> &rhs) throw(const char *)
     {
         int iMiddle = (iBegin + iEnd) / 2;
         if (t == data[iMiddle])
+        {
+            cout << "debug: find() returning found item\n"; 
             return SetIterator<T>(data + iMiddle);
+        }
         else if (t < data[iMiddle])
             iEnd = iMiddle - 1;
         else 
             iBegin = iMiddle + 1;
     }
 
-    cout << "debug: find(); what is end() - " << end() << endl;
-    return SetIterator<T>(end());
+    cout << "debug: find(); returning end()... which could be 0?\n";
+    cout << "debug: data + numItems is - " << data + numItems << endl;
+    return end();
 
 }
 
@@ -405,14 +409,57 @@ const T &Set<T>::operator[](int index) const throw(const char *)
  * Insert an item on the end of the container
  **************************************************/
 template <class T>
-void Set<T>::insert(const T &t) throw(const char *)
+void Set<T>::insert(const T &t)
 {
+    //create a new, temp empt array
+    T* moreData;
+
     // do we have space?
-    if (theCapacity == 0 || theCapacity == numItems)
-        throw "ERROR: Insufficient space";
+    if (theCapacity == 0 || numItems >= theCapacity)
+    {
+        if (theCapacity == 0)
+        {
+            //initialize size to at least 1
+            theCapacity = 1;    
+        }
+        else
+        {
+            //double size
+            theCapacity *= 2;
+        }
+    }
+
+    moreData = new T[theCapacity];
+    if (numItems == 0)
+    {
+        //copy exiting items to the new array
+        for (int i = 0; i < numItems; i++)
+            moreData[i] = data[i];
+
+        delete [] data;
+        data = moreData;
+    }
+    else
+    {
+        // SetIterator<T> result = find(t);
+        
+        // cout << "{ ";
+        // cout << "result : end \n\t";
+        // cout << *result << " : " << data + numItems<< endl;
+        // cout << '}';
+
+        if(*find(t) != t)
+        {
+            cout << "debug: find() *result != t\n";
+        }
+    
+    }
+
+
+
 
     // add an item to the end
-    data[numItems++] = t;
+    data[numItems++] = t;  
 }
 
 // /***************************************************
