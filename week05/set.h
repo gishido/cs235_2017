@@ -72,6 +72,8 @@ class Set
     //Help help please fix me
     SetIterator<T> find(const T &t); //takes template item, returns iterator
     // void erase(SetIterator<T> &t){};//takes iterator item, returns nothing...will need to work on this one a bit
+    void sort(); //used for sorting
+    void swap(T &lhs, T &rhs);  //used for sorting
 
     // add an item to the container
     void insert(const T &t); //there's a bunch of work needed for this one
@@ -405,6 +407,44 @@ const T &Set<T>::operator[](int index) const throw(const char *)
 }
 
 /***************************************************
+ * Set :: Sort
+ * Sorts the container
+ **************************************************/
+ template <class T>
+ void Set<T>::sort()
+ {
+    int inner = 0;
+    int outter = 0;
+
+    for (int i = 0; i < theCapacity - 1; i++)
+    {
+        inner = i;
+
+        for (outter = i + 1; outter < theCapacity; outter++)
+        {
+            if (data[inner] < data[outter])
+                inner = outter;
+            
+            swap(data[i], data[outter]);
+        }
+    }
+
+ }
+
+/***************************************************
+ * Set :: Swap
+ * used with sort... switches values
+ **************************************************/
+template <class T>
+void Set<T>::swap(T &lhs, T &rhs)
+{
+    T temp;
+    temp = lhs;
+    lhs = rhs;
+    rhs = temp;
+}
+
+/***************************************************
  * Set :: INSERT
  * Insert an item on the end of the container
  **************************************************/
@@ -413,7 +453,6 @@ void Set<T>::insert(const T &t)
 {
     //create a new, temp empt array
     T* moreData;
-    T testItem = t;
 
     // do we have space?
     if (theCapacity == 0 || numItems >= theCapacity)
@@ -433,6 +472,7 @@ void Set<T>::insert(const T &t)
         //copy existing items to the new array
         for (int i = 0; i < numItems; ++i)
             moreData[i] = data[i];
+        cout << "debug: I just grew\n";
 
         delete [] data;
         data = moreData;
@@ -441,7 +481,11 @@ void Set<T>::insert(const T &t)
     if (numItems == 0)
     {
         // add an item to the end
-        data[numItems++] = testItem;  
+        cout << "debug: when 0, numItems before = " << numItems << endl;
+        cout << "debug: when 0, data[numItems++] before: " << data[numItems] << endl;
+        data[numItems++] = t;  
+        cout << "debug: when 0, data[numItems++] after: " << data[numItems] << endl;
+        cout << "debug: when 0, numItems after = " << numItems << endl;
     }
     else
     {
@@ -452,9 +496,10 @@ void Set<T>::insert(const T &t)
         // cout << *result << " : " << data + numItems<< endl;
         // cout << '}';
 
-        if(*find(t) != testItem)
+        if(*find(t) != t)
         {
             T* sortData = new T[theCapacity];
+            int index = 0;
 
             cout << "debug: find() *result != t\n";
 
@@ -463,18 +508,31 @@ void Set<T>::insert(const T &t)
             {
                 if(t < data[i])
                 {
-                    sortData[i] = testItem;
-                    testItem = T();
+                    sortData[i] = t;
+                    index = i;
+                    cout << "debug: testItem is less than data[i]\n";
                 }
                 else
+                {
                     sortData[i] = data[i];
+                    cout << "debug: sortData[i] : data[i] \n"
+                        << sortData[i] << " : " << data[i] << endl;
+                }
+
             }
+            cout << "debug: index val is - " << index << endl;
+            cout << "debug: numItems val is - " << numItems << endl;
+
+            // for (index; index < numItems + 1; index++)
+            // {
+            //     sortData[index] = data[index - 1];
+            // }
 
             delete [] data;
             data = sortData;   
             numItems++;
         }
-        
+
  
     }
 
