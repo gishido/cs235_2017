@@ -71,15 +71,17 @@ class Set
 
     //Help help please fix me
     SetIterator<T> find(const T &t); //takes template item, returns iterator
-    // void erase(SetIterator<T> &t){};//takes iterator item, returns nothing...will need to work on this one a bit
-    void sort(); //used for sorting
-    void swap(T &lhs, T &rhs);  //used for sorting
+    
+    //used to keep the container sorted
+    void sort();
+    void swap(T &lhs, T &rhs);
 
     // add an item to the container
-    void insert(const T &t); //there's a bunch of work needed for this one
-    //void push_back(const T &t) throw(const char *);
-    //SetIterator<T> binSearch(const T &t); //used by both find and insert...and erase, I think
+    void insert(const T &t);
 
+    // remove an item from the container
+    void erase(SetIterator<T> &t);
+    
     // return an iterator to the beginning of the list
     SetIterator<T> begin() { return SetIterator<T>(data); }
 
@@ -489,6 +491,40 @@ void Set<T>::insert(const T &t)
     }
 
 }
+
+/***************************************************
+ * Set :: Erase
+ * Removes an item from the container
+ **************************************************/
+ template <class T>
+ void Set<T>::erase(SetIterator<T> &t)
+ {
+     //creating temp
+     T* delData = new T[theCapacity];
+
+    //  for (int i = 0; i < numItems; i++)
+    //  {
+    //      delData[i] = data[i];
+    //  }
+    int p = 0;
+
+     for (int i = 0; i < numItems; i++)
+     {
+         if(data[i] != *t)
+         {
+             delData[i + p] = data[i];
+         }
+         else
+         {
+            p = -1; //resets index for target
+         }
+
+     }
+
+     delete [] data;
+     data = delData;
+     numItems--;
+ }
 
 // /***************************************************
 //  * Set :: && Operator
