@@ -365,18 +365,13 @@ Set<T> &Set<T>::operator=(const Set<T> &rhs) throw(const char *)
     {
         int iMiddle = (iBegin + iEnd) / 2;
         if (t == data[iMiddle])
-        {
-            cout << "debug: find() returning found item\n"; 
             return SetIterator<T>(data + iMiddle);
-        }
         else if (t < data[iMiddle])
             iEnd = iMiddle - 1;
         else 
             iBegin = iMiddle + 1;
     }
 
-    cout << "debug: find(); returning end()... which could be 0?\n";
-    cout << "debug: data + numItems is - " << data + numItems << endl;
     return end();
 
 }
@@ -472,7 +467,6 @@ void Set<T>::insert(const T &t)
         //copy existing items to the new array
         for (int i = 0; i < numItems; ++i)
             moreData[i] = data[i];
-        cout << "debug: I just grew\n";
 
         delete [] data;
         data = moreData;
@@ -481,60 +475,17 @@ void Set<T>::insert(const T &t)
     if (numItems == 0)
     {
         // add an item to the end
-        // cout << "debug: when 0, numItems before = " << numItems << endl;
-        // cout << "debug: when 0, data[numItems++] before: " << data[numItems] << endl;
         data[numItems++] = t;  
-        // cout << "debug: when 0, data[numItems++] after: " << data[numItems] << endl;
-        // cout << "debug: when 0, numItems after = " << numItems << endl;
     }
     else
     {
-        // SetIterator<T> result = find(t);
-        
-        // cout << "{ ";
-        // cout << "result : end \n\t";
-        // cout << *result << " : " << data + numItems<< endl;
-        // cout << '}';
 
         if(*find(t) != t)
         {
-            // T* sortData = new T[theCapacity];
-            // int index = 0;
-
-            // cout << "debug: find() *result != t\n";
-
-            // //copy exiting items to the new array
-            // for (int i = 0; i < numItems + 1; i++)
-            // {
-            //     if(t < data[i])
-            //     {
-            //         sortData[i] = t;
-            //         index = i;
-            //         cout << "debug: testItem is less than data[i]\n";
-            //     }
-            //     else
-            //     {
-            //         sortData[i] = data[i];
-            //         cout << "debug: sortData[i] : data[i] \n"
-            //             << sortData[i] << " : " << data[i] << endl;
-            //     }
-
-            // }
-            // cout << "debug: index val is - " << index << endl;
-            // cout << "debug: numItems val is - " << numItems << endl;
-
-            // for (index; index < numItems + 1; index++)
-            // {
-            //     sortData[index] = data[index - 1];
-            // }
             data[numItems++] = t; 
-            // delete [] data;
-            // data = sortData;
-
             sort();
         }
 
- 
     }
 
 }
