@@ -50,8 +50,8 @@ class Set
     //assignment operator
     Set<T> &operator=(const Set<T> &rhs) throw(const char *);
 
-    // Set<T> operator&&(const Set<T> rhs) const;
-    // Set<T> operator||(const Set<T> rhs) const;
+    Set<T> operator&&(const Set<T> rhs) const;
+    Set<T> operator||(const Set<T> rhs) const;
 
     //bracket [] operator
     T &operator[](int index) throw(const char *);
@@ -526,20 +526,20 @@ void Set<T>::insert(const T &t)
      numItems--;
  }
 
-// /***************************************************
-//  * Set :: && Operator
-//  **************************************************/
-// template <class T>
-// Set<T> Set<T>::operator&&(const Set<T> rhs) const
-// {
-// }
+/***************************************************
+ * Set :: && Operator
+ **************************************************/
+template <class T>
+Set<T> Set<T>::operator&&(const Set<T> rhs) const
+{
+}
 
-// /***************************************************
-//  * Set :: || Operator|
-//  **************************************************/
-// template <class T>
-// Set<T> Set<T>::operator||(const Set<T> rhs) const
-// {
-// }
+/***************************************************
+ * Set :: || Operator|
+ **************************************************/
+template <class T>
+Set<T> Set<T>::operator||(const Set<T> rhs) const
+{
+}
 
 #endif //SET_H
