@@ -10,6 +10,8 @@
 #ifndef GO_FISH_H
 #define GO_FISH_H
 
+#include <set>
+
 /**************************************************
  * GO FISH
  * Play the game of "Go Fish"

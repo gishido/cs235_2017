@@ -3,7 +3,7 @@
 *    Assignment 01, Go Fish
 *    Brother Helfrich, CS 235
 * Author:
-*    <your names here>
+*    Adam Shumway, Jenaca Willans
 * Summary: 
 *    This is all the functions necessary to play Go Fish!
 *
@@ -13,7 +13,8 @@
 ************************************************************************/
 
 #include <iostream>
-#include "set.h"
+//#include "set.h"
+#include <set>
 #include "card.h"
 #include "goFish.h"
 using namespace std;
@@ -24,5 +25,8 @@ using namespace std;
  ***********************************************************************/
 void goFish()
 {
+
+   
+   
    return ;
 }
