@@ -2,7 +2,7 @@
 * Header:
 *    Set.h header file
 * Author:
-*    Adam Shumway
+*    Adam Shumway, Jenaca Willans
 * Summary: 
 *    Set Template Class Header File
 ************************************************************************/
@@ -49,9 +49,13 @@ class Set
 
     //assignment operator
     Set<T> &operator=(const Set<T> &rhs) throw(const char *);
-
+    
+    //union and intersect operators
     Set<T> operator&&(const Set<T> rhs) const;
     Set<T> operator||(const Set<T> rhs) const;
+
+    //substraction operator
+    Set<T> operator-(const Set<T> rhs) const;
 
     //bracket [] operator
     T &operator[](int index) throw(const char *);
@@ -587,6 +591,38 @@ Set<T> Set<T>::operator||(const Set<T> rhs) const
 
     return rtnData;
     
+}
+
+/***************************************************
+ * Set :: - Operator (subtraction)
+ **************************************************/
+template <class T>
+Set<T> Set<T>::operator-(const Set<T> rhs) const
+{
+    //new dynamic set
+    Set<T> rtnData;
+
+    int iSet1 = 0;
+    int iSet2 = 0;
+
+    while (iSet1 < numItems || iSet2 < rhs.numItems)
+    {
+        if (iSet1 == numItems)
+            return rtnData;
+        else if (iSet2 == rhs.numItems)
+            rtnData.insert(data[iSet1++]);
+        else if (data[iSet1] == rhs.data[iSet2])
+        {
+            iSet1++;
+            iSet2++;
+        }
+        else if (data[iSet1] < rhs.data[iSet2])
+            rtnData.insert(data[iSet1++]);
+        else if (data[iSet1] > rhs.data[iSet2])
+            iSet2++;
+    }
+
+    return rtnData;
 }
 
 #endif //SET_H

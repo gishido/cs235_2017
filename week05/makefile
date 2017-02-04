@@ -5,10 +5,12 @@
 # Author:                                                                     
 #     Adam Shumway, Jenaca Willans                                         
 # Most Difficult Part:
-#
+#     Dealing with returning iterators, insert and sort was
+#       tough
 # Pair Programming Time:                                                     
 #     
-# Total Time:                                                                 
+# Total Time:
+#   12 hrs - tests 1-4 + extra credit                                                                
 #
 ###############################################################
 
