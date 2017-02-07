@@ -20,9 +20,9 @@ using namespace std;
 * A Node class template that holds stuff
 *************************************************/
 template <class T>
-class Node
+struct Node
 {
-    
+
 };
 
 #endif //NODE_H
