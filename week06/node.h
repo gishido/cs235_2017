@@ -37,20 +37,20 @@ Node<T> * copy(Node<T> * &pHead)
     //Node<T> * pNew = new Node<T>;
     Node<T> * pNew = pHead;
 
-    while(pHead != NULL)
-    {
-        // cout << "debug: pHead node 1 data - "
-            // << pHead->data << endl;
-        insert(pHead->data, pNew);
-        pHead = pHead->pNext;
-    }    
-    // for (Node<T> * p = pHead; p; p=p->pNext)
+    // while(pHead != NULL)
     // {
-    //     cout << "debug: copy data is - "
-    //         << pHead->data << endl;
+    //     // cout << "debug: pHead node 1 data - "
+    //         // << pHead->data << endl;
     //     insert(pHead->data, pNew);
+    //     pHead = pHead->pNext;
+    // }    
+    for (Node<T> * p = pHead; p; p = p->pNext)
+    {
+        cout << "debug: copy data is - "
+            << p->data << endl;
+        insert(p->data, pNew);
 
-    // }
+    }
 
 
 
@@ -65,12 +65,12 @@ Node<T> * insert(T data, Node<T> * &pNode, bool head = false)
     else
     {
         // cout << "debug: in else of insert\n";
-        // cout << "debug: pNode data is " 
-        //     << pNode->data << endl;
+        cout << "debug: pNode data is " 
+            << pNode->data << endl;
         // cout << "debug: pNode next is "
         //     << (pNode->pNext ? "address" : "NULL")
         //     << endl;
-        // cout << "debug: insert data is - " << data << endl;
+        cout << "debug: insert data is - " << data << endl;
         //1. create a new Node
         Node<T> * pNew = new Node<T>;
         pNew->data = data;
