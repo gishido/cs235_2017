@@ -112,7 +112,8 @@ void freeData(Node<T> * & pHead)
     //cout << "debug: we're in freeData\n";
     while (pHead != NULL)
     {
-        Node<T> * p = pHead->pNext;
+        Node<T> * p = pHead;
+        p = p->pNext;
         delete pHead;
         pHead = p;
     }
