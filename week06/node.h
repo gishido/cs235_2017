@@ -79,7 +79,7 @@ Node<T> * insert(T data, Node<T> * &pNode, bool head = false)
         pNew->pNext = pNode->pNext;
 
         //3. get pNode->pNext to point to new
-        //pNode->pNext = pNew;
+        pNode->pNext = pNew;
     }
     
     return pNode;
