@@ -5,13 +5,12 @@
 # Author:                                                                     
 #     Adam Shumway, Jenaca Willans                                         
 # Most Difficult Part:
-#     Dealing with returning iterators, insert and sort was
-#       tough
+#     Understanding the concept of SetIterators and how to work
+#     with them. 	
 # Pair Programming Time:                                                     
-#     
-# Total Time:
-#   12 hrs - tests 1-4 + extra credit                                                                
-#
+#     2 Hours.
+# Total Time:                                                                 
+#     17 Hours.
 ###############################################################
 
 ifeq ($(OS),Windows_NT)
