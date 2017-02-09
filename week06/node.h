@@ -35,15 +35,51 @@ template <class T>
 Node<T> * copy(Node<T> * &pHead)
 {
 //    Node<T> * pNew = new Node<T>;
-    Node<T> * pNew = pHead;
+    Node<T> * pNew = new Node<T>;
+    //Node<T> * pCopy;
+    pNew->data = pHead->data;
+    pHead = pHead->pNext;
+        //     cout << "debug: pHead->data is " << pHead->data << endl;
+    //     pHead = pHead->pNext;
+    //     cout << "debug: iterations of copy are " << i++ << endl;
 
-    for (Node<T> * p = pHead; p; p=p->pNext)
+    //     cout << "debug: pNew->data is " << pNew->data << endl;
+
+    while (pHead != NULL)
     {
-       insert(p->data, pNew);
-       pHead = pHead->pNext;
-       
+        pNew->pNext = new Node<T>(pHead->data);
+        pHead = pHead->pNext;
     }
+
+    // for (Node<T> * p = pHead; p; p=p->pNext)
+    // {
+    //    insert(p->data, pNew);
+    //    pHead = pHead->pNext;
+    //     // pNew->data = p->data;
+    //     // pNew->pNext = new Node<T>;
+    // }
+       
+    // }
+    // int i = 0;
+    // while (pHead != NULL)
+    // {
+    //     insert(pHead->data, pNew);
+    //     //pNew->pNext = new Node<T>;
+    //     cout << "debug: pHead->data is " << pHead->data << endl;
+    //     pHead = pHead->pNext;
+    //     cout << "debug: iterations of copy are " << i++ << endl;
+
+    //     cout << "debug: pNew->data is " << pNew->data << endl;
+    // }
     
+        // Node<T> * pNew = new Node<T>;
+        // pNew->data = data;
+
+        // //2. fix the next pointer
+        // pNew->pNext = pNode->pNext;
+
+        // //3. get pNode->pNext to point to new
+        // pNode->pNext = pNew;
 
     return pNew;
 }
@@ -70,7 +106,7 @@ Node<T> * insert(T data, Node<T> * &pNode, bool head = false)
         pNew->pNext = pNode->pNext;
 
         //3. get pNode->pNext to point to new
-        pNode->pNext = pNew->pNext;
+        pNode->pNext = pNew;
     }
     
     return pNode;
@@ -103,7 +139,8 @@ void freeData(Node<T> * & pHead)
     //cout << "debug: we're in freeData\n";
     while (pHead != NULL)
     {
-        Node<T> * p = pHead->pNext;
+        Node<T> * p = pHead;
+        p = p->pNext;
         delete pHead;
         pHead = p;
     }
