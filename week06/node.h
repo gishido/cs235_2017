@@ -34,29 +34,16 @@ class Node
 template <class T>
 Node<T> * copy(Node<T> * &pHead)
 {
-
-    if (pHead == NULL)
-    {
-        //list is empty
-        return pHead;
-    }
-    //Node<T> * pNew = new Node<T>;
+//    Node<T> * pNew = new Node<T>;
     Node<T> * pNew = pHead;
 
-
-    while(pHead != NULL)
+    for (Node<T> * p = pHead; p; p=p->pNext)
     {
-        // cout << "debug: pHead node 1 data - "
-            // << pHead->data << endl;
-        insert(pHead->data, pNew);
-        pHead = pHead->pNext;
-    }    
-    // for (Node<T> * p = pHead; p; p = p->pNext)
-    // {
-    //     cout << "debug: copy data is - "
-    //         << p->data << endl;
-    //     insert(p->data, pNew);
-    // }
+       insert(p->data, pNew);
+       pHead = pHead->pNext;
+       
+    }
+    
 
     return pNew;
 }
@@ -74,7 +61,7 @@ Node<T> * insert(T data, Node<T> * &pNode, bool head = false)
         // cout << "debug: pNode next is "
         //     << (pNode->pNext ? "address" : "NULL")
         //     << endl;
-        //cout << "debug: insert data is - " << data << endl;
+        // cout << "debug: insert data is - " << data << endl;
         //1. create a new Node
         Node<T> * pNew = new Node<T>;
         pNew->data = data;
@@ -116,8 +103,7 @@ void freeData(Node<T> * & pHead)
     //cout << "debug: we're in freeData\n";
     while (pHead != NULL)
     {
-        Node<T> * p = pHead;
-        p = p->pNext;
+        Node<T> * p = pHead->pNext;
         delete pHead;
         pHead = p;
     }
@@ -135,8 +121,17 @@ template <class T>
 ostream & operator<<(ostream & out, const Node<T> * pHead)
 {
     for (const Node<T> * p = pHead; p; p = p->pNext)
-        out << p->data << ' ';
-    return out;
+    {
+       if(p->pNext != NULL)
+       {
+          out << p->data << ", ";
+       }
+       else
+       {
+          out << p->data;
+       }
+    }
+       return out;
 }
 
 #endif //NODE_H
