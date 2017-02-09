@@ -36,7 +36,7 @@ Node<T> * copy(Node<T> * &pHead)
 {
 //    Node<T> * pNew = new Node<T>;
     Node<T> * pNew = new Node<T>;
-    //Node<T> * pCopy;
+    Node<T> * pCopy = pNew;
     pNew->data = pHead->data;
     pHead = pHead->pNext;
         //     cout << "debug: pHead->data is " << pHead->data << endl;
@@ -49,6 +49,7 @@ Node<T> * copy(Node<T> * &pHead)
     {
         pNew->pNext = new Node<T>(pHead->data);
         pHead = pHead->pNext;
+        pNew = pNew->pNext;
     }
 
     // for (Node<T> * p = pHead; p; p=p->pNext)
@@ -81,7 +82,7 @@ Node<T> * copy(Node<T> * &pHead)
         // //3. get pNode->pNext to point to new
         // pNode->pNext = pNew;
 
-    return pNew;
+    return pCopy;
 }
 
 template <class T>
