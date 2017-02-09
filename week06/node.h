@@ -34,54 +34,26 @@ class Node
 template <class T>
 Node<T> * copy(Node<T> * &pHead)
 {
-//    Node<T> * pNew = new Node<T>;
+    //create new node
     Node<T> * pNew = new Node<T>;
+    //point to new node...basially new head of list
     Node<T> * pCopy = pNew;
+    
+    //copy first data item
     pNew->data = pHead->data;
     pHead = pHead->pNext;
-        //     cout << "debug: pHead->data is " << pHead->data << endl;
-    //     pHead = pHead->pNext;
-    //     cout << "debug: iterations of copy are " << i++ << endl;
 
-    //     cout << "debug: pNew->data is " << pNew->data << endl;
-
+    //if more than 1 data item, copy the rest
     while (pHead != NULL)
     {
+        //create new node with data
         pNew->pNext = new Node<T>(pHead->data);
+        //advance nodes
         pHead = pHead->pNext;
         pNew = pNew->pNext;
     }
 
-    // for (Node<T> * p = pHead; p; p=p->pNext)
-    // {
-    //    insert(p->data, pNew);
-    //    pHead = pHead->pNext;
-    //     // pNew->data = p->data;
-    //     // pNew->pNext = new Node<T>;
-    // }
-       
-    // }
-    // int i = 0;
-    // while (pHead != NULL)
-    // {
-    //     insert(pHead->data, pNew);
-    //     //pNew->pNext = new Node<T>;
-    //     cout << "debug: pHead->data is " << pHead->data << endl;
-    //     pHead = pHead->pNext;
-    //     cout << "debug: iterations of copy are " << i++ << endl;
-
-    //     cout << "debug: pNew->data is " << pNew->data << endl;
-    // }
-    
-        // Node<T> * pNew = new Node<T>;
-        // pNew->data = data;
-
-        // //2. fix the next pointer
-        // pNew->pNext = pNode->pNext;
-
-        // //3. get pNode->pNext to point to new
-        // pNode->pNext = pNew;
-
+    //return head of copy
     return pCopy;
 }
 
@@ -92,13 +64,6 @@ Node<T> * insert(T data, Node<T> * &pNode, bool head = false)
         addToHead(data, pNode);
     else
     {
-        // cout << "debug: in else of insert\n";
-        // cout << "debug: pNode data is " 
-        //     << pNode->data << endl;
-        // cout << "debug: pNode next is "
-        //     << (pNode->pNext ? "address" : "NULL")
-        //     << endl;
-        // cout << "debug: insert data is - " << data << endl;
         //1. create a new Node
         Node<T> * pNew = new Node<T>;
         pNew->data = data;
@@ -116,7 +81,6 @@ Node<T> * insert(T data, Node<T> * &pNode, bool head = false)
 template <class T>
 void addToHead(T data, Node<T> * & pHead)
 {
-    // cout << "debug: adding to head\n";
   //1. create a new Node
     Node<T> * pNew = new Node<T>;
     pNew->data = data;
@@ -137,7 +101,7 @@ Node<T> * find(Node<T> * pHead, T index)
 template <class T>
 void freeData(Node<T> * & pHead)
 {
-    //cout << "debug: we're in freeData\n";
+    //delete items from the list
     while (pHead != NULL)
     {
         Node<T> * p = pHead;
@@ -145,12 +109,6 @@ void freeData(Node<T> * & pHead)
         delete pHead;
         pHead = p;
     }
-    // for (Node<T> * p = pHead; p; p = p->pNext)
-    // {
-    //     cout << "debug: trying to delete " << p->data
-    //         << endl;
-    //     delete p;
-    // }
 
     pHead = NULL;
 }
