@@ -69,12 +69,12 @@ Node<T> * insert(T data, Node<T> * &pNode, bool head = false)
     else
     {
         // cout << "debug: in else of insert\n";
-        cout << "debug: pNode data is " 
-            << pNode->data << endl;
+        // cout << "debug: pNode data is " 
+        //     << pNode->data << endl;
         // cout << "debug: pNode next is "
         //     << (pNode->pNext ? "address" : "NULL")
         //     << endl;
-        cout << "debug: insert data is - " << data << endl;
+        //cout << "debug: insert data is - " << data << endl;
         //1. create a new Node
         Node<T> * pNew = new Node<T>;
         pNew->data = data;
@@ -83,7 +83,7 @@ Node<T> * insert(T data, Node<T> * &pNode, bool head = false)
         pNew->pNext = pNode->pNext;
 
         //3. get pNode->pNext to point to new
-        pNode->pNext = pNew;
+        pNode->pNext = pNew->pNext;
     }
     
     return pNode;
