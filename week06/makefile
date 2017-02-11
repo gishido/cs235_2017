@@ -5,12 +5,11 @@
 # Author:
 #     Adam Shumway, Jenaca Willans
 # Most Difficult Part:
-#
-# Pair Programming Time:                                                     
+#     Copy() and "string construct from null error"
+# Pair Programming Time:
+#     5                                          
 # Total Time:
-#        
-# Summary:
-#     <put a description here>
+#     17
 ###############################################################
 ifeq ($(OS),Windows_NT)
     #Windows stuff                                                            
