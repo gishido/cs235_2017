@@ -94,16 +94,28 @@ throw (const char *)
 template <class T>
 Node<T> * find(Node<T> * pHead, const T &t)
 {
-   if (NULL == pHead || t < pHead->data)
-      return NULL;
+//    if (pHead == NULL || t < pHead->data)
+//    {
+//        cout << "debug: pHead is null or t < that pHead->data\n";
+//        return NULL;
+//    }
+
 
 //   cout << "Debug: value of data" << pHead->data << endl;
-   
-   while (pHead->pNext && pHead->pNext->data < t)
-   {
-      pHead = pHead->pNext;
-      return pHead;
-   }
+
+    for (Node<T> * p = pHead; p; p = p->pNext)
+    {
+        if (p->data == t)
+            return pHead;
+    }
+//    while (pHead->pNext && pHead->pNext->data < t)
+//    {
+//       pHead = pHead->pNext;
+//       return pHead;
+//    }
+   //cout << "debug: find - not returning anyting - there is an error with find()\n";
+   pHead = NULL;
+   return pHead;
 }
 
 template <class T>
