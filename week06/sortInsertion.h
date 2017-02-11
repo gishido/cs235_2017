@@ -41,18 +41,19 @@ void sortInsertion(T array[], int num)
     {
         array[i] = sorted->data;
         sorted = sorted->pNext;
-        i++
+        i++;
     }
 
     freeData(sorted);
     freeData(unsorted);
 }
 
+template <class T>
 void insertSort(Node<T> ** list, Node<T> * pNode)
 {
     Node<T> * current;
 
-    if (*list == NULL) || (*list)->data >= pNode->data)
+    if (*list == NULL || (*list)->data >= pNode->data)
     {
         pNode->pNext = *list;
         *list = pNode;
