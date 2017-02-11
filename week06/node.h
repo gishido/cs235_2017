@@ -12,6 +12,8 @@
 
 #include <cassert> //for asserts
 #include <iostream>
+#include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -58,44 +60,50 @@ Node<T> * copy(Node<T> * &pHead)
 }
 
 template <class T>
-Node<T> * insert(T data, Node<T> * &pNode, bool head = false)
-{
-    if(head || pNode == NULL)
-        addToHead(data, pNode);
-    else
-    {
-        //1. create a new Node
-        Node<T> * pNew = new Node<T>;
-        pNew->data = data;
+Node<T> * insert(const T & data, Node<T> * &pHead, bool head = false)
+throw (const char *)
+{   
+   try
+   {
+      Node<T> * pNew = new Node<T>(data);
+      //    Node<T> * pFind = find(pHead, data);
 
-        //2. fix the next pointer
-        pNew->pNext = pNode->pNext;
+      if(head || pHead == NULL)
+      {
+         pNew->pNext = pHead;
+         pHead = pNew;
+      }
+      else
+      {
+         pNew->pNext = pHead->pNext;
+         pHead->pNext = pNew;
+        
+//         pNew->pNext = pFind->pNext;
+//         pFind->pNext = pNew;
+      }
+   }
+   catch(string pNode) 
+   {
+      throw "Error: Unable to allocate a new Node";
+   }
 
-        //3. get pNode->pNext to point to new
-        pNode->pNext = pNew;
-    }
-    
-    return pNode;
+   return pHead;
+   
 }
 
 template <class T>
-void addToHead(T data, Node<T> * & pHead)
+Node<T> * find(Node<T> * pHead, const T &t)
 {
-  //1. create a new Node
-    Node<T> * pNew = new Node<T>;
-    pNew->data = data;
+   if (NULL == pHead || t < pHead->data)
+      return NULL;
 
-    //2. fix the next pointer
-    pNew->pNext = pHead;
-
-    //3. get pNode->pNext to point to new
-    pHead = pNew;
-}
-
-template <class T>
-Node<T> * find(Node<T> * pHead, T index)
-{
-
+//   cout << "Debug: value of data" << pHead->data << endl;
+   
+   while (pHead->pNext && pHead->pNext->data < t)
+   {
+      pHead = pHead->pNext;
+      return pHead;
+   }
 }
 
 template <class T>
@@ -104,8 +112,7 @@ void freeData(Node<T> * & pHead)
     //delete items from the list
     while (pHead != NULL)
     {
-        Node<T> * p = pHead;
-        p = p->pNext;
+        Node<T> * p = pHead->pNext;
         delete pHead;
         pHead = p;
     }
