@@ -1,0 +1,251 @@
+
+week07.out:
+
+[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 1
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a List
+   > 	2. The above plus push items onto the List
+   > 	3. The above plus iterate through the List
+   > 	4. The above plus insert and remove items from the list
+   > 	a. Fibonacci
+   > > [4m1
+[0m[0;90m
+[0m[0;90mThis is little more than a test to see if the code can compile
+[0m   > Create a bool List using the default constructor
+   > 	Size:  0
+   > 	Empty? Yes
+[0;90m
+[0m[0;90mUsing push_back(), we have a one element list
+[0m   > Create a double List and add one element: 3.14159
+   > 	Size:  1
+   > 	Empty? No
+   > 	Front: 3.14159
+   > 	Back:  3.14159
+[0;90m
+[0m[0;90mThe copy constructor should create a new version of the list
+[0m   > Copy the double List using the copy-constructor
+   > 	Size:  1
+   > 	Empty? No
+   > 	Front: 3.14159
+   > 	Back:  3.14159
+[0;90m
+[0m[0;90mCreate a list with one node. That list will get destroyed
+[0m[0;90mwith the following copy constructor
+[0m   > Copy a double List using the assignment operator
+   > 	Size:  1
+   > 	Empty? No
+   > 	Front: 3.14159
+   > 	Back:  3.14159
+   > Test 1 complete
+[1;92m
+Test 1 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 2
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a List
+   > 	2. The above plus push items onto the List
+   > 	3. The above plus iterate through the List
+   > 	4. The above plus insert and remove items from the list
+   > 	a. Fibonacci
+   > > [4m2
+[0m[0;90m
+[0m[0;90mTest push_back() by adding items to the back of the list
+[0m[0;90m
+[0m[0;90mCreate an integer List with the default constructor
+[0m   > Enter integer values to put on the back, type 0 when done
+   > 	(   ...   ) > [4m2
+[0m   > 	( 2 ... 2 ) > [4m4
+[0m   > 	( 2 ... 4 ) > [4m6
+[0m   > 	( 2 ... 6 ) > [4m8
+[0m   > 	( 2 ... 8 ) > [4m0
+[0m[0;90mCopy the list from l1 to l2 using the copy constructor.
+[0m   > Copied l1 into l2
+[0;90mNext change the end of l1 to -42 in the front and 42 in the back.
+[0m   > Modified l1
+[0;90mFinally, clear all the elements out of l2
+[0m   > Copied list l2 is empty.
+[0;90m
+[0m[0;90mTest push_front() by adding items to the front of the list\n
+[0m[0;90m
+[0m   > Enter integer values to put on the front, type 0 when done
+   > 	(   ...   ) > [4m1
+[0m   > 	( 1 ... 1 ) > [4m3
+[0m   > 	( 3 ... 1 ) > [4m5
+[0m   > 	( 5 ... 1 ) > [4m7
+[0m   > 	( 7 ... 1 ) > [4m0
+[0m[0;90mTest the size() method
+[0m   > Sizes of l1 and l2 are correct
+[0;90mMake sure that l1 was unchanged from earlier
+[0m   > The list l1 was unchanged
+   > Test 2 complete
+[1;92m
+Test 2 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 3
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a List
+   > 	2. The above plus push items onto the List
+   > 	3. The above plus iterate through the List
+   > 	4. The above plus insert and remove items from the list
+   > 	a. Fibonacci
+   > > [4m3
+[0m   > Create a string List with the default constructor
+   > Instructions:
+   > 	+ dog   pushes dog onto the front
+   > 	- cat   pushes cat onto the back
+   > 	#       displays the contents of the list backwards
+   > 	*       clear the list
+   > 	!       quit
+[0;90m
+[0m[0;90mTest push_front() three times.
+[0m[0;90mEverything should appear in the opposite order
+[0m[0;90mNote that we will create an iterator on an empty list here
+[0m   > {  } > [4m+three
+[0m   > {  three  } > [4m+four
+[0m   > {  four  three  } > [4m+five
+[0m[0;90m
+[0m[0;90mTest push_back() three times.
+[0m[0;90mThings are added in the correct order
+[0m   > {  five  four  three  } > [4m-two
+[0m   > {  five  four  three  two  } > [4m-one
+[0m   > {  five  four  three  two  one  } > [4m-zero
+[0m[0;90m
+[0m[0;90mNext we will display the list backwards. 
+[0m[0;90mThis will exercise rbegin(), rend(), and the -- operator
+[0m   > {  five  four  three  two  one  zero  } > [4m#
+[0m   > 	Backwards: {  zero  one  two  three  four  five  }
+[0;90m
+[0m[0;90mNext test clear() which should remove everthing from the list
+[0m   > {  five  four  three  two  one  zero  } > [4m*
+[0m[0;90m
+[0m[0;90mTest rbegin() and rend() on an empty list
+[0m   > {  } > [4m#
+[0m   > 	Backwards: {  }
+[0;90m
+[0m[0;90mFinally we should be able to start the list over after clear()
+[0m[0;90mthe same as if we were starting from a fresh list
+[0m   > {  } > [4m+front
+[0m   > {  front  } > [4m-back
+[0m   > {  front  back  } > [4m#
+[0m   > 	Backwards: {  back  front  }
+   > {  front  back  } > [4m!
+[0m   > Test 3 complete
+[1;92m
+Test 3 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 4
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a List
+   > 	2. The above plus push items onto the List
+   > 	3. The above plus iterate through the List
+   > 	4. The above plus insert and remove items from the list
+   > 	a. Fibonacci
+   > > [4m4
+[0m   > Instructions:
+   > 	+ 3 A  put 'A' after the 3rd item in the list
+   > 	- 4    remove the fourth item from the list
+   > 	!       quit
+[0;90m
+[0m[0;90mRemove 'b', the element in slot 1
+[0m   >    0  1  2  3  4  5  6  7  8  9 10 11 12
+   > {  a  b  c  d  e  f  g  h  i  j  k  l  m  }
+   > > [4m-1
+[0m[0;90m
+[0m[0;90mRemove 'd', the element in slot 2
+[0m   >    0  1  2  3  4  5  6  7  8  9 10 11
+   > {  a  c  d  e  f  g  h  i  j  k  l  m  }
+   > > [4m-2
+[0m[0;90m
+[0m[0;90mRemove 'c', the element in slot 1
+[0m   >    0  1  2  3  4  5  6  7  8  9 10
+   > {  a  c  e  f  g  h  i  j  k  l  m  }
+   > > [4m-1
+[0m[0;90m
+[0m[0;90mNow we will put 'B' in the slot between 0 and 1
+[0m   >    0  1  2  3  4  5  6  7  8  9
+   > {  a  e  f  g  h  i  j  k  l  m  }
+   > > [4m+1B
+[0m[0;90m
+[0m[0;90mNext we will put 'D' in the slot between 1 and 2
+[0m   >    0  1  2  3  4  5  6  7  8  9 10
+   > {  a  B  e  f  g  h  i  j  k  l  m  }
+   > > [4m+2D
+[0m[0;90m
+[0m[0;90mNow we will pu tC in the slot between 1 and 2
+[0m   >    0  1  2  3  4  5  6  7  8  9 10 11
+   > {  a  B  D  e  f  g  h  i  j  k  l  m  }
+   > > [4m+2C
+[0m[0;90m
+[0m[0;90mTest removing off the end of the list. This is a special case
+[0m   >    0  1  2  3  4  5  6  7  8  9 10 11 12
+   > {  a  B  C  D  e  f  g  h  i  j  k  l  m  }
+   > > [4m-12
+[0m[0;90m
+[0m[0;90mTest removing off the beginning of the list, another special case
+[0m   >    0  1  2  3  4  5  6  7  8  9 10 11
+   > {  a  B  C  D  e  f  g  h  i  j  k  l  }
+   > > [4m-0
+[0m[0;90m
+[0m[0;90mTest adding onto the beginning of the list, another special case
+[0m   >    0  1  2  3  4  5  6  7  8  9 10
+   > {  B  C  D  e  f  g  h  i  j  k  l  }
+   > > [4m+0A
+[0m[0;90m
+[0m[0;90mFinally, test adding onto the end of the list, another special case
+[0m   >    0  1  2  3  4  5  6  7  8  9 10 11
+   > {  A  B  C  D  e  f  g  h  i  j  k  l  }
+   > > [4m+12M
+[0m[0;90m
+[0m[0;90mAll done! The CAPITAL letters are the ones added 
+[0m   >    0  1  2  3  4  5  6  7  8  9 10 11 12
+   > {  A  B  C  D  e  f  g  h  i  j  k  l  M  }
+   > > [4m!
+[0m   > Test 4 complete
+[1;92m
+Test 4 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 5
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a List
+   > 	2. The above plus push items onto the List
+   > 	3. The above plus iterate through the List
+   > 	4. The above plus insert and remove items from the list
+   > 	a. Fibonacci
+   > > [4ma
+[0m   > How many Fibonacci numbers would you like to see? [4m10
+[0m   > 	1
+   > 	1
+   > 	2
+   > 	3
+   > 	5
+   > 	8
+   > 	13
+   > 	21
+   > 	34
+   > 	55
+   > Which Fibonacci number would you like to display? [4m500
+[0m   > 	139,423,224,561,697,880,139,724,382,870,407,283,950,070,256,587,697,307,264,108,962,948,325,571,622,863,290,691,557,658,876,222,521,294,125
+[1;92m
+Test 5 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[1;92m
+============================================================
+[0m[1;92mPassed all tests with no errors.
+[0m[1;92m============================================================
+
+[0m
