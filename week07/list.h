@@ -7,8 +7,8 @@
 *    Node Template Class Header File
 ************************************************************************/
 
-#ifndef NODE_H
-#define NODE_H
+#ifndef LIST_H
+#define LIST_H
 
 #include <cassert> //for asserts
 #include <iostream>
@@ -18,28 +18,28 @@
 using namespace std;
 
 /*************************************************
-* Node
-* A Node struct template that holds stuff
+* List
+* A List struct template that holds stuff
 *************************************************/
 template <class T>
-class Node
+class List
 {
   public:
-  Node() : data(0), pNext(NULL) {}
-  Node(const T &t) : data(t), pNext(NULL) {} 
+  List() : data(0), pNext(NULL) {}
+  List(const T &t) : data(t), pNext(NULL) {} 
    
    T data;
-   Node<T> * pNext;
+   List<T> * pNext;
    
 };
 
 template <class T>
-Node<T> * copy(Node<T> * &pHead)
+List<T> * copy(List<T> * &pHead)
 {
-   //create new node
-   Node<T> * pNew = new Node<T>;
-   //point to new node...basially new head of list
-   Node<T> * pCopy = pNew;
+   //create new List
+   List<T> * pNew = new List<T>;
+   //point to new List...basially new head of list
+   List<T> * pCopy = pNew;
    
    //copy first data item
    pNew->data = pHead->data;
@@ -48,9 +48,9 @@ Node<T> * copy(Node<T> * &pHead)
    //if more than 1 data item, copy the rest
    while (pHead != NULL)
    {
-      //create new node with data
-      pNew->pNext = new Node<T>(pHead->data);
-      //advance nodes
+      //create new List with data
+      pNew->pNext = new List<T>(pHead->data);
+      //advance Lists
       pHead = pHead->pNext;
       pNew = pNew->pNext;
    }
@@ -60,13 +60,13 @@ Node<T> * copy(Node<T> * &pHead)
 }
 
 template <class T>
-Node<T> * insert(const T & data, Node<T> * &pHead, bool head = false)
+List<T> * insert(const T & data, List<T> * &pHead, bool head = false)
 throw (const char *)
 {   
    try
    {
-      // allocate a new node
-      Node<T> * pNew = new Node<T>(data);
+      // allocate a new List
+      List<T> * pNew = new List<T>(data);
       
       // if we are inserting to the head position
       if(head || pHead == NULL)
@@ -81,9 +81,9 @@ throw (const char *)
          
       }
    }
-   catch(string pNode) 
+   catch(string pList) 
    {
-      throw "Error: Unable to allocate a new Node";
+      throw "Error: Unable to allocate a new List";
    }
    
    return pHead;
@@ -91,10 +91,10 @@ throw (const char *)
 }
 
 template <class T>
-Node<T> * find(Node<T> * pHead, const T &t)
+List<T> * find(List<T> * pHead, const T &t)
 {
    // iterate through list and compare value to data
-   for (Node<T> * p = pHead; p; p = p->pNext)
+   for (List<T> * p = pHead; p; p = p->pNext)
    {
       if (p->data == t)
          return pHead;
@@ -105,12 +105,12 @@ Node<T> * find(Node<T> * pHead, const T &t)
 }
 
 template <class T>
-void freeData(Node<T> * & pHead)
+void freeData(List<T> * & pHead)
 {
    //delete items from the list
    while (pHead != NULL)
    {
-      Node<T> * p = pHead->pNext;
+      List<T> * p = pHead->pNext;
       delete pHead;
       pHead = p;
    }
@@ -119,10 +119,10 @@ void freeData(Node<T> * & pHead)
 }
 
 template <class T>
-ostream & operator<<(ostream & out, const Node<T> * pHead)
+ostream & operator<<(ostream & out, const List<T> * pHead)
 {
    // operator overload to display the list
-   for (const Node<T> * p = pHead; p; p = p->pNext)
+   for (const List<T> * p = pHead; p; p = p->pNext)
    {
       if(p->pNext != NULL)
       {
@@ -136,4 +136,4 @@ ostream & operator<<(ostream & out, const Node<T> * pHead)
    return out;
 }
 
-#endif //NODE_H
+#endif //LIST_H
