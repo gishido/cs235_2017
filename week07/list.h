@@ -1,10 +1,7 @@
 /***********************************************************************
-* Header:
-*    Node.h header file
-* Author:
-*    Adam Shumway, Jenaca Willans
-* Summary: 
-*    Node Template Class Header File
+*Header : *Node.h header file
+*Author : *Adam Shumway, Jenaca Willans
+*Summary : *Node Template Class Header File
 ************************************************************************/
 
 #ifndef LIST_H
@@ -32,116 +29,128 @@ class ListConstIterator;
 template <class T>
 class List
 {
-  public:
-    List() : numItems(0), first(NULL) {}
- 
-    //List(const T &t) : data(t), pNext(NULL) {}
+public:
+  List() : numItems(0), first(NULL) {}
 
-    ~List()
+  //List(const T &t) : data(t), pNext(NULL) {}
+
+  ~List()
+  {
+    //     while (pHead != NULL)
+    //   {
+    // pNext = pHead->pNext;
+    // delete pHead;
+    // pHead = pNext;
+    //}
+  }
+
+  // is the container currently empty
+  bool empty() const { return (numItems == 0); }
+
+  // remove all the items from the container
+  void clear();
+
+  // how many items are currently in the container?
+  int size() { return numItems; }
+
+  //void remove(List<T> * &pHead) {};
+  void remove() {}
+
+  // push items to the back of the list
+  void push_back(const T &value) throw(const char *)
+  {
+    int newBack;
+    try
     {
-      //     while (pHead != NULL)
-      //   {
-      // pNext = pHead->pNext;
-      // delete pHead;
-      // pHead = pNext;
-      //}
+      Node *tempNode = new Node(value);
     }
-
-    // is the container currently empty
-    bool empty() const { return (numItems == 0); }
-
-    // remove all the items from the container
-    void clear();
-
-    // how many items are currently in the container?
-    int size() {return numItems;}
-
-    //void remove(List<T> * &pHead) {};
-    void remove() {}
-
-    // push items to the back of the list
-    void push_back(const T &value) throw(const char *)
+    catch (std::bad_alloc)
     {
-      int newBack;
-
-      }
-
-    // push items to the front of the List
-    void push_front(const T &value) throw(const char *)
-    {
-      int newFront;
-
-
+      throw "ERROR: Unable to allocate a new node for a list";
     }
+  }
 
-    // front
-    T &front() throw(const char *)
+  // push items to the front of the List
+  void push_front(const T &value) throw(const char *)
+  {
+    int newFront;
+
+    try
     {
-      if (!empty())
-      {
-          //return myArray[myFront];
-      }
-      else
-      {
-          throw "ERROR: unable to access data from an empty List";
-      }
+      Node *tempNode = new Node(value);
     }
-
-    // back
-    T &back() throw(const char *)
+    catch (std::bad_alloc)
     {
-      if (!empty())
-      {
-          //      return myArray[myBack];
-      }
-      else
-      {
-          throw "ERROR: unable to access data from an empty List";
-      }
-    }  
-    
-    // ostream & operator<<(ostream & out, const List<T> * pHead);
+      throw "ERROR: Unable to allocate a new node for a list";
+    }
+  }
 
-    // return an iterator to the beginning of the list
-    // ListIterator<T> begin() { return ListIterator<T>(data); }
-    // ListIterator<T> begin() { }
+  // front
+  T &front() throw(const char *)
+  {
+    if (!empty())
+    {
+      //return myArray[myFront];
+    }
+    else
+    {
+      throw "ERROR: unable to access data from an empty list";
+    }
+  }
 
-    // // return an iterator to the end of the list
-    // // ListIterator<T> end() { return ListIterator<T>(data + numItems); }
-    // ListIterator<T> end() { }
+  // back
+  T &back() throw(const char *)
+  {
+    if (!empty())
+    {
+      //      return myArray[myBack];
+    }
+    else
+    {
+      throw "ERROR: unable to access data from an empty list";
+    }
+  }
 
-    // // return the const iterator to the beginning of the list
-    // // ListConstIterator<T> rbegin() const { return ListConstIterator<T>(data); }
-    // ListConstIterator<T> rbegin() const {}
+  // ostream & operator<<(ostream & out, const List<T> * pHead);
 
-    // // return the const iterator to the end of the list
-    // // ListConstIterator<T> rend() const
-    // // { return ListConstIterator<T>(data + numItems); } 
-    // ListConstIterator<T> rend() const { } 
+  // return an iterator to the beginning of the list
+  // ListIterator<T> begin() { return ListIterator<T>(data); }
+  // ListIterator<T> begin() { }
 
-    operator=(const List<T> &rhs) throw(const char *) {}
+  // // return an iterator to the end of the list
+  // // ListIterator<T> end() { return ListIterator<T>(data + numItems); }
+  // ListIterator<T> end() { }
 
-  private:
-    /*************************************************
+  // // return the const iterator to the beginning of the list
+  // // ListConstIterator<T> rbegin() const { return ListConstIterator<T>(data); }
+  // ListConstIterator<T> rbegin() const {}
+
+  // // return the const iterator to the end of the list
+  // // ListConstIterator<T> rend() const
+  // // { return ListConstIterator<T>(data + numItems); }
+  // ListConstIterator<T> rend() const { }
+
+  operator=(const List<T> &rhs) throw(const char *) {}
+
+private:
+  /*************************************************
     * Node
     * A Node template that holds stuff
     *************************************************/
-    // template <class T>
-    class Node
-    {
-      public:
-      Node() : data(0), pNext(NULL), pPrev(NULL) {}
-      Node(const T &t) : data(t), pNext(NULL), pPrev(NULL) {} 
+  // template <class T>
+  class Node
+  {
+  public:
+    Node() : data(0), pNext(NULL), pPrev(NULL) {}
+    Node(const T &t) : data(t), pNext(NULL), pPrev(NULL) {}
 
-      T data;
-      Node * pNext;
-      Node * pPrev;
-      
-    };
+    T data;
+    Node *pNext;
+    Node *pPrev;
+  };
 
-    int numItems;
-    Node * first;
-  
+  int numItems;
+  Node *first;
 };
 
 // template <class T>
@@ -151,11 +160,11 @@ class List
 //    List<T> * pNew = new List<T>;
 //    //point to new List...basially new head of list
 //    List<T> * pCopy = pNew;
-   
+
 //    //copy first data item
 //    pNew->data = pHead->data;
 //    pHead = pHead->pNext;
-   
+
 //    //if more than 1 data item, copy the rest
 //    while (pHead != NULL)
 //    {
@@ -165,7 +174,7 @@ class List
 //       pHead = pHead->pNext;
 //       pNew = pNew->pNext;
 //    }
-   
+
 //    //return head of copy
 //    return pCopy;
 // }
@@ -177,64 +186,64 @@ class List
 template <class T>
 class ListIterator
 {
-  public:
-   //default constructor
+public:
+  //default constructor
   ListIterator() : p(NULL) {}
 
-   //initialize to direct p to some item
+  //initialize to direct p to some item
   ListIterator(T *p) : p(p) {}
 
-   //copy contructor
-   ListIterator(const ListIterator &rhs) { *this = rhs; }
+  //copy contructor
+  ListIterator(const ListIterator &rhs) { *this = rhs; }
 
-   //assignment operator
-   ListIterator &operator=(const ListIterator &rhs)
-   {
-      this->p = rhs.p;
-      return *this;
-   }
+  //assignment operator
+  ListIterator &operator=(const ListIterator &rhs)
+  {
+    this->p = rhs.p;
+    return *this;
+  }
 
-   //not equals operator
-   bool operator!=(const ListIterator &rhs) const
-   {
-      return rhs.p != this->p;
-   }
+  //not equals operator
+  bool operator!=(const ListIterator &rhs) const
+  {
+    return rhs.p != this->p;
+  }
 
-   //de-reference operator
-   T &operator*() { return *p; }
+  //de-reference operator
+  T &operator*() { return *p; }
 
-   //prefix increment
-   ListIterator<T> &operator++()
-   {
-      p++;
-      return *this;
-   }
+  //prefix increment
+  ListIterator<T> &operator++()
+  {
+    p++;
+    return *this;
+  }
 
-   //postfix increment
-   ListIterator<T> operator++(int postfix)
-   {
-      ListIterator tmp(*this);
-      p++;
-      return tmp;
-   }
+  //postfix increment
+  ListIterator<T> operator++(int postfix)
+  {
+    ListIterator tmp(*this);
+    p++;
+    return tmp;
+  }
 
-   //pre-decrement
-   ListIterator<T> &operator--()
-   {
-      p--;
-      return *this;
-   }
+  //pre-decrement
+  ListIterator<T> &operator--()
+  {
+    p--;
+    return *this;
+  }
 
-   //post-decrement
-   ListIterator<T> &operator--(int decrement)
-   {
-      ListIterator tmp(*this);
-      p--;
-      return tmp;
-   }
+  //post-decrement
+  ListIterator<T> &operator--(int decrement)
+  {
+    ListIterator tmp(*this);
+    p--;
+    return tmp;
+  }
 
-  private:
-   T *p;
+private:
+  T *p;
 };
 
 /**************************************************
@@ -244,64 +253,64 @@ class ListIterator
 template <class T>
 class ListConstIterator
 {
-  public:
-   //default constructor
+public:
+  //default constructor
   ListConstIterator() : p(NULL) {}
 
-   //initialize to direct p to some item
+  //initialize to direct p to some item
   ListConstIterator(T *p) : p(p) {}
 
-   //copy contructor
-   ListConstIterator(const ListConstIterator &rhs) { *this = rhs; }
+  //copy contructor
+  ListConstIterator(const ListConstIterator &rhs) { *this = rhs; }
 
-   //assignment operator
-   ListConstIterator &operator=(const ListConstIterator &rhs)
-   {
-      this->p = rhs.p;
-      return *this;
-   }
+  //assignment operator
+  ListConstIterator &operator=(const ListConstIterator &rhs)
+  {
+    this->p = rhs.p;
+    return *this;
+  }
 
-   //not equals operator
-   bool operator!=(const ListConstIterator &rhs) const
-   {
-      return rhs.p != this->p;
-   }
+  //not equals operator
+  bool operator!=(const ListConstIterator &rhs) const
+  {
+    return rhs.p != this->p;
+  }
 
-   //de-reference operator
-   T &operator*() { return *p; }
+  //de-reference operator
+  T &operator*() { return *p; }
 
-   //prefix increment
-   ListConstIterator<T> &operator++()
-   {
-      p++;
-      return *this;
-   }
+  //prefix increment
+  ListConstIterator<T> &operator++()
+  {
+    p++;
+    return *this;
+  }
 
-   //postfix increment
-   ListConstIterator<T> operator++(int postfix)
-   {
-      ListConstIterator tmp(*this);
-      p++;
-      return tmp;
-   }
+  //postfix increment
+  ListConstIterator<T> operator++(int postfix)
+  {
+    ListConstIterator tmp(*this);
+    p++;
+    return tmp;
+  }
 
-   //pre-decrement
-   ListConstIterator<T> &operator--()
-   {
-      p--;
-      return *this;
-   }
+  //pre-decrement
+  ListConstIterator<T> &operator--()
+  {
+    p--;
+    return *this;
+  }
 
-   //post-decrement
-   ListConstIterator<T> &operator--(int decrement)
-   {
-      ListConstIterator tmp(*this);
-      p--;
-      return tmp;
-   }
+  //post-decrement
+  ListConstIterator<T> &operator--(int decrement)
+  {
+    ListConstIterator tmp(*this);
+    p--;
+    return tmp;
+  }
 
-  private:
-   T *p;
+private:
+  T *p;
 };
 
 // template <class T>
