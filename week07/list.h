@@ -59,117 +59,19 @@ class List
     //void remove(List<T> * &pHead) {};
     void remove() {}
 
-  // push items to the back of the Deque
+    // push items to the back of the list
     void push_back(const T &value) throw(const char *)
     {
       int newBack;
 
-      //if (myCapacity == 0)
-      //{
-      // myCapacity = 2;
-      // allocate(myCapacity);
-        
-      // newBack = iFind(myBack + 1);
-      //}
-      //else if (mySize >= myCapacity)
-      // {
-      // int newCapacity = myCapacity;
-          //double capacity
-      // newCapacity *= 2;
-
-          //create tempory object for deque copy
-      // T *temp;
-
-          // try to push to the back of the deque
-      //          try
-      //          {
-      //             temp = new T[newCapacity];
-      //          }
-      //          catch (std::bad_alloc)
-      //          {
-      //             throw "ERROR: Unable to allocate a new buffer for deque";
-      //          }
-
-
-      //          for (int i = 0; i < myCapacity; i++)
-      //          {
-      //             temp[i] = myArray[iFind(myFront + i)];
-      //          }
-
-      //          delete[] myArray;
-      //          myArray = temp;
-      //          myFront = 0;          //reset front after copy
-
-  //                 newBack = myCapacity;
-      //               myCapacity = newCapacity;
-
-      //}
-      //else
-      //{
-      // newBack = iFind(myBack + 1);
-      //}
-
-      // myBack = newBack;
-      //myArray[myBack] = value;
-      //mySize++;
       }
 
-    // push items to the front of the Deque
+    // push items to the front of the List
     void push_front(const T &value) throw(const char *)
     {
       int newFront;
 
-  //     if (myCapacity == 0)
-      //   {
-      // myCapacity = 2;
-      // allocate(myCapacity);
-      // newFront = iFind(myFront - 1);
-      //}
-      // else if (mySize >= myCapacity)
-      // {
-      // int newCapacity = myCapacity;
-          //double capacity
-      // newCapacity *= 2;
 
-          //create tempory object for deque copy
-      // T *temp;
-
-          // try to push to the back of the deque
-      //          try
-      //          {
-      //             temp = new T[newCapacity];
-      //          }
-      //          catch (std::bad_alloc)
-      //          {
-      //             throw "ERROR: Unable to allocate a new buffer for deque";
-      //          }
-
-  //                 for (int i = 0; i < myCapacity; i++)
-      //               {
-      //             temp[i] = myArray[iFind(myFront + i)];
-      //          }
-
-      //          delete[] myArray;
-      //          myArray = temp;
-      //          myBack = (myCapacity - 1);
-      //          myCapacity = newCapacity;
-      //          myFront = 0;
-      //          newFront = iFind(myFront - 1); //reset front after copy
-      //}
-      //else
-      //{
-          // newFront = iFind(myFront - 1);
-      //}
-
-  //     if(mySize == 0)
-      //   {
-          // newFront = 0;
-          // myBack = 0;
-      //}
-
-      //myFront = newFront;
-      //myArray[myFront] = value;
-      //mySize++;
     }
 
     // front
@@ -181,7 +83,7 @@ class List
       }
       else
       {
-          throw "ERROR: unable to access data from an empty deque";
+          throw "ERROR: unable to access data from an empty List";
       }
     }
 
@@ -194,7 +96,7 @@ class List
       }
       else
       {
-          throw "ERROR: unable to access data from an empty deque";
+          throw "ERROR: unable to access data from an empty List";
       }
     }  
     
@@ -202,20 +104,20 @@ class List
 
     // return an iterator to the beginning of the list
     // ListIterator<T> begin() { return ListIterator<T>(data); }
-    ListIterator<T> begin() { }
+    // ListIterator<T> begin() { }
 
-    // return an iterator to the end of the list
-    // ListIterator<T> end() { return ListIterator<T>(data + numItems); }
-    ListIterator<T> end() { }
+    // // return an iterator to the end of the list
+    // // ListIterator<T> end() { return ListIterator<T>(data + numItems); }
+    // ListIterator<T> end() { }
 
-    // return the const iterator to the beginning of the list
-    // ListConstIterator<T> rbegin() const { return ListConstIterator<T>(data); }
-    ListConstIterator<T> rbegin() const {}
+    // // return the const iterator to the beginning of the list
+    // // ListConstIterator<T> rbegin() const { return ListConstIterator<T>(data); }
+    // ListConstIterator<T> rbegin() const {}
 
-    // return the const iterator to the end of the list
-    // ListConstIterator<T> rend() const
-    // { return ListConstIterator<T>(data + numItems); } 
-    ListConstIterator<T> rend() const { } 
+    // // return the const iterator to the end of the list
+    // // ListConstIterator<T> rend() const
+    // // { return ListConstIterator<T>(data + numItems); } 
+    // ListConstIterator<T> rend() const { } 
 
     operator=(const List<T> &rhs) throw(const char *) {}
 
