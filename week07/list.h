@@ -167,11 +167,11 @@ public:
 
   // // return the const iterator to the beginning of the list
   ListConstIterator<T> crbegin() const { return ListConstIterator<T>(last); }
-  ListConstIterator<T> rbegin() { return ListConstIterator<T>(last); }
+  ListIterator<T> rbegin() { return ListIterator<T>(last); }
 
   // return the const iterator to the end of the list
   ListConstIterator<T> crend() const { return ListConstIterator<T>(NULL); }
-  ListConstIterator<T> rend() { return ListConstIterator<T>(NULL); }
+  ListIterator<T> rend() { return ListIterator<T>(NULL); }
 
   List<T> &operator=(const List<T> &rhs) throw(const char *) 
   {
