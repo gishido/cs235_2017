@@ -428,6 +428,41 @@ ListIterator<T> List<T>::insert(ListIterator<T> &it, const T &value) throw(const
 template <class T>
 ListIterator<T> List<T>::remove(ListIterator<T> &it) throw(const char *)
 {
+  ListIterator<T> itNext = end();
+
+  //invalid iterator
+  if (it == end())
+    throw "ERROR: enable to remove from an invalid locaton in a list";
+
+  assert(first && last);
+
+  //prep nodes after current node (from iterator)
+  if (it.p->pNext)
+  {
+    it.p->pNext->pPrev = it.p->pPrev;
+    itNext = it.p->pNext;
+  }
+  else
+  {
+    //already last node
+    last = last->pPrev;
+  }
+
+  //not the first node
+  if (it.p->pPrev)
+  {
+    it.p->pPrev->pNext = it.p->pNext;
+  }
+  else
+  {
+    first = first->pNext;
+  }
+
+  //self cleanup
+  delete it.p;
+  numItems--;
+
+  return itNext;
 
 }
 // template <class T>
