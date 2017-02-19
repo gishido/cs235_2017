@@ -67,10 +67,10 @@ public:
   int size() { return numItems; }
 
   //void and item from the list
-  void remove();
+  ListIterator<T> remove(ListIterator<T> &it) throw(const char *);
 
   //void insert and item in the list
-  void insert();
+  ListIterator<T> insert(ListIterator<T> &it, const T &value) throw(const char *);
 
   // push items to the back of the list
   void push_back(const T &value) throw(const char *)
@@ -212,13 +212,13 @@ class ListIterator
 {
   public:
     // default constructor: not pointing to anything
-    ListIterator() : p(NULL) { }
-    // non-default constrictor taking a pointer as a parameter
-    ListIterator(Node<T> *p) : p(p) { }
-    // copy constructor
-    ListIterator(const ListIterator<T> &rhs) : p(rhs.p) { }
-    // assignment operator
-    ListIterator<T> &operator=(const ListIterator<T> &rhs) 
+    ListIterator() : p(NULL) { }
+    // non-default constrictor taking a pointer as a parameter
+    ListIterator(Node<T> *p) : p(p) { }
+    // copy constructor
+    ListIterator(const ListIterator<T> &rhs) : p(rhs.p) { }
+    // assignment operator
+    ListIterator<T> &operator=(const ListIterator<T> &rhs) 
     { 
       p = rhs.p;
       return *this;
@@ -226,59 +226,59 @@ class ListIterator
     // dereference operator, fetch a node
     T &operator*() throw(const char *)
     {
-      if (p)]
+      if (p)
         return p->data;
       else
         throw "ERROR: Trying to dereference a NULL pointer";
     }
-    // equals operator: are the iterators the same?
-    bool operator==(const ListIterator<T> &rhs) const
-    {
+    // equals operator: are the iterators the same?
+    bool operator==(const ListIterator<T> &rhs) const
+    {
       return rhs.p == this->p;
     }
-    // not-equals operator: are the iterators different?
-    bool operator!=(const ListIterator<T> &rhs) const
+    // not-equals operator: are the iterators different?
+    bool operator!=(const ListIterator<T> &rhs) const
     {
       return rhs.p != this->p;
     }
-    // postfix increment
-    ListIterator<T> operator++(int postfix)
+    // postfix increment
+    ListIterator<T> operator++(int postfix)
     {
       ListIterator<T> old(*this);
       assert(p);
       p = p->pNext;
       return old;
     }
-    // prefix increment
-    ListIterator<T> &operator++()
+    // prefix increment
+    ListIterator<T> &operator++()
     {
       assert(p);
-      p = p->pNext;
-      return *this;
+      p = p->pNext;
+      return *this;
     }
-    
-    // postfix decrement
-    ListIterator<T> operator--(int postfix)
-    {
+    
+    // postfix decrement
+    ListIterator<T> operator--(int postfix)
+    {
       ListIterator<T> old(*this);
-      assert(p);
-      p = p->pPrev;
-      return old;
+      assert(p);
+      p = p->pPrev;
+      return old;
     }
-    // prefix decrement
-    ListIterator<T> &operator--()
-  {
-    assert(p);
-    p = p->pPrev;
-    return *this;
-  }
-  // two friends who need to access p directly
-  friend ListIterator<T> List<T>::insert(ListIterator<T> &it, const T &data)
-    throw(const char *);
-  friend ListIterator<T> List<T>::remove(ListIterator<T> &it) throw(const char *);
-
+    // prefix decrement
+    ListIterator<T> &operator--()
+    {
+      assert(p);
+      p = p->pPrev;
+      return *this;
+    }
+    
+    // two friends who need to access p directly
+    friend ListIterator<T> List<T>::insert(ListIterator<T> &it, const T &data)
+      throw(const char *);
+    friend ListIterator<T> List<T>::remove(ListIterator<T> &it) throw(const char *);
   private:
-     Node<T> *p;
+    Node<T> *p;
 };
 /*************************************************
  * LIST CONST ITERATOR
@@ -289,64 +289,63 @@ class ListConstIterator
 {
   public:
     // default constructor: not pointing to anything
-    ListConstIterator() : p(NULL) { }
+    ListConstIterator() : p(NULL) { }
     // non-default constrictor taking a pointer as a parameter
-    ListConstIterator(const Node<T> *p) : p(p) { }
+    ListConstIterator(const Node<T> *p) : p(p) { }
     // copy constructor
-    ListConstIterator(const ListConstIterator<T> &rhs) : p(rhs.p) { }
+    ListConstIterator(const ListConstIterator<T> &rhs) : p(rhs.p) { }
     // assignment operator
-    ListConstIterator<T> &operator=(const ListConstIterator<T> &rhs)
-    {
-      p = rhs.p;
-      return *this;
+    ListConstIterator<T> &operator=(const ListConstIterator<T> &rhs)
+    {
+      p = rhs.p;
+      return *this;
     }
-         
-    // dereference operator, fetch a node
-    // this is the only real difference between ListConstIterator and the other
-    T operator*() const
+    // dereference operator, fetch a node
+    // this is the only real difference between ListConstIterator and the other
+    T operator*() const
     {
       return p->data;
     }
     // equals operator: are the iterators the same?
-    bool operator==(const ListConstIterator<T> &rhs) const
-    {
-      return rhs.p == this->p;      
+    bool operator==(const ListConstIterator<T> &rhs) const
+    {
+      return rhs.p == this->p;
     }
     // not-equals operator: are the iterators different?
-    bool operator!=(const ListConstIterator<T> &rhs) const
-    {
-      return rhs.p != this->p;      
+    bool operator!=(const ListConstIterator<T> &rhs) const
+    {
+      return rhs.p != this->p;
     }
     // postfix increment
-    ListConstIterator<T> operator++(int postfix)
-    {
+    ListConstIterator<T> operator++(int postfix)
+    {
       ListConstIterator<T> old(*this);
       assert(p);
       p = p->pNext;
-      return old;      
+      return old;
     }
     // prefix increment
-    ListConstIterator<T> &operator++()
-    {
+    ListConstIterator<T> &operator++()
+    {
       assert(p);
       p = p->pNext;
       return *this;
     }
-         
-    // postfix decrement
-    ListConstIterator<T> operator--(int postfix)
-    {
+    
+    // postfix decrement
+    ListConstIterator<T> operator--(int postfix)
+    {
       ListConstIterator<T> old(*this);
       assert(p);
       p = p->pPrev;
-      return old;      
+      return old;
     }
     // prefix decrement
-    ListConstIterator<T> &operator--()
-    {
+    ListConstIterator<T> &operator--()
+    {
       assert(p);
       p = p->pPrev;
-      return *this;      
+      return *this;
     }
   private:
     const Node<T> *p;
@@ -361,7 +360,7 @@ void List<T>::clear()
 {
   //loop through list and remove everything
   Node<T> * pNode;
-  for (Node<T> * p = first; p; p = pNext)
+  for (Node<T> * p = first; p; p =p->pNext)
   {
     pNode = p->pNext;
     delete p;
@@ -480,7 +479,6 @@ ListIterator<T> List<T>::remove(ListIterator<T> &it) throw(const char *)
   return itNext;
 
 }
-
 
 // template <class T>
 // ostream & List<T>::operator<<(ostream & out, const List<T> * pHead)
