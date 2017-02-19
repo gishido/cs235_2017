@@ -66,8 +66,11 @@ public:
   // how many items are currently in the container?
   int size() { return numItems; }
 
-  //void remove(List<T> * &pHead) {};
-  void remove() {}
+  //void and item from the list
+  void remove();
+
+  //void insert and item in the list
+  void insert();
 
   // push items to the back of the list
   void push_back(const T &value) throw(const char *)
@@ -130,7 +133,7 @@ public:
   // front
   T &front() throw(const char *)
   {
-    if (!empty())
+    if (first != NULL)
     {
       return first->data;
     }
@@ -143,7 +146,7 @@ public:
   // back
   T &back() throw(const char *)
   {
-    if (!empty())
+    if (first != NULL)
     {
       return last->data;
     }
@@ -156,21 +159,19 @@ public:
   // ostream & operator<<(ostream & out, const List<T> * pHead);
 
   // return an iterator to the beginning of the list
-  // ListIterator<T> begin() { return ListIterator<T>(data); }
-  // ListIterator<T> begin() { }
+  ListIterator<T> begin() { return ListIterator<T>(first); }
 
   // // return an iterator to the end of the list
-  // // ListIterator<T> end() { return ListIterator<T>(data + numItems); }
-  // ListIterator<T> end() { }
+  ListIterator<T> end() { return ListIterator<T>(NULL); }
+
 
   // // return the const iterator to the beginning of the list
-  // // ListConstIterator<T> rbegin() const { return ListConstIterator<T>(data); }
-  // ListConstIterator<T> rbegin() const {}
+  ListConstIterator<T> crbegin() const { return ListConstIterator<T>(last); }
+  ListConstIterator<T> rbegin() { return ListConstIterator<T>(last); }
 
-  // // return the const iterator to the end of the list
-  // // ListConstIterator<T> rend() const
-  // // { return ListConstIterator<T>(data + numItems); }
-  // ListConstIterator<T> rend() const { }
+  // return the const iterator to the end of the list
+  ListConstIterator<T> crend() const { return ListConstIterator<T>(NULL); }
+  ListConstIterator<T> rend() { return ListConstIterator<T>(NULL); }
 
   List<T> &operator=(const List<T> &rhs) throw(const char *) 
   {
@@ -194,35 +195,6 @@ public:
     newList->last = rhs->last;
     newList->numItems = rhs->numItems;
 
-    cout << "debug: rhs->first->data - " << rhs->first->data << endl;
-    cout << "debug: newList->first->data - " << newList->first->data << endl;
-
-
-    // //create new node
-    // Node * pNew = new Node;
-    // //point to new List...basially new head of list
-    // //Node * pCopy = pNew;
-
-    // //copy first data item
-    // pNew->data = rhs->first->pHead->data;
-    // pHead = rhs->first->pHead->pNext;
-
-    // //point new list to new node
-    // newList->first = pNew;
-
-    // //if more than 1 data item, copy the rest
-    // while (rhs->pHead != NULL)
-    // {
-    //     //create new List with data
-    //     pNew->pNext = new Node(rhs->pHead->data);
-    //     //advance Lists
-    //     rhs->pHead = rhs->pHead->pNext;
-    //     pNew = pNew->pNext;
-    //     newList->last = pNew;
-    // }
-
-    //return copied list
-    //return newList;
   }
 
 private:
@@ -365,6 +337,99 @@ private:
   T *p;
 };
 
+/**************************************************
+ * List Clear
+ * remove every node from a list
+ *************************************************/
+template <class T>
+void List<T>::clear()
+{
+  //loop through list and remove everything
+  Node<T> * pNode;
+  for (Node<T> * p = first; p; p = pNext)
+  {
+    pNode = p->pNext;
+    delete p;
+  }
+  //null out the list
+  first = last = NULL;
+  numItems = 0;
+
+}
+
+/**************************************************
+ * List Insert
+ * insert a node in the list
+ *************************************************/
+template <class T>
+ListIterator<T> List<T>::insert(ListIterator<T> &it, const T &value) throw(const char *)
+{
+  //if the list is empty
+  if (first == NULL)
+  {
+    assert(last == NULL);
+    first = last = new Node<T>(value);
+    return begin();
+  }
+
+  //checking that first and last are set
+  assert(last && first);
+  assert(first->pPrev == NULL);
+  assert(last->pNext == NULL);
+
+  try
+  {
+    Node<T> * pNode = Node<T>(value);
+
+    //if end of list
+    if (it == end())
+    {
+      //update last
+      last->pNext = pNode;
+      pNode->pPrev = last;
+      last = pNode;
+
+      it = pNode;
+    }
+    else
+    {
+      //setting previous and next
+      pNode->pPrev = it.p->pPrev;
+      pNode->pNext = it.p;
+
+      //update what next and previous point to
+      if (pNode->pPrev)
+        pNode->pPrev->pNext = pNode;
+      else
+        first = pNode;
+      
+      if (pNode->pNext)
+        pNode->pNext->pPrev = pNode;
+      else
+        last = pNode;
+
+      it = pNode;
+    }
+    //increment numItems
+    numItems++;
+  }
+  catch (...)
+  {
+    throw "ERROR: unable to allocate a new node for list";
+  }
+
+  return it;
+}
+
+/**************************************************
+ * List Remove
+ * remove a single node form the list
+ *************************************************/
+template <class T>
+ListIterator<T> List<T>::remove(ListIterator<T> &it) throw(const char *)
+{
+
+}
 // template <class T>
 // List<T> * insert(const T & data, List<T> * &pHead, bool head = false)
 // throw (const char *)
