@@ -111,11 +111,11 @@ public:
       Node<T> * pNode = new Node<T>(value);
       
       //point to the head node
-      pNode->pPrev = first;
+      pNode->pNext = first;
 
       //connect current head to new node
       if (first != NULL)
-        first->pNext = pNode;
+        first->pPrev = pNode;
       else
         last = pNode;
 
