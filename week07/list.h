@@ -393,7 +393,7 @@ ListIterator<T> List<T>::insert(ListIterator<T> &it, const T &value) throw(const
 
   try
   {
-    Node<T> * pNode = Node<T>(value);
+    Node<T> * pNode = new Node<T>(value);
 
     //if end of list
     if (it == end())
