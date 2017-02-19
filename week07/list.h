@@ -49,20 +49,16 @@ class List
 public:
   List() : numItems(0), first(NULL), last(NULL) {}
 
-  //List(const T &t) : data(t), pNext(NULL) {}
+  List(const List<T> &rhs) throw(const char *) : 
+    numItems(0), first(NULL), last(NULL) { *this = rhs;}
 
   ~List()
   {
-    //     while (pHead != NULL)
-    //   {
-    // pNext = pHead->pNext;
-    // delete pHead;
-    // pHead = pNext;
-    //}
+    clear();
   }
 
   // is the container currently empty
-  bool empty() const { return (numItems == 0); }
+  bool empty() const { return (first == 0); }
 
   // remove all the items from the container
   void clear();
@@ -76,43 +72,54 @@ public:
   // push items to the back of the list
   void push_back(const T &value) throw(const char *)
   {
-    Node<T> * pNode;
-
-    //create new node and add data passed
+    
     try
     {
-      pNode = new Node<T>(value);
+      //create new node and add data passed
+      Node<T> * pNode = new Node<T>(value);
+      
+      //point to the previous node
+      pNode->pPrev = last;
+
+      //connect current last to new node
+      if (last != NULL)
+        last->pNext = pNode;
+      else
+        first = pNode;
+
+      //connect curent to new
+      last = pNode;
+      numItems++;
+
     }
     catch (std::bad_alloc)
     {
       throw "ERROR: Unable to allocate a new node for a list";
     }
 
-    //if empty list, add front to new node
-    if (numItems == 0)
-    {
-      first = pNode;
-      last = pNode;
-    }
-    else
-    {
-      //need to get the back and front nodes of a list so I can reference them in the push_back
-      // this isn't need for test 1, but it will be needed
-    }
-
-    //increment number of items in the list
-    numItems++;
-
   }
 
   // push items to the front of the List
   void push_front(const T &value) throw(const char *)
   {
-    int newFront;
-
     try
     {
-      Node<T> * tempNode = new Node<T>(value);
+      //create new node and add data passed
+      Node<T> * pNode = new Node<T>(value);
+      
+      //point to the head node
+      pNode->pPrev = first;
+
+      //connect current head to new node
+      if (first != NULL)
+        first->pNext = pNode;
+      else
+        last = pNode;
+
+      //connect curent to new
+      first = pNode;
+      numItems++;
+
     }
     catch (std::bad_alloc)
     {
@@ -165,10 +172,15 @@ public:
   // // { return ListConstIterator<T>(data + numItems); }
   // ListConstIterator<T> rend() const { }
 
-  List<T> &operator=(const List<T> * &rhs) throw(const char *) 
+  List<T> &operator=(const List<T> &rhs) throw(const char *) 
   {
+    //clear existing nodes
     clear();
-    copy(rhs);
+    
+    //allocate nodes
+    for (Node<T> * p = rhs.first; p; p = p->pNext)
+      push_back(p->data);
+ 
     return *this;
   }
 
