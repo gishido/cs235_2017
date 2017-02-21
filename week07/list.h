@@ -22,27 +22,27 @@ class ListIterator;
 template <class T>
 class ListConstIterator;
 
-  /*************************************************
-    * Node
-    * A Node template that holds stuff
-    *************************************************/
-  template <class T>
-  class Node
-  {
+/*************************************************
+ * Node
+ * A Node template that holds stuff
+ *************************************************/
+template <class T>
+class Node
+{
    
-    public:
-      Node() : data(0), pNext(NULL), pPrev(NULL) {}
-      Node(const T &t) : data(t), pNext(NULL), pPrev(NULL) {}
-
-      T data;
-      Node<T> *pNext;
-      Node<T> *pPrev;
-  };
+  public:
+  Node() : data(0), pNext(NULL), pPrev(NULL) {}
+  Node(const T &t) : data(t), pNext(NULL), pPrev(NULL) {}
+   
+   T data;
+   Node<T> *pNext;
+   Node<T> *pPrev;
+};
 
 /*************************************************
-* List
-* A List clas template that holds stuff, like nodes
-*************************************************/
+ * List
+ * A List clas template that holds stuff, like nodes
+ *************************************************/
 template <class T>
 class List
 {
@@ -280,10 +280,11 @@ class ListIterator
   private:
     Node<T> *p;
 };
+
 /*************************************************
- * LIST CONST ITERATOR
- * Iterate through a List, the constant version
- ************************************************/
+ * LIST CONST ITERATOR
+ * Iterate through a List, the constant version
+ ************************************************/
 template <class T>
 class ListConstIterator
 {
