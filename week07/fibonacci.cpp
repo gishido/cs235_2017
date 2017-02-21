@@ -60,24 +60,24 @@ void fibonacci()
    // blocks. Then display with commas.
 //   LargeNum largePrev = 0;
    // LargeNum largeCurr = 1;
-   //LargeNum largeNext = 0;
+   // LargeNum largeNext = 0;
 
-   for (int i = 0; i < number - 1; i++)
-   {
-      if (number == 1)
-      {
-         next = number;
-      }
-      else
-      {
-         next = prev + curr;
-         prev = curr;
-         curr = next;
-      }
+   // for (int i = 0; i < number - 1; i++)
+   // {
+//      if (number == 1)
+         // {
+   //       next = number;
+   // }
+   // else
+   // {
+   //    largeNext = largePrev + largeCurr;
+   //    largePrev = largeCurr;
+   //    largeCurr = largeNext;
+   // }
       
-   }
+   // }
    
-   cout << "\t" << next << endl;
+   // cout << "\t" << largeNext << endl;
 
    
 }
@@ -167,7 +167,18 @@ void LargeNum :: advance()
  ***********************************************/
 void LargeNum :: clear()
 {
+   //loop through list and remove everything
+//   Node<int> * pNode;
 
+   // for (Node<int> * p = first; p; p =p->pNext)
+   //{
+   // pNode = p->pNext;
+   // delete p;
+   //}
+    
+   //null out the list
+   // first = last = NULL;
+   // numItems = 0;
 }
 
 /************************************************
