@@ -11,7 +11,14 @@
 #ifndef HUFFMAN_H
 #define HUFFMAN_H
 
+#include <string>
+
+using namespace std;
+
 void huffman();
+
+string huffman(string fileName);
+
 
 
 #endif // HUFFMAN_h

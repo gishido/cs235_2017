@@ -16,6 +16,7 @@
 
 using namespace std;
 
+
 /*************************************************
 * BinaryNode
 * A BinaryNode struct template that holds stuff
@@ -24,23 +25,32 @@ template <class T>
 class BinaryNode
 {
   public:
-  BinaryNode() : pLeft(NULL), pRight(NULL), pParent(NULL) {}
-  BinaryNode(const T &t) : pLeft(NULL), pRight(NULL), pParent(NULL) {} 
+  BinaryNode() : data(0), pLeft(NULL), pRight(NULL), pParent(NULL)
+   {
+      numItems++;
+   }
+  BinaryNode(const T &t): data(t), pLeft(NULL), pRight(NULL), pParent(NULL)
+   {
+      numItems++;
+   } 
    
-   int size() { return numItems; }
+   int size() const { return numItems; }
+   bool empty() const { return numItems == 0; }
    
    T data;
    int numItems;
-   BinaryNode<T> * pNext;
+   // BinaryNode<T> * pNext;
    BinaryNode<T> * pLeft;
    BinaryNode<T> * pRight;
    BinaryNode<T> * pParent;
    
 };
 
-
+/*************************************************
+* BinaryNode COPY 
+*************************************************/
 template <class T>
-BinaryNode<T> * copy(BinaryNode<T> * &pHead)
+BinaryNode<T> * copy(BinaryNode<T> * &pParent)
 {
    //create new BinaryNode
    BinaryNode<T> * pNew = new BinaryNode<T>;
@@ -48,17 +58,17 @@ BinaryNode<T> * copy(BinaryNode<T> * &pHead)
    BinaryNode<T> * pCopy = pNew;
    
    //copy first data item
-   pNew->data = pHead->data;
-   pHead = pHead->pNext;
+   pNew->data = pParent->data;
+   pParent = pParent->pRight;
    
    //if more than 1 data item, copy the rest
-   while (pHead != NULL)
+   while (pParent != NULL)
    {
       //create new BinaryNode with data
-      pNew->pNext = new BinaryNode<T>(pHead->data);
+      pNew->pRight = new BinaryNode<T>(pParent->data);
       //advance BinaryNodes
-      pHead = pHead->pNext;
-      pNew = pNew->pNext;
+      pParent = pParent->pRight;
+      pNew = pNew->pRight;
    }
    
    //return head of copy
@@ -66,153 +76,175 @@ BinaryNode<T> * copy(BinaryNode<T> * &pHead)
 }
 
 
+/*************************************************
+* BinaryNode insert passed node to left
+*************************************************/
 template <class T>
-BinaryNode<T> * addLeft(BinaryNode<T> * pHead)
+void addLeft(BinaryNode<T> * &pParent)
 throw (const char *)
 {   
    try
    {
       // allocate a new BinaryNode
-      //     BinaryNode<T> * pNew = new BinaryNode<T>(data);
+      BinaryNode<T> * pNew = new BinaryNode<T>(pParent->data);
       
       // if we are inserting to the head position
-      // if(head || pHead == NULL)
-      //{
-      //  pNew->pNext = pHead;
-      // pHead = pNew;
-      // }
-      // else
-      //{
-      // pNew->pNext = pHead->pNext;
-      // pHead->pNext = pNew;
-         
-      //   }
+      if(pParent == NULL)
+      {
+         pNew->pRight = pParent;
+         pParent = pNew;
+
+      }
+      else
+      {
+         pNew->pRight = pParent->pRight;
+         pParent->pRight = pNew;
+
+      }
    }
    catch(string pBinaryNode) 
    {
       throw "Error: Unable to allocate a new BinaryNode";
    }
    
-   return pHead;
+   //return pParent;
    
 }
 
+
+/*************************************************
+* BinaryNode insert node with new value to left
+*************************************************/
 template <class T>
-BinaryNode<T> * addLeft(const T & data)
+void addLeft(const T & data)
 throw (const char *)
 {   
    try
    {
       // allocate a new BinaryNode
-      // BinaryNode<T> * pNew = new BinaryNode<T>(data);
+      BinaryNode<T> * pNew = new BinaryNode<T>(data);
       
       // if we are inserting to the head position
-      // if(head || pHead == NULL)
-      // {
-      // pNew->pNext = pHead;
-      // pHead = pNew;
-      // }
+//      if(pParent == NULL)
+      //    {
+      // pNew->pRight = pParent;
+      // pParent = pNew;
+      //}
       //else
       // {
-      // pNew->pNext = pHead->pNext;
-      //  pHead->pNext = pNew;
+      // pNew->pRight = pParent->pRight;
+      // pParent->pRight = pNew;
          
-      //   }
+      // }
    }
    catch(string pBinaryNode) 
    {
       throw "Error: Unable to allocate a new BinaryNode";
    }
    
-   return data;
+   //return data;
    
 }
 
 
+/*************************************************
+* BinaryNode insert node with new value to right
+*************************************************/
 template <class T>
-BinaryNode<T> * addRight(const T & data)
+void addRight(const T & data)
 throw (const char *)
 {   
    try
    {
       // allocate a new BinaryNode
-      // BinaryNode<T> * pNew = new BinaryNode<T>(data);
+       BinaryNode<T> * pNew = new BinaryNode<T>(data);
       
       // if we are inserting to the head position
-      //if(head || pHead == NULL)
-         // {
-         // pNew->pNext = pHead;
-         // pHead = pNew;
-         // }
-      // else
-         //{
-         // pNew->pNext = pHead->pNext;
-         // pHead->pNext = pNew;
-         
-         //}
+       // if(pRight == NULL)
+       //{
+       //pNew->pRight = pRight;
+       //pRight = pNew;
+       // }
+       //else
+       // {
+       //pNew->pRight = pRight->pRight;
+       //pRight->pRight = pNew;
+        
+       //}
    }
    catch(string pBinaryNode) 
    {
       throw "Error: Unable to allocate a new BinaryNode";
    }
    
-   return data;
+   //return data;
    
 }
 
+
+/*************************************************
+* BinaryNode insert passed node to right
+*************************************************/
 template <class T>
-BinaryNode<T> * addRight(BinaryNode<T> * &pHead)
+void addRight(BinaryNode<T> * &pRight)
 throw (const char *)
 {   
    try
    {
       // allocate a new BinaryNode
-//      BinaryNode<T> * pNew = new BinaryNode<T>(data);
+    BinaryNode<T> * pNew = new BinaryNode<T>(pRight->data);
       
       // if we are inserting to the head position
-      //    if(head || pHead == NULL)
-      //{
-      // pNew->pNext = pHead;
-      // pHead = pNew;
-      //}
-      // else
-      //{
-      // pNew->pNext = pHead->pNext;
-      // pHead->pNext = pNew;
+          if(pRight == NULL)
+      {
+       pNew->pRight = pRight;
+       pRight = pNew;
+      }
+       else
+      {
+       pNew->pRight = pRight->pRight;
+       pRight->pRight = pNew;
          
-      //}
+      }
    }
    catch(string pBinaryNode) 
    {
       throw "Error: Unable to allocate a new BinaryNode";
    }
    
-   return pHead;
+//   return pRight;
    
 }
 
 
+/*************************************************
+* BinaryNode delete
+*************************************************/
 template <class T>
-void deleteBinaryTree(BinaryNode<T> * & pHead)
+void deleteBinaryTree(BinaryNode<T> * & pParent)
 {
    //delete items from the list
-   while (pHead != NULL)
+   while (pParent != NULL)
    {
-      BinaryNode<T> * p = pHead->pNext;
-      delete pHead;
-      pHead = p;
+      BinaryNode<T> * p = pParent->pRight;
+      delete pParent;
+      pParent = p;
    }
    
-   pHead = NULL;
+   pParent = NULL;
 }
 
+
+/*************************************************
+* BinaryNode operator <<
+*************************************************/
 template <class T>
-ostream & operator<<(ostream & out, const BinaryNode<T> * pHead)
+ostream & operator<<(ostream & out, const BinaryNode<T> * pParent)
 {
    // operator overload to display the list
-   for (const BinaryNode<T> * p = pHead; p; p = p->pNext)
+   for (const BinaryNode<T> * p = pParent; p; p = p->pRight)
    {
-      if(p->pNext != NULL)
+      if(p->pRight != NULL)
       {
          out << p->data << " ";
       }

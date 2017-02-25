@@ -9,6 +9,9 @@
  ************************************************************************/
 
 #include "huffman.h"       // for HUFFMAN() prototype
+#include <string>
+
+
 
 /*******************************************
  * HUFFMAN
@@ -17,5 +20,14 @@
 void huffman()
 {
    return;
+}
+
+/*******************************************
+ * HUFFMAN
+ * Driver program to exercise the huffman generation code
+ *******************************************/
+string huffman(string fileName)
+{
+   return fileName;
 }
 
