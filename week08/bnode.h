@@ -44,7 +44,7 @@ class BinaryNode
    void addRight(BinaryNode<T> * pRight) throw (const char *);
    void addRight(const T & data) throw (const char *);
 
-   void deleteBinaryTree(BinaryNode<T> * &pParent);
+   //void deleteBinaryTree(BinaryNode<T> * &pParent);
 
    //ostream & operator<<(ostream & out, const BinaryNode<T> * pParent)
    
@@ -230,7 +230,7 @@ throw (const char *)
 * BinaryNode delete
 *************************************************/
 template <class T>
-void BinaryNode<T>::deleteBinaryTree(BinaryNode<T> * &pParent)
+void deleteBinaryTree(BinaryNode<T> * &pParent)
 {
    //delete items from the list
    while (pParent != NULL)
