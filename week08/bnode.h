@@ -27,10 +27,12 @@ class BinaryNode
   public:
   BinaryNode() : data(0), pLeft(NULL), pRight(NULL), pParent(NULL)
    {
+      numItems = 0;
       numItems++;
    }
   BinaryNode(const T &t): data(t), pLeft(NULL), pRight(NULL), pParent(NULL)
    {
+      numItems = 0;
       numItems++;
    } 
    
@@ -94,24 +96,27 @@ template <class T>
 void BinaryNode<T>::addLeft(BinaryNode<T> * pParent)
 throw (const char *)
 {   
+  cout << "debug: currently in addLeft(BinaryNode<T> * pParent)\n";
    try
    {
       // allocate a new BinaryNode
-      BinaryNode<T> * pNew = new BinaryNode<T>(pParent->data);
-      
+      //BinaryNode<T> * pNew = new BinaryNode<T>(pParent->data);
+      this->pLeft = pParent;
       // if we are inserting to the head position
-      if(pParent == NULL)
+      if(pParent != NULL)
       {
-         pNew->pRight = pParent;
-         pParent = pNew;
+        //  pNew->pRight = pParent;
+        //  pParent = pNew;
+        this->pLeft->pParent = this;
+        cout << "debug: addLeft(pLeft->data = " << pLeft->data << ")\n";
 
       }
-      else
-      {
-         pNew->pRight = pParent->pRight;
-         pParent->pRight = pNew;
+      // else
+      // {
+      //    pNew->pRight = pParent->pRight;
+      //    pParent->pRight = pNew;
 
-      }
+      // }
    }
    catch(string pBinaryNode) 
    {
@@ -129,10 +134,12 @@ throw (const char *)
 template <class T>
 void BinaryNode<T>::addLeft(const T &data) throw (const char *)
 {   
+  cout << "debug: currently in addLeft(const T &data)\n";
    try
    {
       // allocate a new BinaryNode
       BinaryNode<T> * pNew = new BinaryNode<T>(data);
+      this->addLeft(pNew);
       
       // if we are inserting to the head position
 //      if(pParent == NULL)
@@ -163,23 +170,24 @@ void BinaryNode<T>::addLeft(const T &data) throw (const char *)
 template <class T>
 void BinaryNode<T>::addRight(const T &data) throw (const char *)
 {   
+  cout << "debug: currently in addRight(const T &data)\n";
    try
    {
-      // allocate a new BinaryNode
-       BinaryNode<T> * pNew = new BinaryNode<T>(data);
+      //allocate a new BinaryNode
+      //BinaryNode<T> * pNew = new BinaryNode<T>(data);
       
-      // if we are inserting to the head position
-       // if(pRight == NULL)
-       //{
-       //pNew->pRight = pRight;
-       //pRight = pNew;
-       // }
-       //else
-       // {
-       //pNew->pRight = pRight->pRight;
-       //pRight->pRight = pNew;
+      //if we are inserting to the head position
+       if(pRight == NULL)
+       {
+       pNew->pRight = pRight;
+       pRight = pNew;
+       }
+       else
+       {
+       pNew->pRight = pRight->pRight;
+       pRight->pRight = pNew;
         
-       //}
+       }
    }
    catch(string pBinaryNode) 
    {
@@ -198,23 +206,24 @@ template <class T>
 void BinaryNode<T>::addRight(BinaryNode<T> * pRight)
 throw (const char *)
 {   
+  cout << "debug: currently in addRight(BinaryNode<T> *pRight)\n";
    try
    {
       // allocate a new BinaryNode
-    BinaryNode<T> * pNew = new BinaryNode<T>(pRight->data);
+    // BinaryNode<T> * pNew = new BinaryNode<T>(pRight->data);
       
-      // if we are inserting to the head position
-          if(pRight == NULL)
-      {
-       pNew->pRight = pRight;
-       pRight = pNew;
-      }
-       else
-      {
-       pNew->pRight = pRight->pRight;
-       pRight->pRight = pNew;
+    //   // if we are inserting to the head position
+    //       if(pRight == NULL)
+    //   {
+    //    pNew->pRight = pRight;
+    //    pRight = pNew;
+    //   }
+    //    else
+    //   {
+    //    pNew->pRight = pRight->pRight;
+    //    pRight->pRight = pNew;
          
-      }
+    //   }
    }
    catch(string pBinaryNode) 
    {
@@ -250,6 +259,7 @@ void deleteBinaryTree(BinaryNode<T> * &pParent)
 template <class T>
 ostream & operator<<(ostream & out, const BinaryNode<T> * pParent)
 {
+  out << "debug: currently in operator<<\n";
    // operator overload to display the list
    for (const BinaryNode<T> * p = pParent; p; p = p->pRight)
    {
