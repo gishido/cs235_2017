@@ -36,6 +36,17 @@ class BinaryNode
    
    int size() const { return numItems; }
    bool empty() const { return numItems == 0; }
+
+   BinaryNode<T> * copy(BinaryNode<T> * &pParent);
+   void addLeft(BinaryNode<T> * pParent) throw (const char *);
+   void addLeft(const T & data) throw (const char *);
+
+   void addRight(BinaryNode<T> * pRight) throw (const char *);
+   void addRight(const T & data) throw (const char *);
+
+   void deleteBinaryTree(BinaryNode<T> * &pParent);
+
+   //ostream & operator<<(ostream & out, const BinaryNode<T> * pParent)
    
    T data;
    int numItems;
@@ -50,7 +61,7 @@ class BinaryNode
 * BinaryNode COPY 
 *************************************************/
 template <class T>
-BinaryNode<T> * copy(BinaryNode<T> * &pParent)
+BinaryNode<T> * BinaryNode<T>::copy(BinaryNode<T> * &pParent)
 {
    //create new BinaryNode
    BinaryNode<T> * pNew = new BinaryNode<T>;
@@ -80,7 +91,7 @@ BinaryNode<T> * copy(BinaryNode<T> * &pParent)
 * BinaryNode insert passed node to left
 *************************************************/
 template <class T>
-void addLeft(BinaryNode<T> * &pParent)
+void BinaryNode<T>::addLeft(BinaryNode<T> * pParent)
 throw (const char *)
 {   
    try
@@ -116,8 +127,7 @@ throw (const char *)
 * BinaryNode insert node with new value to left
 *************************************************/
 template <class T>
-void addLeft(const T & data)
-throw (const char *)
+void BinaryNode<T>::addLeft(const T &data) throw (const char *)
 {   
    try
    {
@@ -151,8 +161,7 @@ throw (const char *)
 * BinaryNode insert node with new value to right
 *************************************************/
 template <class T>
-void addRight(const T & data)
-throw (const char *)
+void BinaryNode<T>::addRight(const T &data) throw (const char *)
 {   
    try
    {
@@ -186,7 +195,7 @@ throw (const char *)
 * BinaryNode insert passed node to right
 *************************************************/
 template <class T>
-void addRight(BinaryNode<T> * &pRight)
+void BinaryNode<T>::addRight(BinaryNode<T> * pRight)
 throw (const char *)
 {   
    try
@@ -221,7 +230,7 @@ throw (const char *)
 * BinaryNode delete
 *************************************************/
 template <class T>
-void deleteBinaryTree(BinaryNode<T> * & pParent)
+void BinaryNode<T>::deleteBinaryTree(BinaryNode<T> * &pParent)
 {
    //delete items from the list
    while (pParent != NULL)
