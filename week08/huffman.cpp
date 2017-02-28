@@ -11,6 +11,10 @@
 #include "huffman.h"       // for HUFFMAN() prototype
 #include <string>
 #include "vector.h"        //our vector class
+#include "pair.h"          //pair class
+#include <fstream>        //for reading in a file
+
+using namespace std;
 
 /**********************************************************************
 Here's what I need to do.  I need to read in the file into a vector of pairs (pair.h)
@@ -28,6 +32,7 @@ Step 3: output the resulting tree
  *******************************************/
 void huffman()
 {
+
    return;
 }
 
@@ -37,6 +42,29 @@ void huffman()
  *******************************************/
 string huffman(string fileName)
 {
+    Vector <Pair <string, float> > newVector;
+    Pair <string, float> newPair;
+    string input1;
+    float input2;
+    
+    ifstream infile(fileName);
+
+    if(infile)
+    {
+        while(infile >> input1 >> input2)
+        {
+            newPair.first = input1;
+            newPair.second = input2;
+
+            newVector.push_back(newPair);
+
+            cout << "debug: input1 and input2 " << input1 << " " << input2 << endl;
+        }
+    }
+    else
+    {
+        cerr << "Couldn't open " << fileName << " for reading\n";
+    }
 
     return fileName;
 }
