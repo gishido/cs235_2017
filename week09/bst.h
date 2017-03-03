@@ -23,7 +23,18 @@ class BSTIterator;
  template <class T>
  class BST
  {
+     public:
+        //default constructor
+        BST() : myRoot(0) {}
 
+        //empty function
+        bool empty() {return (myRoot == 0;)} const;
+
+        //insert function
+        void insert(const T * item);
+
+        //data elements
+        BinaryNode<T> * myRoot;
  };
 
 
@@ -79,6 +90,45 @@ class BSTIterator
     }
 
 };
+
+/**************************************************
+* BST INSERT :: Insert Function
+*    I'm referenceing pages 679 and 680 in the book
+*    for 12.4 Binary Search Trees
+*************************************************/
+template <class T>
+void BST<T>::insert(const T * item)
+{
+    bool found = false;     //indicates if item already in BST
+    //search pointer (ref. book pg. 679 - still need to 
+    //  understand a couple things about how this works
+    BinaryNode<T> * locptr = myRoot     
+    pParent = 0;            //pointer to parent of current node. I'm not sure we can set
+                            //  a pointer to a number... maybe we can
+    
+    while (!found && locptr != 0)
+    {
+        pParent = locptr;
+        if (item < locptr->data)  //descent left
+            locptr = locptr->pLeft;
+        else if (item < pParent->data) //insert to left of parent
+            pParent->pLeft = locptr;
+        else                            //insert to right of parent
+            pParent->pRight = locptr;
+    }
+    if (!found)
+    {                               //construct node containing item
+        locptr = new BST<T>(item); //need to fix/create non-default constructor for this case
+        if (pParent == 0)           //empty tree
+            myRoot = locptr;
+        else if (item < pParent->data) //insert to left of parent
+            pParent->pLeft = locptr;
+        else                        //insert to right of parent
+            pParent->pRight = locptr;        
+    }
+    else
+        pParent->pRight = locptr;
+}
 
 #endif // BST_H
 
