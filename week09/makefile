@@ -52,7 +52,7 @@ $(PROGRAM): bnode.h bst.h week09.o sortBinary.o
 # The individual components
 #      week09.o     : the driver program
 ##############################################################
-week09.o: bnode.h bst.h stack.h week09.cpp sortBinary.h
+week09.o: bnode.h bst.h week09.cpp sortBinary.h
 	g++ -c week09.cpp -g
 
 
