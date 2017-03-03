@@ -25,7 +25,7 @@ class BSTIterator;
  {
      public:
         //default constructor
-        BST() : myRoot(NULL) {}
+        BST() : myRoot(NULL), numItems(0) {}
 
         //non-default constructor
         //  I'm not sure if this is correct or not
@@ -33,6 +33,8 @@ class BSTIterator;
         {
             BinaryNode<T> * newNode = new BinaryNode<T>(item);
             myRoot = newNode;
+
+            numItems++;
         }
 
         //desctructor
@@ -41,11 +43,15 @@ class BSTIterator;
         //empty function
         bool empty() const {return (myRoot == NULL);}
 
+        //size function
+        int size() const {return numItems;}
+
         //insert function
         void insert(const T * item);
 
         //data elements
         BinaryNode<T> * myRoot;
+        int numItems;
  };
 
 

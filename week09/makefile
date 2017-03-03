@@ -43,8 +43,8 @@ endif
 ##############################################################
 # The main rule
 ##############################################################
-$(PROGRAM): bnode.h bst.h week09.o sortBinary.o
-	g++ -o $(PROGRAM) week09.o sortBinary.o
+$(PROGRAM): week09.o 
+	g++ -o $(PROGRAM) week09.o
 	$(TAR)
 
 
