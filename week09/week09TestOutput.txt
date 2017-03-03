@@ -1,0 +1,260 @@
+
+week09.out:
+
+[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 1
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a BST
+   > 	2. The above plus add a few nodes
+   > 	3. The above plus display the contents of a BST
+   > 	4. The above plus find and delete nodes from a BST
+   > 	a. To test the binarySort() function
+   > > [4m1
+[0m[0;90m
+[0m[0;90mThis will not only check for compiling,
+[0m[0;90mbut also if the size() method works with a NULL root
+[0m   > Create a bool BST using the default constructor
+   > 	Size:     0
+   > 	Empty?    Yes
+[0;90m
+[0m[0;90mThe copy constructor should work with a NULL root as well
+[0m   > Create a bool BST using the copy constructor
+   > 	Size:     0
+   > 	Empty?    Yes
+[0;90m
+[0m[0;90mFinally, the assignment operator should work with a NULL root
+[0m   > Copy a bool BST using the assignment operator
+   > 	Size:     0
+   > 	Empty?    Yes
+   > Test 1 complete
+[1;92m
+Test 1 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 2
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a BST
+   > 	2. The above plus add a few nodes
+   > 	3. The above plus display the contents of a BST
+   > 	4. The above plus find and delete nodes from a BST
+   > 	a. To test the binarySort() function
+   > > [4m2
+[0m[0;90m
+[0m[0;90mTest the insert() method with an empty tree and with a partially filled tree
+[0m   > Create an integer Binary Search Tree
+[0;90m
+[0m[0;90mThe size() method should be able to traverse the tree
+[0m   > 	Size of tree1: 10
+[0;90m
+[0m[0;90mTest copying a filled tree using the copy constructor
+[0m   > 	Size of tree2: 10
+   > Test 2 complete
+[1;92m
+Test 2 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 3
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a BST
+   > 	2. The above plus add a few nodes
+   > 	3. The above plus display the contents of a BST
+   > 	4. The above plus find and delete nodes from a BST
+   > 	a. To test the binarySort() function
+   > > [4m3
+[0m[0;90m
+[0m[0;90mTest an iterator on an empty tree
+[0m   > Empty tree
+   > 	Size:     0
+   > 	Contents: {  }
+[0;90m
+[0m[0;90mTest an iterator on a simple tree with three nodes
+[0m[0;90m          2.2
+[0m[0;90m     +-----+-----+
+[0m[0;90m    1.1         3.3
+[0m   > A tree with three nodes
+   > 	Fill the BST with: 2.2  1.1  3.3
+   > 	Contents forward:  {  1.1  2.2  3.3  }
+   > 	Contents backward: {  3.3  2.2  1.1  }
+[0;90m
+[0m[0;90mTest an iterator on a multi-level tree that includes several
+[0m[0;90mbacktracking strategies. The tree is:
+[0m[0;90m               f
+[0m[0;90m          +----+----+
+[0m[0;90m          c         i
+[0m[0;90m       +--+--+   +--+--+
+[0m[0;90m       b     e   g     j
+[0m[0;90m     +-+   +-+   +-+
+[0m[0;90m     a     d       h
+[0m   > Fill the BST with: f  c  i  b  e  g  j  a  d  h  
+   > 	Size:     10
+   > 	Contents: {  a  b  c  d  e  f  g  h  i  j  }
+[0;90m
+[0m[0;90mTest deleting an non-trivial tree
+[0m   > The tree after it was cleared
+   > 	Size:     0
+   > 	Contents: {  }
+[0;90m
+[0m[0;90mThe assignment operator should preserve the original tree
+[0m   > The tree that was copied
+   > 	Size:     10
+   > 	Contents: {  a  b  c  d  e  f  g  h  i  j  }
+   > Test 3 complete
+[1;92m
+Test 3 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 4
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a BST
+   > 	2. The above plus add a few nodes
+   > 	3. The above plus display the contents of a BST
+   > 	4. The above plus find and delete nodes from a BST
+   > 	a. To test the binarySort() function
+   > > [4m4
+[0m[0;90m
+[0m[0;90m First create a somewhat complex tree
+[0m[0;90m                       G
+[0m[0;90m          +------------+------------+
+[0m[0;90m          F                         J
+[0m[0;90m   +------+                  +------+------+
+[0m[0;90m   A                         H             O
+[0m[0;90m   +---+                     +---+     +---+---+
+[0m[0;90m       E                         I     M       P
+[0m[0;90m    +--+                            +--+--+
+[0m[0;90m    C                               K     N
+[0m[0;90m  +-+-+                             +-+
+[0m[0;90m  B   D                               L
+[0m   > Fill the tree with: G F A E C B D J H I O M K L N P
+   > 	Contents: {  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  }
+[0;90m
+[0m[0;90mNext find and remove a leaf node.
+[0m[0;90mThis will involve the minimal amount of modification to the tree
+[0m[0;90mThe new tree is:
+[0m[0;90m                       G
+[0m[0;90m          +------------+------------+
+[0m[0;90m          F                         J
+[0m[0;90m   +------+                  +------+------+
+[0m[0;90m   A                         H             O
+[0m[0;90m   +---+                     +---+     +---+---+
+[0m[0;90m       E                         I     M       P
+[0m[0;90m    +--+                            +--+--+
+[0m[0;90m    C                               K     N
+[0m[0;90m  +-+                               +-+
+[0m[0;90m  B                                   L
+[0m   > Remove a leaf node: 'D'
+   > 	Node 'D' found
+   > 	Contents: {  A  B  C  E  F  G  H  I  J  K  L  M  N  O  P  }
+[0;90m
+[0m[0;90mA second attempt to remove 'D' should find nothing
+[0m   > Attempt to remove 'D' again
+   > 	Node not found!
+[0;90m
+[0m[0;90mNext we will remove a node that has a single child: 'E'.
+[0m[0;90mThis will require C to take E's place.
+[0m[0;90m                       G
+[0m[0;90m          +------------+------------+
+[0m[0;90m          F                         J
+[0m[0;90m   +------+                  +------+------+
+[0m[0;90m   A                         H             O
+[0m[0;90m   +---+                     +---+     +---+---+
+[0m[0;90m       C                         I     M       P
+[0m[0;90m    +--+                            +--+--+
+[0m[0;90m    B                               K     N
+[0m[0;90m                                    +-+
+[0m[0;90m                                      L
+[0m   > Remove a one-child node: 'E'
+   > 	Node 'E' found
+   > 	Contents: {  A  B  C  F  G  H  I  J  K  L  M  N  O  P  }
+[0;90m
+[0m[0;90mNext we will remove an item that has two children.
+[0m[0;90mThis requires us to replace it with the in-order successor, a node
+[0m[0;90mguarenteed to have zero or one child. This is 'K'. The new tree is:
+[0m[0;90m                       G
+[0m[0;90m          +------------+------------+
+[0m[0;90m          F                         K
+[0m[0;90m   +------+                  +------+------+
+[0m[0;90m   A                         H             O
+[0m[0;90m   +---+                     +---+     +---+---+
+[0m[0;90m       C                         I     M       P
+[0m[0;90m    +--+                            +--+--+
+[0m[0;90m    B                               L     N
+[0m   > Remove a two-child node: 'J'
+   > 	Node 'J' found
+   > 	Contents: {  A  B  C  F  G  H  I  K  L  M  N  O  P  }
+[0;90m
+[0m[0;90mFinally we will remove the root. This will require to replace 'G'
+[0m[0;90mwith the in-order successor. That would be 'H', the new root!
+[0m[0;90mThe new tree is:
+[0m[0;90m                       H
+[0m[0;90m          +------------+------------+
+[0m[0;90m          F                         K
+[0m[0;90m   +------+                  +------+------+
+[0m[0;90m   A                         I             O
+[0m[0;90m   +---+                               +---+---+
+[0m[0;90m       C                               M       P
+[0m[0;90m    +--+                            +--+--+
+[0m[0;90m    B                               L     N
+[0m   > Remove the root: 'G'
+   > 	Node 'G' found
+   > 	Contents: {  A  B  C  F  H  I  K  L  M  N  O  P  }
+   > Test 4 complete
+[1;92m
+Test 4 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 5
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a BST
+   > 	2. The above plus add a few nodes
+   > 	3. The above plus display the contents of a BST
+   > 	4. The above plus find and delete nodes from a BST
+   > 	a. To test the binarySort() function
+   > > [4ma
+[0m   > Four string objects
+   > 	Before: Beta, Alpha, Epsilon, Delta
+   > 	After:  Alpha, Beta, Delta, Epsilon
+   > Twenty one-decimal numbers
+   > 	Before:	5.1, 2.4, 8.2, 2.7, 4.7, 1.8, 9.9, 3.4, 5.0, 1.0,
+   > 		4.4, 3.4, 8.3, 2.9, 1.7, 7.9, 9.5, 9.3, 3.6, 2.9
+   > 	After:	1.0, 1.7, 1.8, 2.4, 2.7, 2.9, 2.9, 3.4, 3.4, 3.6,
+   > 		4.4, 4.7, 5.0, 5.1, 7.9, 8.2, 8.3, 9.3, 9.5, 9.9
+   > One hundred three-digit numbers
+   > 	Before:	889, 192, 528, 675, 154, 746, 562, 482, 448, 842,
+   > 		929, 330, 615, 225, 785, 577, 606, 426, 311, 867,
+   > 		773, 775, 190, 414, 155, 771, 499, 337, 298, 242,
+   > 		656, 188, 334, 184, 815, 388, 831, 429, 823, 331,
+   > 		323, 752, 613, 838, 877, 398, 415, 535, 776, 679,
+   > 		455, 602, 454, 545, 916, 561, 369, 467, 851, 567,
+   > 		609, 507, 707, 844, 643, 522, 284, 526, 903, 107,
+   > 		809, 227, 759, 474, 965, 689, 825, 433, 224, 601,
+   > 		112, 631, 255, 518, 177, 224, 131, 446, 591, 882,
+   > 		913, 201, 441, 673, 997, 137, 195, 281, 563, 151
+   > 	After:	107, 112, 131, 137, 151, 154, 155, 177, 184, 188,
+   > 		190, 192, 195, 201, 224, 224, 225, 227, 242, 255,
+   > 		281, 284, 298, 311, 323, 330, 331, 334, 337, 369,
+   > 		388, 398, 414, 415, 426, 429, 433, 441, 446, 448,
+   > 		454, 455, 467, 474, 482, 499, 507, 518, 522, 526,
+   > 		528, 535, 545, 561, 562, 563, 567, 577, 591, 601,
+   > 		602, 606, 609, 613, 615, 631, 643, 656, 673, 675,
+   > 		679, 689, 707, 746, 752, 759, 771, 773, 775, 776,
+   > 		785, 809, 815, 823, 825, 831, 838, 842, 844, 851,
+   > 		867, 877, 882, 889, 903, 913, 916, 929, 965, 997
+[1;92m
+Test 5 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[1;92m
+============================================================
+[0m[1;92mPassed all tests with no errors.
+[0m[1;92m============================================================
+
+[0m
