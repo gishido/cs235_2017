@@ -40,6 +40,10 @@ class BSTIterator;
         //desctructor
         ~BST() {}
 
+        //copy constructor
+
+        //assignemnt operator
+
         //empty function
         bool empty() const {return (myRoot == NULL);}
 
