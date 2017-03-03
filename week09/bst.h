@@ -27,11 +27,24 @@ class BSTIterator;
         //default constructor
         BST() : myRoot(0) {}
 
+        //non-default constructor
+        //  I'm not sure if this is correct or not
+        BST(const T * item)
+        {
+            BinaryNode<T> * newNode = new BinaryNode<T>(item);
+            myRoot = newNode;
+        }
+
+        //desctructor
+        ~BST() {}
+
         //empty function
-        bool empty() {return (myRoot == 0;)} const;
+        bool empty() const {return (myRoot == 0;)}
 
         //insert function
         void insert(const T * item);
+
+        friend BinaryNode<T>
 
         //data elements
         BinaryNode<T> * myRoot;
