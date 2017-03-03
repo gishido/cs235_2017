@@ -25,7 +25,7 @@ class BSTIterator;
  {
      public:
         //default constructor
-        BST() : myRoot(0) {}
+        BST() : myRoot(NULL) {}
 
         //non-default constructor
         //  I'm not sure if this is correct or not
@@ -39,12 +39,10 @@ class BSTIterator;
         ~BST() {}
 
         //empty function
-        bool empty() const {return (myRoot == 0;)}
+        bool empty() const {return (myRoot == NULL;)}
 
         //insert function
         void insert(const T * item);
-
-        friend BinaryNode<T>
 
         //data elements
         BinaryNode<T> * myRoot;
@@ -116,31 +114,30 @@ void BST<T>::insert(const T * item)
     //search pointer (ref. book pg. 679 - still need to 
     //  understand a couple things about how this works
     BinaryNode<T> * locptr = myRoot     
-    pParent = 0;            //pointer to parent of current node. I'm not sure we can set
-                            //  a pointer to a number... maybe we can
+    BinaryNode<T> * parent = NULL;            //pointer to parent of current node.
     
     while (!found && locptr != 0)
     {
-        pParent = locptr;
+        parent = locptr;
         if (item < locptr->data)  //descent left
             locptr = locptr->pLeft;
-        else if (item < pParent->data) //insert to left of parent
-            pParent->pLeft = locptr;
+        else if (item < parent->data) //insert to left of parent
+            parent->pLeft = locptr;
         else                            //insert to right of parent
-            pParent->pRight = locptr;
+            parent->pRight = locptr;
     }
     if (!found)
     {                               //construct node containing item
         locptr = new BST<T>(item); //need to fix/create non-default constructor for this case
-        if (pParent == 0)           //empty tree
+        if (parent == 0)           //empty tree
             myRoot = locptr;
-        else if (item < pParent->data) //insert to left of parent
-            pParent->pLeft = locptr;
+        else if (item < parent->data) //insert to left of parent
+            parent->pLeft = locptr;
         else                        //insert to right of parent
-            pParent->pRight = locptr;        
+            parent->pRight = locptr;        
     }
     else
-        pParent->pRight = locptr;
+        parent->pRight = locptr;
 }
 
 #endif // BST_H
