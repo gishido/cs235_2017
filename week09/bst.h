@@ -53,6 +53,32 @@ class BSTIterator;
         //insert function
         void insert(const T * item);
 
+        //begin and end functions, returns iterators
+        BSTIterator<T>& begin()
+        {
+            BinaryNode<T> * n = myRoot;
+            Stack<BinaryNode<T> *> nodes;
+            nodes.push(NULL);
+            
+            while (n != NULL)
+            {
+                nodes.push(n);
+                n = n->pLeft;
+            }
+            
+            BSTIterator<T> temp(nodes);
+            it = temp;
+            
+            return it;
+        }
+        
+        BSTIterator<T>& end()
+        {
+            BSTIterator<T> temp(NULL);
+            it = temp;
+            return it;
+        }
+
         //data elements
         BinaryNode<T> * myRoot;
         int numItems;
