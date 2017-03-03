@@ -113,7 +113,7 @@ void BST<T>::insert(const T * item)
     bool found = false;     //indicates if item already in BST
     //search pointer (ref. book pg. 679 - still need to 
     //  understand a couple things about how this works
-    BinaryNode<T> * locptr = myRoot     
+    BinaryNode<T> * locptr = myRoot;     
     BinaryNode<T> * parent = NULL;            //pointer to parent of current node.
     
     while (!found && locptr != 0)
