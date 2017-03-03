@@ -11,55 +11,74 @@
 #ifndef BST_H
 #define BST_H
 
+#include "bnode.h"
+
+//predefine BESTIterator class
+template <class T>
+class BSTIterator;
 
 /**************************************************
- * BST ITERATOR :: DECREMENT PREFIX
- *     advance by one. Note that this implementation uses
- *     a stack of nodes to remember where we are. This stack
- *     is called "nodes".
- * Author:      Br. Helfrich
- * Performance: O(log n) though O(1) in the common case
+ * BST Template Class
  *************************************************/
+ template <class T>
+ class BST
+ {
+
+ };
+
+
 template <class T>
-BSTIterator <T> & BSTIterator <T> :: operator -- ()
+class BSTIterator
 {
-   // do nothing if we have nothing
-   if (nodes.top() == NULL)
-      return *this;
+    /**************************************************
+    * BST ITERATOR :: DECREMENT PREFIX
+    *     advance by one. Note that this implementation uses
+    *     a stack of nodes to remember where we are. This stack
+    *     is called "nodes".
+    * Author:      Br. Helfrich
+    * Performance: O(log n) though O(1) in the common case
+    *************************************************/
+    BSTIterator <T> & operator -- ()
+    {
+    // do nothing if we have nothing
+    if (nodes.top() == NULL)
+        return *this;
 
-   // if there is a left node, take it
-   if (nodes.top()->pLeft != NULL)
-   {
-      nodes.push(nodes.top()->pLeft);
+    // if there is a left node, take it
+    if (nodes.top()->pLeft != NULL)
+    {
+        nodes.push(nodes.top()->pLeft);
 
-      // there might be more right-most children
-      while (nodes.top()->pRight)
-         nodes.push(nodes.top()->pRight);
-      return *this;
-   }
+        // there might be more right-most children
+        while (nodes.top()->pRight)
+            nodes.push(nodes.top()->pRight);
+        return *this;
+    }
 
-   // there are no left children, the right are done
-   assert(nodes.top()->pLeft == NULL);
-   BinaryNode <T> * pSave = nodes.top();
-   nodes.pop();
+    // there are no left children, the right are done
+    assert(nodes.top()->pLeft == NULL);
+    BinaryNode <T> * pSave = nodes.top();
+    nodes.pop();
 
-   // if the parent is the NULL, we are done!
-   if (NULL == nodes.top())
-      return *this;
+    // if the parent is the NULL, we are done!
+    if (NULL == nodes.top())
+        return *this;
 
-   // if we are the right-child, got to the parent.
-   if (pSave == nodes.top()->pRight)
-      return *this;
+    // if we are the right-child, got to the parent.
+    if (pSave == nodes.top()->pRight)
+        return *this;
 
-   // we are the left-child, go up as long as we are the left child!
-   while (nodes.top() != NULL && pSave == nodes.top()->pLeft)
-   {
-      pSave = nodes.top();
-      nodes.pop();
-   }
+    // we are the left-child, go up as long as we are the left child!
+    while (nodes.top() != NULL && pSave == nodes.top()->pLeft)
+    {
+        pSave = nodes.top();
+        nodes.pop();
+    }
 
-   return *this;
-}
+    return *this;
+    }
+
+};
 
 #endif // BST_H
 
