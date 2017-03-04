@@ -81,7 +81,7 @@ class BSTIterator;
         void clear() { deleteBinaryTree(myRoot); }
 
         // find
-        BSTIterator<T> find();       
+        BSTIterator<T> find(const T &item);       
         
         //begin and end functions, returns iterators
         // not sure if this needs to be in this class or the iterator class
@@ -387,10 +387,26 @@ void BST<T>::deleteBinaryTree(BinaryNode<T> * &pParent)
 * BST CLEAR :: set size to 0 and delete memory
 *************************************************/
 template <class T>
-BSTIterator<T> BST<T>::find()
+BSTIterator<T> BST<T>::find(const T &item)
 {
-    BSTIterator<T> it;
-    return it;
+    BinaryNode<T> * locptr = myRoot;     
+    BinaryNode<T> * parent = NULL;   //pointer to parent of current node.
+
+    while (locptr != NULL)
+    {
+        //cout << "debug: insert - inside whileloop\n";
+        //cout << "debug: insert - whileloop - locptr->data " << locptr->data << endl;
+        parent = locptr;
+        if (item < locptr->data)  //descend left
+            locptr = locptr->pLeft;
+        else if (locptr->data < item) //desend right
+            locptr = locptr->pRight;
+        else                            //item found
+            return BSTIterator<T>(locptr);
+    }
+
+    return end();
+
 }
 
 
