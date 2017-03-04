@@ -31,8 +31,12 @@ class BSTIterator;
         BST() : myRoot(NULL), numItems(0) {}
 
         //non-default constructor
-        //  I'm not sure if this is correct or not
-        BST(const T * item)
+        /*  I'm not sure if this is correct or not
+             I don't think this is used correctly...need to reference
+             week09.cpp to see if it's ever called or if we need
+             something for the copy constructor
+        */
+        BST(const T &item)
         {
             BinaryNode<T> * newNode = new BinaryNode<T>(item);
             myRoot = newNode;
@@ -54,12 +58,13 @@ class BSTIterator;
         int size() const {return numItems;}
 
         //insert function
-        void insert(const T * item);
+        void insert(const T &item);
 
         //begin and end functions, returns iterators
         // not sure if this needs to be in this class or the iterator class
         BSTIterator<T>& begin()
         {
+            BSTIterator<T> it;
             BinaryNode<T> * n = myRoot;
             Stack<BinaryNode<T>*> nodes;
             nodes.push(NULL);
@@ -78,6 +83,7 @@ class BSTIterator;
         
         BSTIterator<T>& end()
         {
+            BSTIterator<T> it;
             BSTIterator<T> temp(NULL);
             it = temp;
             return it;
@@ -99,7 +105,7 @@ class BSTIterator
         //non-default constructor
 
         //operator=
-        BSTIterator<T> & operator= (const Stack<BinaryNode<T>> &rhs)
+        BSTIterator<T> & operator= (const Stack<T> &rhs)
         {
             /*need create a new stack of binary nodes, iterate through
                 rhs and return a BSTIterator
@@ -109,9 +115,9 @@ class BSTIterator
         /* These will need a stack called nodes, but I haven't 
         done this part yet, so it won't compile */
         //operator--
-        BSTIterator<T> & operator-- ();
+        BSTIterator<T> & operator-- (const Stack<T> &rhs);
         //operator++
-        BSTIterator<T> & operator++ ();
+        BSTIterator<T> & operator++ (const Stack<T> &rhs);
 
     private:
         Stack<BinaryNode<T>> nodes;
@@ -127,7 +133,8 @@ class BSTIterator
 * Performance: O(log n) though O(1) in the common case
 *************************************************/
 //I'm not sure this is correct.  I'm commenting out the iterator for now
-BSTIterator<T> & BSTIterator::operator-- ()
+template <class T>
+BSTIterator<T> & BSTIterator<T>::operator-- (const Stack<T> &rhs)
 {
     // do nothing if we have nothing
     if (nodes.top() == NULL)
@@ -176,7 +183,8 @@ BSTIterator<T> & BSTIterator::operator-- ()
 * Performance: O(log n) though O(1) in the common case
 *************************************************/
 //this needs some work... it is basically a copy of operator-- right now
-BSTIterator<T> & BSTIterator::operator++ ()
+template <class T>
+BSTIterator<T> & BSTIterator<T>::operator++ (const Stack<T> &rhs)
 {
     // do nothing if we have nothing
     if (nodes.top() == NULL)
@@ -222,7 +230,7 @@ BSTIterator<T> & BSTIterator::operator++ ()
 *    for 12.4 Binary Search Trees
 *************************************************/
 template <class T>
-void BST<T>::insert(const T * item)
+void BST<T>::insert(const T &item)
 {
     bool found = false;     //indicates if item already in BST
     //search pointer (ref. book pg. 679 - still need to 
@@ -242,7 +250,7 @@ void BST<T>::insert(const T * item)
     }
     if (!found)
     {                               //construct node containing item
-        locptr = new BST<T>(item); //need to fix/create non-default constructor for this case
+        locptr = new BinaryNode<T>(item); //need to fix/create non-default constructor for this case
         if (parent == 0)           //empty tree
             myRoot = locptr;
         else if (item < parent->data) //insert to left of parent
