@@ -45,7 +45,7 @@ class BSTIterator;
         }
 
         //desctructor
-        ~BST() {}
+        ~BST() { clear(); } 
 
         //copy constructor
 
@@ -56,10 +56,22 @@ class BSTIterator;
 
         //size function
         int size() const {return numItems;}
-
+//        int size() const
+        //      {
+        //       return 1 +
+        //          (pLeft== NULL? 0 : pLeft->size()) +
+        //          (pRight == NULL ? 0 : pRight->size());
+        // }
+        
         //insert function
         void insert(const T &item);
 
+        //clear
+        void clear();
+
+        // find
+           BSTIterator<T> find();       
+        
         //begin and end functions, returns iterators
         // not sure if this needs to be in this class or the iterator class
         BSTIterator<T>& begin()
@@ -322,6 +334,27 @@ void BST<T>::insert(const T &item)
     else
         parent->pRight = locptr;
 }
+
+/**************************************************
+* BST CLEAR :: set size to 0 and delete memory
+*************************************************/
+template <class T>
+void BST<T>::clear()
+{
+   
+}
+
+/**************************************************
+* BST CLEAR :: set size to 0 and delete memory
+*************************************************/
+template <class T>
+BSTIterator<T>::find()
+{
+               BSTIterator<T> it;
+   return it;
+}
+
+
 
 #endif // BST_H
 
