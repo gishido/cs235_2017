@@ -12,6 +12,9 @@
 #define BST_H
 
 #include "bnode.h"
+#include <stack>
+
+using namespace std;
 
 //predefine BESTIterator class
 template <class T>
@@ -54,10 +57,11 @@ class BSTIterator;
         void insert(const T * item);
 
         //begin and end functions, returns iterators
+        // not sure if this needs to be in this class or the iterator class
         BSTIterator<T>& begin()
         {
             BinaryNode<T> * n = myRoot;
-            Stack<BinaryNode<T> *> nodes;
+            Stack<BinaryNode<T>*> nodes;
             nodes.push(NULL);
             
             while (n != NULL)
@@ -84,7 +88,18 @@ class BSTIterator;
         int numItems;
  };
 
+template <class T>
+class BSTIterator
+{
+    //default constructor
+    BSTIterator() {}
 
+    //non-default constructor
+
+    //operator--
+    BSTIterator<T> & operator-- ();
+
+};
 
 /**************************************************
 * BST ITERATOR :: DECREMENT PREFIX
@@ -94,52 +109,46 @@ class BSTIterator;
 * Author:      Br. Helfrich
 * Performance: O(log n) though O(1) in the common case
 *************************************************/
+//I'm not sure this is correct.  I'm commenting out the iterator for now
+BSTIterator<T> & BSTIterator::operator-- ()
+{
+    // do nothing if we have nothing
+    if (nodes.top() == NULL)
+        return *this;
 
-// //I'm not sure this is correct.  I'm commenting out the iterator for now
-// template <class T>
-// class BSTIterator
-// {
-//     BSTIterator <T> & operator -- ()
-//     {
-//     // do nothing if we have nothing
-//     if (nodes.top() == NULL)
-//         return *this;
+    // if there is a left node, take it
+    if (nodes.top()->pLeft != NULL)
+    {
+        nodes.push(nodes.top()->pLeft);
 
-//     // if there is a left node, take it
-//     if (nodes.top()->pLeft != NULL)
-//     {
-//         nodes.push(nodes.top()->pLeft);
+        // there might be more right-most children
+        while (nodes.top()->pRight)
+            nodes.push(nodes.top()->pRight);
+        return *this;
+    }
 
-//         // there might be more right-most children
-//         while (nodes.top()->pRight)
-//             nodes.push(nodes.top()->pRight);
-//         return *this;
-//     }
+    // there are no left children, the right are done
+    assert(nodes.top()->pLeft == NULL);
+    BinaryNode <T> * pSave = nodes.top();
+    nodes.pop();
 
-//     // there are no left children, the right are done
-//     assert(nodes.top()->pLeft == NULL);
-//     BinaryNode <T> * pSave = nodes.top();
-//     nodes.pop();
+    // if the parent is the NULL, we are done!
+    if (NULL == nodes.top())
+        return *this;
 
-//     // if the parent is the NULL, we are done!
-//     if (NULL == nodes.top())
-//         return *this;
+    // if we are the right-child, got to the parent.
+    if (pSave == nodes.top()->pRight)
+        return *this;
 
-//     // if we are the right-child, got to the parent.
-//     if (pSave == nodes.top()->pRight)
-//         return *this;
+    // we are the left-child, go up as long as we are the left child!
+    while (nodes.top() != NULL && pSave == nodes.top()->pLeft)
+    {
+        pSave = nodes.top();
+        nodes.pop();
+    }
 
-//     // we are the left-child, go up as long as we are the left child!
-//     while (nodes.top() != NULL && pSave == nodes.top()->pLeft)
-//     {
-//         pSave = nodes.top();
-//         nodes.pop();
-//     }
-
-//     return *this;
-//     }
-
-// };
+    return *this;
+}
 
 /**************************************************
 * BST INSERT :: Insert Function
