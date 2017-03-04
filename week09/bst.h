@@ -75,8 +75,10 @@ class BSTIterator;
         //insert function
         void insert(const T &item);
 
+        //delete binarytree, used by clear
+        void deleteBinaryTree(BinaryNode<T> * &pParent);
         //clear
-        void clear();
+        void clear() { deleteBinaryTree(myRoot); }
 
         // find
         BSTIterator<T> find();       
@@ -353,14 +355,33 @@ void BST<T>::insert(const T &item)
 
 }
 
-/**************************************************
-* BST CLEAR :: set size to 0 and delete memory
+/*************************************************
+* BinaryNode delete
 *************************************************/
 template <class T>
-void BST<T>::clear()
+void BST<T>::deleteBinaryTree(BinaryNode<T> * &pParent)
 {
-   
+   //delete items from the list
+   while (pParent != NULL)
+   {
+      BinaryNode<T> * p = pParent->pLeft;
+      
+      delete pParent;
+      pParent = p;
+ 
+   }
+
+   pParent = NULL;
 }
+
+// /**************************************************
+// * BST CLEAR :: set size to 0 and delete memory
+// *************************************************/
+// template <class T>
+// void BST<T>::clear()
+// {
+   
+// }
 
 /**************************************************
 * BST CLEAR :: set size to 0 and delete memory
