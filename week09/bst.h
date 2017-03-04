@@ -70,7 +70,7 @@ class BSTIterator;
         void clear();
 
         // find
-           BSTIterator<T> find();       
+        BSTIterator<T> find();       
         
         //begin and end functions, returns iterators
         // not sure if this needs to be in this class or the iterator class
@@ -304,35 +304,44 @@ BSTIterator<T> & BSTIterator<T>::operator++ ()
 template <class T>
 void BST<T>::insert(const T &item)
 {
+    //cout << "debug: Inside insert\n";
     bool found = false;     //indicates if item already in BST
     //search pointer (ref. book pg. 679 - still need to 
     //  understand a couple things about how this works
     BinaryNode<T> * locptr = myRoot;     
     BinaryNode<T> * parent = NULL;   //pointer to parent of current node.
     
-    while (!found && locptr != 0)
+    while (!found && locptr != NULL)
     {
+        //cout << "debug: insert - inside whileloop\n";
+        //cout << "debug: insert - whileloop - locptr->data " << locptr->data << endl;
         parent = locptr;
-        if (item < locptr->data)  //descent left
+        if (item < locptr->data)  //descend left
             locptr = locptr->pLeft;
-        else if (item < parent->data) //insert to left of parent
-            parent->pLeft = locptr;
-        else                            //insert to right of parent
-            parent->pRight = locptr;
+        else if (locptr->data < item) //desend right
+            locptr = locptr->pRight;
+        else                            //item found
+            found = true;
     }
     if (!found)
-    {                               //construct node containing item
+    {   
+        //cout << "debug: insert - inside not found\n";                            //construct node containing item
         locptr = new BinaryNode<T>(item); //need to fix/create
                                 //non-default constructor for this case
-        if (parent == 0)           //empty tree
+        if (parent == NULL)           //empty tree
             myRoot = locptr;
         else if (item < parent->data) //insert to left of parent
             parent->pLeft = locptr;
         else                        //insert to right of parent
-            parent->pRight = locptr;        
+            parent->pRight = locptr;      
+
+        numItems++;  
     }
     else
-        parent->pRight = locptr;
+    {
+        cout << "Item already in the tree\n";
+    }
+
 }
 
 /**************************************************
@@ -348,10 +357,10 @@ void BST<T>::clear()
 * BST CLEAR :: set size to 0 and delete memory
 *************************************************/
 template <class T>
-BSTIterator<T>::find()
+BSTIterator<T> BST<T>::find()
 {
-               BSTIterator<T> it;
-   return it;
+    BSTIterator<T> it;
+    return it;
 }
 
 
