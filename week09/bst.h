@@ -38,9 +38,13 @@ class BSTIterator;
         */
         BST(const T &item)
         {
-            BinaryNode<T> * newNode = new BinaryNode<T>(item);
-            myRoot = newNode;
+            cout << "debug: non-default constructor - newNode create\n";
+            //decided to try and insert here since it creates a new node for us
+            insert(item);
+            //myRoot = newNode;
 
+            // cout << "debug: non-default constructor - new node, myRoot->data is - "
+            //     << *myRoot->data << endl;
             //numItems++;
         }
 
@@ -58,9 +62,14 @@ class BSTIterator;
         //int size() const {return numItems;}
         int size() const
         {
-            return 1 +
-            (myRoot->pLeft== NULL? 0 : myRoot->pLeft->size()) +
-            (myRoot->pRight == NULL ? 0 : myRoot->pRight->size());
+            if (myRoot == NULL)
+                return 0;
+            else
+            {
+                return 1 +
+                (myRoot->pLeft== NULL? 0 : myRoot->pLeft->size()) +
+                (myRoot->pRight == NULL ? 0 : myRoot->pRight->size());
+            }
         }
         
         //insert function
