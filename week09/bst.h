@@ -3,7 +3,7 @@
  *    Week 09, Binary Search Tree (BST)
  *    Brother Helfrich, CS 235
  * Author:
- *    
+ *    Adam Shumway, Jenaca Willans
  * Summary:
  *    
  ************************************************************************/
@@ -12,11 +12,11 @@
 #define BST_H
 
 #include "bnode.h"
-#include <stack>   //I think we can use stl here, but may need to bring in stack from previous work
+#include "stack.h" //if we use <stack>, make the Stack lower-case
 
 using namespace std;
 
-//predefine BESTIterator class
+//predefine BSTIterator class
 template <class T>
 class BSTIterator;
 
@@ -83,10 +83,10 @@ class BSTIterator;
         
         BSTIterator<T>& end()
         {
-            BSTIterator<T> it;
-            BSTIterator<T> temp(NULL);
-            it = temp;
-            return it;
+           BSTIterator<T> it;
+           BSTIterator<T> temp(NULL);
+           it = temp;
+           return it;
         }
 
     private:
@@ -95,32 +95,90 @@ class BSTIterator;
         int numItems;
  };
 
+/***************************************
+ * BST Iterator class
+ *****************************************/
 template <class T>
 class BSTIterator
 {
-    public:
+
+  public:
+   // constructors
+   BSTIterator(BinaryNode <T> * p = NULL)    { nodes.push(NULL);  }
+   BSTIterator(Stack <BinaryNode <T> *> & s) { nodes = s;         }
+   BSTIterator(const BSTIterator <T> & rhs)  { nodes = rhs.nodes; }
+
+   // assignment
+   BSTIterator <T> & operator = (const BSTIterator <T> & rhs)
+   {
+      // need an assignment operator for the Stack class.
+      nodes = rhs.nodes;
+   }
+
+   // compare
+   bool operator == (const BSTIterator <T> & rhs) const
+   {
+      // only need to compare the leaf node
+      return rhs.nodes.top() == nodes.top();
+   }
+   bool operator != (const BSTIterator <T> & rhs) const
+   {
+      // only need to compare the leaf node
+      return rhs.nodes.top() != nodes.top();
+   }
+
+   // de-reference
+   T & operator * ()
+   {
+      return nodes.top()->data;
+   }
+
+   // iterators
+   BSTIterator <T> & operator ++ ();
+   BSTIterator <T>   operator ++ (int postfix)
+   {
+      BSTIterator <T> itReturn = *this;
+      ++(*this);
+      return itReturn;
+   }
+   BSTIterator <T> & operator -- ();
+   BSTIterator <T>   operator -- (int postfix)
+   {
+      BSTIterator <T> itReturn = *this;
+      --(*this);
+      return itReturn;
+   }
+
+   // get the node pointer
+   BinaryNode <T> * getNode() { return nodes.top(); }
+
+  private:
+   // the stack of nodes
+   Stack < BinaryNode <T> * > nodes;
+   
+//    public:
         //default constructor
-        BSTIterator() {}
+   //      BSTIterator() {}
 
         //non-default constructor
 
         //operator=
-        BSTIterator<T> & operator= (const Stack<T> &rhs)
-        {
+   //   BSTIterator<T> & operator= (const Stack<T> &rhs)
+   //   {
             /*need create a new stack of binary nodes, iterate through
                 rhs and return a BSTIterator
             */
-        }
+   //   }
 
         /* These will need a stack called nodes, but I haven't 
         done this part yet, so it won't compile */
         //operator--
-        BSTIterator<T> & operator-- (const Stack<T> &rhs);
+   //   BSTIterator<T> & operator-- (const Stack<T> &rhs);
         //operator++
-        BSTIterator<T> & operator++ (const Stack<T> &rhs);
+   //   BSTIterator<T> & operator++ (const Stack<T> &rhs);
 
-    private:
-        Stack<BinaryNode<T>> nodes;
+   // private:
+   //   Stack<BinaryNode<T>> nodes;
 
 };
 
@@ -134,22 +192,23 @@ class BSTIterator
 *************************************************/
 //I'm not sure this is correct.  I'm commenting out the iterator for now
 template <class T>
-BSTIterator<T> & BSTIterator<T>::operator-- (const Stack<T> &rhs)
+//BSTIterator<T> & BSTIterator<T>::operator-- (const Stack<T> &rhs)
+BSTIterator<T> & BSTIterator<T>::operator-- ()
 {
     // do nothing if we have nothing
     if (nodes.top() == NULL)
         return *this;
 
     // if there is a left node, take it
-    if (nodes.top()->pLeft != NULL)
-    {
-        nodes.push(nodes.top()->pLeft);
+      if (nodes.top()->pLeft != NULL)
+   {
+      nodes.push(nodes.top()->pLeft);
 
         // there might be more right-most children
-        while (nodes.top()->pRight)
-            nodes.push(nodes.top()->pRight);
-        return *this;
-    }
+      while (nodes.top()->pRight)
+          nodes.push(nodes.top()->pRight);
+      return *this;
+   }
 
     // there are no left children, the right are done
     assert(nodes.top()->pLeft == NULL);
@@ -158,18 +217,18 @@ BSTIterator<T> & BSTIterator<T>::operator-- (const Stack<T> &rhs)
 
     // if the parent is the NULL, we are done!
     if (NULL == nodes.top())
-        return *this;
+       return *this;
 
     // if we are the right-child, got to the parent.
-    if (pSave == nodes.top()->pRight)
-        return *this;
+   if (pSave == nodes.top()->pRight)
+     return *this;
 
     // we are the left-child, go up as long as we are the left child!
     while (nodes.top() != NULL && pSave == nodes.top()->pLeft)
-    {
-        pSave = nodes.top();
-        nodes.pop();
-    }
+   {
+      pSave = nodes.top();
+      nodes.pop();
+   }
 
     return *this;
 }
@@ -184,42 +243,43 @@ BSTIterator<T> & BSTIterator<T>::operator-- (const Stack<T> &rhs)
 *************************************************/
 //this needs some work... it is basically a copy of operator-- right now
 template <class T>
-BSTIterator<T> & BSTIterator<T>::operator++ (const Stack<T> &rhs)
+//BSTIterator<T> & BSTIterator<T>::operator++ (const Stack<T> &rhs)
+BSTIterator<T> & BSTIterator<T>::operator++ ()
 {
     // do nothing if we have nothing
-    if (nodes.top() == NULL)
-        return *this;
+   //  if (nodes.top() == NULL)
+   //   return *this;
 
     // if there is a left node, take it
-    if (nodes.top()->pLeft != NULL)
-    {
-        nodes.push(nodes.top()->pLeft);
+   //  if (nodes.top()->pLeft != NULL)
+   // {
+   //   nodes.push(nodes.top()->pLeft);
 
         // there might be more right-most children
-        while (nodes.top()->pRight)
-            nodes.push(nodes.top()->pRight);
-        return *this;
-    }
+   //   while (nodes.top()->pRight)
+   //       nodes.push(nodes.top()->pRight);
+   //   return *this;
+   //}
 
     // there are no left children, the right are done
-    assert(nodes.top()->pLeft == NULL);
-    BinaryNode<T> * pSave = nodes.top();
-    nodes.pop();
+   //  assert(nodes.top()->pLeft == NULL);
+   // BinaryNode<T> * pSave = nodes.top();
+   //  nodes.pop();
 
     // if the parent is the NULL, we are done!
-    if (NULL == nodes.top())
-        return *this;
+   // if (NULL == nodes.top())
+   //   return *this;
 
     // if we are the right-child, got to the parent.
-    if (pSave == nodes.top()->pRight)
-        return *this;
+   // if (pSave == nodes.top()->pRight)
+   //   return *this;
 
     // we are the left-child, go up as long as we are the left child!
-    while (nodes.top() != NULL && pSave == nodes.top()->pLeft)
-    {
-        pSave = nodes.top();
-        nodes.pop();
-    }
+   // while (nodes.top() != NULL && pSave == nodes.top()->pLeft)
+   // {
+   //   pSave = nodes.top();
+   //   nodes.pop();
+   //}
 
     return *this;
 }
@@ -236,7 +296,7 @@ void BST<T>::insert(const T &item)
     //search pointer (ref. book pg. 679 - still need to 
     //  understand a couple things about how this works
     BinaryNode<T> * locptr = myRoot;     
-    BinaryNode<T> * parent = NULL;            //pointer to parent of current node.
+    BinaryNode<T> * parent = NULL;   //pointer to parent of current node.
     
     while (!found && locptr != 0)
     {
@@ -250,7 +310,8 @@ void BST<T>::insert(const T &item)
     }
     if (!found)
     {                               //construct node containing item
-        locptr = new BinaryNode<T>(item); //need to fix/create non-default constructor for this case
+        locptr = new BinaryNode<T>(item); //need to fix/create
+                                //non-default constructor for this case
         if (parent == 0)           //empty tree
             myRoot = locptr;
         else if (item < parent->data) //insert to left of parent
