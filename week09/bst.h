@@ -12,7 +12,7 @@
 #define BST_H
 
 #include "bnode.h"
-#include <stack>
+#include <stack>   //I think we can use stl here, but may need to bring in stack from previous work
 
 using namespace std;
 
@@ -92,17 +92,29 @@ class BSTIterator;
 template <class T>
 class BSTIterator
 {
-    //default constructor
-    BSTIterator() {}
+    public:
+        //default constructor
+        BSTIterator() {}
 
-    //non-default constructor
+        //non-default constructor
 
-    /* These will need a stack called nodes, but I haven't 
-       done this part yet, so it won't compile */
-    //operator--
-    BSTIterator<T> & operator-- ();
-    //operator++
-    BSTIterator<T> & operator++ ();
+        //operator=
+        BSTIterator<T> & operator= (const Stack<BinaryNode<T>> &rhs)
+        {
+            /*need create a new stack of binary nodes, iterate through
+                rhs and return a BSTIterator
+            */
+        }
+
+        /* These will need a stack called nodes, but I haven't 
+        done this part yet, so it won't compile */
+        //operator--
+        BSTIterator<T> & operator-- ();
+        //operator++
+        BSTIterator<T> & operator++ ();
+
+    private:
+        Stack<BinaryNode<T>> nodes;
 
 };
 
@@ -134,7 +146,7 @@ BSTIterator<T> & BSTIterator::operator-- ()
 
     // there are no left children, the right are done
     assert(nodes.top()->pLeft == NULL);
-    BinaryNode <T> * pSave = nodes.top();
+    BinaryNode<T> * pSave = nodes.top();
     nodes.pop();
 
     // if the parent is the NULL, we are done!
@@ -183,7 +195,7 @@ BSTIterator<T> & BSTIterator::operator++ ()
 
     // there are no left children, the right are done
     assert(nodes.top()->pLeft == NULL);
-    BinaryNode <T> * pSave = nodes.top();
+    BinaryNode<T> * pSave = nodes.top();
     nodes.pop();
 
     // if the parent is the NULL, we are done!
