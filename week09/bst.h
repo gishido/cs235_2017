@@ -28,7 +28,7 @@ class BSTIterator;
  {
      public:
         //default constructor
-        BST() : myRoot(NULL), numItems(0) {}
+        BST() : myRoot(NULL) {}
 
         //non-default constructor
         /*  I'm not sure if this is correct or not
@@ -41,7 +41,7 @@ class BSTIterator;
             BinaryNode<T> * newNode = new BinaryNode<T>(item);
             myRoot = newNode;
 
-            numItems++;
+            //numItems++;
         }
 
         //desctructor
@@ -55,13 +55,13 @@ class BSTIterator;
         bool empty() const {return (myRoot == NULL);}
 
         //size function
-        int size() const {return numItems;}
-//        int size() const
-        //      {
-        //       return 1 +
-        //          (pLeft== NULL? 0 : pLeft->size()) +
-        //          (pRight == NULL ? 0 : pRight->size());
-        // }
+        //int size() const {return numItems;}
+        int size() const
+        {
+            return 1 +
+            (myRoot->pLeft== NULL? 0 : myRoot->pLeft->size()) +
+            (myRoot->pRight == NULL ? 0 : myRoot->pRight->size());
+        }
         
         //insert function
         void insert(const T &item);
@@ -104,7 +104,7 @@ class BSTIterator;
     private:
         //data elements
         BinaryNode<T> * myRoot;
-        int numItems;
+        //int numItems;
  };
 
 /***************************************
@@ -335,7 +335,7 @@ void BST<T>::insert(const T &item)
         else                        //insert to right of parent
             parent->pRight = locptr;      
 
-        numItems++;  
+        //numItems++;  
     }
     else
     {
