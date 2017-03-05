@@ -78,7 +78,6 @@ class BSTIterator;
         bool empty() const {return (myRoot == NULL);}
 
         //size function
-        //int size() const {return numItems;}
         int size() const
         {
             if (myRoot == NULL)
@@ -367,7 +366,8 @@ void BST<T>::insert(const T &item)
     }
     if (!found)
     {   
-        //cout << "debug: insert - inside not found\n";                            //construct node containing item
+        //cout << "debug: insert - inside not found\n";
+       //construct node containing item
         locptr = new BinaryNode<T>(item); //need to fix/create
                                 //non-default constructor for this case
         if (parent == NULL)           //empty tree
@@ -377,13 +377,8 @@ void BST<T>::insert(const T &item)
         else                        //insert to right of parent
             parent->pRight = locptr;      
 
-        //numItems++;  
     }
-    else
-    {
-//        cout << "Item already in the tree\n";
-    }
-
+    
 }
 
 /**************************************************
@@ -394,50 +389,131 @@ void BST<T>::insert(const T &item)
 template <class T>
 void BST<T>::remove(const BSTIterator <T> &it)
 {
-    bool found;
-    BinaryNode<T> * x;
-    BinaryNode<T> * parent;
+//   cout << "debug: entered remove\n";
+    
+//   BSTIterator<T> rIt = it;
 
-    //will need a working search for this to be enabled
-    //search2(item, found, x, parent);
+//   cout << "debug: passed node: " << *rIt << endl;
+    
+//   BinaryNode<T> * x;
+   // BinaryNode<T> * parent;
+   BSTIterator<T> x = it;
+   BSTIterator<T> parent = x--;
+   
+//   cout << "debug: x node: " << x->pParent << endl;
 
-    if (!found)
-    {
-        cout << "Item not in the BST\n";
-//        return;
-    }
+//   if (x-- != NULL && x++ != NULL)
+   // {   //node has 2 children
+      //Find x's inorder successor and its parent
+//      BinaryNode<T> * xSucc = x->pRight;
+   // BSTIterator<T> * xSucc = x++;
+   // parent = x;
 
-    //else
-    if (x->pLeft != NULL && x->pRight != NULL)
-    {   //node has 2 children
-        //Find x's inorder successor and its parent
-        BinaryNode<T> * xSucc = x->pRight;
-        parent = x;
-
-        while (xSucc->pLeft != NULL)  //descend left
-        {
-            parent = xSucc;
-            xSucc = xSucc->pLeft;
-        }
+   //    cout << "debug: entered remove's if loop\n";
+         
+       // while (xSucc->pLeft != NULL)  //descend left
+           //{
+           // cout << "debug: entered remove's while loop\n";
+          
+           //  parent = xSucc;
+            //  xSucc = xSucc->pLeft;
+            // }
+        
+        //  cout << "debug: passed remove's while loop\n";
+         
 
         //move contents of xSucc to x and change xSucc
         //to point to successor, which will be removed.
-        x->data = xSucc->data;
-        x = xSucc;
-    } //end if node has 2 children
+        // x->data = xSucc->data;
+        // x = xSucc;
+   //   } //end if node has 2 children
 
     //now proceed with case where there are 0 or 1 children
-    BinaryNode<T> * subtree = x->pLeft; //pointer to a subtree of x
-    if (subtree == NULL)
-        subtree = x->pRight;
-    if (parent == NULL)     //root being removed
-        myRoot = subtree;    
-    else if (parent->pLeft == x) //left child of parent
-        parent->pLeft = subtree;
-    else                            //right child of parent
-        parent->pRight = subtree;
+//    BinaryNode<T> * subtree = x->pLeft; //pointer to a subtree of x
+  BSTIterator<T> subtree = x--; //pointer to a subtree of x
+  //  if (subtree == NULL)
+  //{
+  //  cout << "debug: subtree == NULL\n";
+       //      subtree = x->pRight;
+  // subtree = x++;
+   // }
+   // if (parent == NULL)     //root being removed
+         //{
+   //   cout << "debug: parent == NULL\n";
+   //    myRoot = subtree;
+   //}
+//    else if (parent->pLeft == x) //left child of parent
+   //   else if (parent-- == x) //left child of parent
+   // {
+   //  cout << "debug: parent->pLeft == x\n";
+       //  parent->pLeft = subtree;
+   //       parent-- = subtree;
+//}
+//    else if (parent->pRight == x)      //right child of parent
+  // else if (parent++ == x)      //right child of parent
+  if (parent++ == it)      //right child of parent
+   {
+//    cout << "debug: parent->pRight == x\n";
+       // parent->pRight = subtree;
+      // parent++ = subtree;
+//      x = x--;
+   }    
+
+//  delete it;
+  //it = NULL;
+
+
+//  bool found = true;
+ 
+
+//BinaryNode<T> * x;
+    // BinaryNode<T> * parent;
+
+    // shouldn't enter remove unless data found
+    //  if (!found)
+    //  {
+    //  cout << "Item not in the BST\n";
+    // }
+
+//else
+    // if (rIt-- != NULL && rIt++ != NULL)
+   //if (x->pLeft != NULL && x->pRight != NULL)
+       //  {   //node has 2 children
+        //Find x's inorder successor and its parent
+       //  BinaryNode<T> * xSucc = x->pRight;
+             //  parent = x;
+
+//         cout << "debug: entered remove's if loop\n";
+         
+       // while (xSucc->pLeft != NULL)  //descend left
+           //{
+           // cout << "debug: entered remove's while loop\n";
+          
+           //  parent = xSucc;
+            //  xSucc = xSucc->pLeft;
+            // }
+        
+        //  cout << "debug: passed remove's while loop\n";
+         
+
+        //move contents of xSucc to x and change xSucc
+        //to point to successor, which will be removed.
+           // x->data = xSucc->data;
+        // x = xSucc;
+        // } //end if node has 2 children
+
+    //now proceed with case where there are 0 or 1 children
+    // BinaryNode<T> * subtree = x->pLeft; //pointer to a subtree of x
+    // if (subtree == NULL)
+       //  subtree = x->pRight;
+    // if (parent == NULL)     //root being removed
+       //  myRoot = subtree;    
+    // else if (parent->pLeft == x) //left child of parent
+       //  parent->pLeft = subtree;
+    // else                            //right child of parent
+       //      parent->pRight = subtree;
     
-    delete x;
+//    delete x;
 }
 
 /*************************************************
@@ -469,29 +545,41 @@ void BST<T>::deleteBinaryTree(BinaryNode<T> * &pParent)
 // }
 
 /**************************************************
-* BST CLEAR :: set size to 0 and delete memory
+* BST FIND :: loop through tree to find item
 *************************************************/
 template <class T>
 BSTIterator<T> BST<T>::find(const T &item)
 {
-    BinaryNode<T> * locptr = myRoot;     
-    BinaryNode<T> * parent = NULL;   //pointer to parent of current node.
+   BSTIterator<T> it = begin();
+   BinaryNode<T> * locptr = myRoot;     
 
-    while (locptr != NULL)
-    {
-        //cout << "debug: insert - inside whileloop\n";
-        //cout << "debug: insert - whileloop - locptr->data " << locptr->data << endl;
-        parent = locptr;
-        if (item < locptr->data)  //descend left
-            locptr = locptr->pLeft;
-        else if (locptr->data < item) //desend right
-            locptr = locptr->pRight;
-        else                            //item found
-            return BSTIterator<T>(locptr);
-    }
+   bool found = false;
+  
+   while (locptr != NULL)
+   {
+      if (item < locptr->data)  //descend left
+      {
+         locptr = locptr->pLeft;
+         it++;
+      }
+      else if (locptr->data < item) //descend right
+      {
+         //       it++;
+         locptr = locptr->pRight;
+      }
+      else                           //item found
+      {
+         found = true;
+         //return BSTIterator<T>(locptr);
+         return it;
+      }
+   }
 
-    return end();
-
+   if (!found)
+   {
+      cout << "debug: not found: " << item << endl;
+      return end();
+   }   
 }
 
 

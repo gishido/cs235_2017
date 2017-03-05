@@ -1,15 +1,16 @@
 ###############################################################
 # Program:
 #     Week 09, Binary Search Tree
-#     Brother JonesL, CS265
+#     Brother JonesL, CS235
 # Author:
 #     Adam Shumway, Jenaca Willans	
 # Most Difficult Part:                                               
-# 
+#     The most difficult part is keeping track of where we are
+#     in the tree. 	 
 # Pair Programming Time:                                               
-# 
+#     7 hours	
 # Total Time:                                                          
-#    
+#     32 and counting
 ###############################################################
 ifeq ($(OS),Windows_NT)
     #Windows stuff                                                              
