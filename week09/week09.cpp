@@ -31,7 +31,7 @@ void testSort();
 #define TEST1   // for testSimple()
 #define TEST2   // for testAdd()
 #define TEST3   // for testIterate()
-//#define TEST4   // for testDelete()
+#define TEST4   // for testDelete()
 
 /**********************************************************************
  * MAIN

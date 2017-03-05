@@ -12,7 +12,7 @@
 #define BST_H
 
 #include "bnode.h"
-#include "stack.h" //if we use <stack>, make the Stack lower-case
+#include "stack.h"
 
 using namespace std;
 
@@ -45,7 +45,6 @@ class BSTIterator;
 
             // cout << "debug: non-default constructor - new node, myRoot->data is - "
             //     << *myRoot->data << endl;
-            //numItems++;
         }
 
         //desctructor
@@ -146,7 +145,6 @@ class BSTIterator;
     private:
         //data elements
         BinaryNode<T> * myRoot;
-        //int numItems;
  };
 
 /***************************************
@@ -164,9 +162,12 @@ class BSTIterator
 
    // assignment
    BSTIterator<T> & operator = (const BSTIterator<T> &rhs)
+      throw (const char *)
    {
       // need an assignment operator for the Stack class.
+      
       nodes = rhs.nodes;
+      return *this; 
    }
 
    // compare
@@ -225,7 +226,8 @@ template <class T>
 //BSTIterator<T> & BSTIterator<T>::operator-- (const Stack<T> &rhs)
 BSTIterator<T> & BSTIterator<T>::operator-- ()
 {
-    // do nothing if we have nothing
+//   cout << "Debug: called decrement prefix\n";
+   // do nothing if we have nothing
     if (nodes.top() == NULL)
         return *this;
 
@@ -276,40 +278,42 @@ template <class T>
 //BSTIterator<T> & BSTIterator<T>::operator++ (const Stack<T> &rhs)
 BSTIterator<T> & BSTIterator<T>::operator++ ()
 {
+//   cout << "Debug: in increment prefix\n";
+   
     // do nothing if we have nothing
-   //  if (nodes.top() == NULL)
-   //   return *this;
+     if (nodes.top() == NULL)
+      return *this;
 
-    // if there is a left node, take it
-   //  if (nodes.top()->pLeft != NULL)
-   // {
-   //   nodes.push(nodes.top()->pLeft);
+    // if there is a right node, take it
+     if (nodes.top()->pRight != NULL)
+    {
+        nodes.push(nodes.top()->pRight);
 
-        // there might be more right-most children
-   //   while (nodes.top()->pRight)
-   //       nodes.push(nodes.top()->pRight);
-   //   return *this;
-   //}
+        // there might be more left-most children
+      while (nodes.top()->pLeft)
+          nodes.push(nodes.top()->pLeft);
+      return *this;
+   }
 
-    // there are no left children, the right are done
-   //  assert(nodes.top()->pLeft == NULL);
-   // BinaryNode<T> * pSave = nodes.top();
-   //  nodes.pop();
+    // there are no right children, the left is done
+     assert(nodes.top()->pRight == NULL);
+      BinaryNode<T> * pSave = nodes.top();
+     nodes.pop();
 
     // if the parent is the NULL, we are done!
-   // if (NULL == nodes.top())
-   //   return *this;
+    if (NULL == nodes.top())
+      return *this;
 
-    // if we are the right-child, got to the parent.
-   // if (pSave == nodes.top()->pRight)
-   //   return *this;
+    // if we are the left-child, got to the parent.
+   if (pSave == nodes.top()->pLeft)
+     return *this;
 
-    // we are the left-child, go up as long as we are the left child!
-   // while (nodes.top() != NULL && pSave == nodes.top()->pLeft)
-   // {
-   //   pSave = nodes.top();
-   //   nodes.pop();
-   //}
+    // we are the right-child, go up as long as we are the right child!
+   while (nodes.top() != NULL && pSave == nodes.top()->pRight)
+    {
+   pSave = nodes.top();
+     nodes.pop();
+   }
 
     return *this;
 }
@@ -357,7 +361,7 @@ void BST<T>::insert(const T &item)
     }
     else
     {
-        cout << "Item already in the tree\n";
+//        cout << "Item already in the tree\n";
     }
 
 }
