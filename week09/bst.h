@@ -53,8 +53,28 @@ class BSTIterator;
         //copy constructor
 
         //assignemnt operator
+        BST<T> operator= (BST<T> &rhs)
+        {
 
-        //empty function
+            BSTIterator<T> it;
+            BinaryNode<T> * newNode = rhs.myRoot;
+            myRoot = NULL;
+            int count = 0;
+
+            for (it = rhs.begin(); it != rhs.end(); ++it)
+            {
+                cout << "debug: BST<T> operator= *it - " << *it << endl;
+                insert(*it);
+                count++;
+                cout << "debug: BST<T> operator= insert(*it) " << count
+                    << endl;
+            }
+
+            //cout << "debug: BST<T> operator= \n";
+
+            return *this;
+        }
+
         bool empty() const {return (myRoot == NULL);}
 
         //size function
@@ -103,7 +123,7 @@ class BSTIterator;
             BSTIterator<T> temp(nodes);
             it = temp;
             
-            return it;
+            return temp;
         }
 
         BSTIterator<T> rbegin()
@@ -111,6 +131,9 @@ class BSTIterator;
             BSTIterator<T> it;
             BSTIterator<T> temp(NULL);
             it = temp;
+
+             //cout << "debug: rbegin - " << *it << endl;
+
             return it;
         }
 
@@ -310,9 +333,9 @@ BSTIterator<T> & BSTIterator<T>::operator++ ()
 
     // we are the right-child, go up as long as we are the right child!
    while (nodes.top() != NULL && pSave == nodes.top()->pRight)
-    {
-   pSave = nodes.top();
-     nodes.pop();
+   {
+        pSave = nodes.top();
+        nodes.pop();
    }
 
     return *this;
@@ -326,7 +349,7 @@ BSTIterator<T> & BSTIterator<T>::operator++ ()
 template <class T>
 void BST<T>::insert(const T &item)
 {
-    //cout << "debug: Inside insert\n";
+    cout << "debug: Inside insert\n";
     bool found = false;     //indicates if item already in BST
     //search pointer (ref. book pg. 679 - still need to 
     //  understand a couple things about how this works
@@ -335,7 +358,7 @@ void BST<T>::insert(const T &item)
     
     while (!found && locptr != NULL)
     {
-        //cout << "debug: insert - inside whileloop\n";
+        cout << "debug: insert - inside whileloop\n";
         //cout << "debug: insert - whileloop - locptr->data " << locptr->data << endl;
         parent = locptr;
         if (item < locptr->data)  //descend left
@@ -347,7 +370,7 @@ void BST<T>::insert(const T &item)
     }
     if (!found)
     {   
-        //cout << "debug: insert - inside not found\n";                            //construct node containing item
+        cout << "debug: insert - inside not found\n";                            //construct node containing item
         locptr = new BinaryNode<T>(item); //need to fix/create
                                 //non-default constructor for this case
         if (parent == NULL)           //empty tree
