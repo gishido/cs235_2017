@@ -221,7 +221,7 @@ void testIterate()
       // display the contents backwards
       cout << "\tContents backward: {";
       BSTIterator <double> it;
-      for (it = tree2.begin(); it != tree2.end(); ++it)
+      for (it = tree2.rbegin(); it != tree2.rend(); --it)
          cout << "  " << *it;
       cout << "  }\n";
    }

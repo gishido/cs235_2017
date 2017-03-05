@@ -63,11 +63,11 @@ class BSTIterator;
 
             for (it = rhs.begin(); it != rhs.end(); ++it)
             {
-                cout << "debug: BST<T> operator= *it - " << *it << endl;
+                //cout << "debug: BST<T> operator= *it - " << *it << endl;
                 insert(*it);
-                count++;
-                cout << "debug: BST<T> operator= insert(*it) " << count
-                    << endl;
+                //count++;
+                //cout << "debug: BST<T> operator= insert(*it) " << count
+                    //<< endl;
             }
 
             //cout << "debug: BST<T> operator= \n";
@@ -123,32 +123,12 @@ class BSTIterator;
             BSTIterator<T> temp(nodes);
             it = temp;
             
-            return temp;
+            return it;
         }
 
         BSTIterator<T> rbegin()
         {
             BSTIterator<T> it;
-            BSTIterator<T> temp(NULL);
-            it = temp;
-
-             //cout << "debug: rbegin - " << *it << endl;
-
-            return it;
-        }
-
-        //end and rend iterators
-        BSTIterator<T> end()
-        {
-           BSTIterator<T> it;
-           BSTIterator<T> temp(NULL);
-           it = temp;
-           return it;
-        }
-
-         BSTIterator<T> rend()
-        {
-           BSTIterator<T> it;
             BinaryNode<T> * n = myRoot;
             Stack<BinaryNode<T>*> nodes;
             nodes.push(NULL);
@@ -162,6 +142,23 @@ class BSTIterator;
             BSTIterator<T> temp(nodes);
             it = temp;
             
+            return it;
+        }
+
+        //end and rend iterators
+        BSTIterator<T> end()
+        {
+            BSTIterator<T> it;
+            BSTIterator<T> temp(NULL);
+            it = temp;
+            return it;
+        }
+
+         BSTIterator<T> rend()
+        {
+            BSTIterator<T> it;
+            BSTIterator<T> temp(NULL);
+            it = temp;
             return it;
         }
 
@@ -349,7 +346,7 @@ BSTIterator<T> & BSTIterator<T>::operator++ ()
 template <class T>
 void BST<T>::insert(const T &item)
 {
-    cout << "debug: Inside insert\n";
+    //cout << "debug: Inside insert\n";
     bool found = false;     //indicates if item already in BST
     //search pointer (ref. book pg. 679 - still need to 
     //  understand a couple things about how this works
@@ -358,7 +355,7 @@ void BST<T>::insert(const T &item)
     
     while (!found && locptr != NULL)
     {
-        cout << "debug: insert - inside whileloop\n";
+        //cout << "debug: insert - inside whileloop\n";
         //cout << "debug: insert - whileloop - locptr->data " << locptr->data << endl;
         parent = locptr;
         if (item < locptr->data)  //descend left
@@ -370,7 +367,7 @@ void BST<T>::insert(const T &item)
     }
     if (!found)
     {   
-        cout << "debug: insert - inside not found\n";                            //construct node containing item
+        //cout << "debug: insert - inside not found\n";                            //construct node containing item
         locptr = new BinaryNode<T>(item); //need to fix/create
                                 //non-default constructor for this case
         if (parent == NULL)           //empty tree
