@@ -84,7 +84,7 @@ class BSTIterator;
         BSTIterator<T> find(const T &item);       
         
         //begin and rbegin functions, returns iterators
-        BSTIterator<T>& begin()
+        BSTIterator<T> begin()
         {
             BSTIterator<T> it;
             BinaryNode<T> * n = myRoot;
@@ -103,7 +103,7 @@ class BSTIterator;
             return it;
         }
 
-        BSTIterator<T>& begin()
+        BSTIterator<T> rbegin()
         {
             BSTIterator<T> it;
             BSTIterator<T> temp(NULL);
@@ -112,7 +112,7 @@ class BSTIterator;
         }
 
         //end and rend iterators
-        BSTIterator<T>& end()
+        BSTIterator<T> end()
         {
            BSTIterator<T> it;
            BSTIterator<T> temp(NULL);
@@ -120,7 +120,7 @@ class BSTIterator;
            return it;
         }
 
-         BSTIterator<T>& rend()
+         BSTIterator<T> rend()
         {
            BSTIterator<T> it;
             BinaryNode<T> * n = myRoot;
@@ -154,24 +154,24 @@ class BSTIterator
 
   public:
    // constructors
-   BSTIterator(BinaryNode <T> * p = NULL)    { nodes.push(NULL);  }
-   BSTIterator(Stack <BinaryNode <T> *> & s) { nodes = s;         }
-   BSTIterator(const BSTIterator <T> & rhs)  { nodes = rhs.nodes; }
+   BSTIterator(BinaryNode<T> * p = NULL)    { nodes.push(NULL);  }
+   BSTIterator(Stack <BinaryNode<T> *> & s) { nodes = s;         }
+   BSTIterator(const BSTIterator<T> & rhs)  { nodes = rhs.nodes; }
 
    // assignment
-   BSTIterator <T> & operator = (const BSTIterator <T> & rhs)
+   BSTIterator<T> & operator = (const BSTIterator<T> &rhs)
    {
       // need an assignment operator for the Stack class.
       nodes = rhs.nodes;
    }
 
    // compare
-   bool operator == (const BSTIterator <T> & rhs) const
+   bool operator == (const BSTIterator<T> &rhs) const
    {
       // only need to compare the leaf node
       return rhs.nodes.top() == nodes.top();
    }
-   bool operator != (const BSTIterator <T> & rhs) const
+   bool operator != (const BSTIterator<T> &rhs) const
    {
       // only need to compare the leaf node
       return rhs.nodes.top() != nodes.top();

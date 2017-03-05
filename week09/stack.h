@@ -112,7 +112,7 @@ class Stack
         }
 
         // top
-        T & top() throw (const char *)
+        T & top() const throw (const char *)
         {
             if (!empty())
             {
