@@ -75,6 +75,9 @@ class BSTIterator;
         //insert function
         void insert(const T &item);
 
+        //remove function;
+        void remove(const T &item);
+
         //delete binarytree, used by clear
         void deleteBinaryTree(BinaryNode<T> * &pParent);
         //clear
@@ -380,6 +383,60 @@ void BST<T>::insert(const T &item)
         cout << "Item already in the tree\n";
     }
 
+}
+
+/**************************************************
+* BST REMOVE :: remove Function
+*    I'm referenceing page 685 in the book
+*    for 12.4 Binary Search Trees
+*************************************************/
+template <class T>
+void BST<T>::remove(const T &item)
+{
+    bool found;
+    BinaryNode<T> * x;
+    BinaryNode<T> * parent;
+
+    //will need a working search for this to be enabled
+    //search2(item, found, x, parent);
+
+    if (!found)
+    {
+        cout << "Item not in the BST\n";
+        return;
+    }
+
+    //else
+    if (x->pLeft != NULL && x->pRight != NULL)
+    {   //node has 2 children
+        //Find x's inorder successor and its parent
+        BinaryNode<T> * xSucc = x->pRight;
+        parent = x;
+
+        while (xSucc->pLeft != NULL)  //descend left
+        {
+            parent = xSucc;
+            xSucc = xSucc->pLeft;
+        }
+
+        //move contents of xSucc to x and change xSucc
+        //to point to successor, which will be removed.
+        x->data = xSucc->data;
+        x = xSucc;
+    } //end if node has 2 children
+
+    //now proceed with case where there are 0 or 1 children
+    BinaryNode<T> * subtree = x->pLeft; //pointer to a subtree of x
+    if (subtree == NULL)
+        subtree = x->pRight;
+    if (parent == NULL)     //root being removed
+        myRoot = subtree;    
+    else if (parent->pLeft == x) //left child of parent
+        parent->pLeft = subtree;
+    else                            //right child of parent
+        parent->pRight = subtree;
+    
+    delete x;
 }
 
 /*************************************************
