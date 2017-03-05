@@ -31,17 +31,29 @@ class BSTIterator;
         BST() : myRoot(NULL) {}
 
         //non-default constructor
+        /*  I'm not sure if this is correct or not
+             I don't think this is used correctly...need to reference
+             week09.cpp to see if it's ever called or if we need
+             something for the copy constructor
+        */
         BST(const T &item)
         {
-            //cout << "debug: non-default constructor - newNode create\n";
+            cout << "debug: non-default constructor - newNode create\n";
             //decided to try and insert here since it creates a new node for us
             insert(item);
             //myRoot = newNode;
 
+            // cout << "debug: non-default constructor - new node, myRoot->data is - "
+            //     << *myRoot->data << endl;
+            //numItems++;
         }
 
         //desctructor
         ~BST() { clear(); } 
+
+        //copy constructor
+
+        //assignemnt operator
 
         //empty function
         bool empty() const {return (myRoot == NULL);}
@@ -61,13 +73,14 @@ class BSTIterator;
         }
         
         //insert function
-        void insert(const T &item) throw (const char *);
+        void insert(const T &item);
 
         //remove function;
-        void remove(const T &item);
+        void remove(const BSTIterator<T> &it);
 
         //delete binarytree, used by clear
         void deleteBinaryTree(BinaryNode<T> * &pParent);
+
         //clear
         void clear() { deleteBinaryTree(myRoot); }
 
@@ -196,7 +209,7 @@ class BSTIterator
   private:
    // the stack of nodes
    Stack < BinaryNode <T> * > nodes;
-
+   
 };
 
 /**************************************************
@@ -307,7 +320,7 @@ BSTIterator<T> & BSTIterator<T>::operator++ ()
 *    for 12.4 Binary Search Trees
 *************************************************/
 template <class T>
-void BST<T>::insert(const T &item) throw (const char *)
+void BST<T>::insert(const T &item)
 {
     //cout << "debug: Inside insert\n";
     bool found = false;     //indicates if item already in BST
@@ -330,19 +343,9 @@ void BST<T>::insert(const T &item) throw (const char *)
     }
     if (!found)
     {   
-        //cout << "debug: insert - inside not found\n";                            
-        //construct node containing item
-        try
-        {
-            //create new BinaryNode object
-            locptr = new BinaryNode<T>(item); 
-        }
-        catch (std::bad_alloc)
-        {
-            cout << "ERROR: Unable to allocate a node\n";
-        }
-
-                                
+        //cout << "debug: insert - inside not found\n";                            //construct node containing item
+        locptr = new BinaryNode<T>(item); //need to fix/create
+                                //non-default constructor for this case
         if (parent == NULL)           //empty tree
             myRoot = locptr;
         else if (item < parent->data) //insert to left of parent
@@ -365,7 +368,7 @@ void BST<T>::insert(const T &item) throw (const char *)
 *    for 12.4 Binary Search Trees
 *************************************************/
 template <class T>
-void BST<T>::remove(const T &item)
+void BST<T>::remove(const BSTIterator <T> &it)
 {
     bool found;
     BinaryNode<T> * x;
@@ -377,7 +380,7 @@ void BST<T>::remove(const T &item)
     if (!found)
     {
         cout << "Item not in the BST\n";
-        return;
+//        return;
     }
 
     //else
