@@ -31,11 +31,6 @@ class BSTIterator;
         BST() : myRoot(NULL) {}
 
         //non-default constructor
-        /*  I'm not sure if this is correct or not
-             I don't think this is used correctly...need to reference
-             week09.cpp to see if it's ever called or if we need
-             something for the copy constructor
-        */
         BST(const T &item)
         {
             cout << "debug: non-default constructor - newNode create\n";
@@ -43,17 +38,10 @@ class BSTIterator;
             insert(item);
             //myRoot = newNode;
 
-            // cout << "debug: non-default constructor - new node, myRoot->data is - "
-            //     << *myRoot->data << endl;
-            //numItems++;
         }
 
         //desctructor
         ~BST() { clear(); } 
-
-        //copy constructor
-
-        //assignemnt operator
 
         //empty function
         bool empty() const {return (myRoot == NULL);}
@@ -208,30 +196,6 @@ class BSTIterator
   private:
    // the stack of nodes
    Stack < BinaryNode <T> * > nodes;
-   
-//    public:
-        //default constructor
-   //      BSTIterator() {}
-
-        //non-default constructor
-
-        //operator=
-   //   BSTIterator<T> & operator= (const Stack<T> &rhs)
-   //   {
-            /*need create a new stack of binary nodes, iterate through
-                rhs and return a BSTIterator
-            */
-   //   }
-
-        /* These will need a stack called nodes, but I haven't 
-        done this part yet, so it won't compile */
-        //operator--
-   //   BSTIterator<T> & operator-- (const Stack<T> &rhs);
-        //operator++
-   //   BSTIterator<T> & operator++ (const Stack<T> &rhs);
-
-   // private:
-   //   Stack<BinaryNode<T>> nodes;
 
 };
 
@@ -366,9 +330,19 @@ void BST<T>::insert(const T &item)
     }
     if (!found)
     {   
-        //cout << "debug: insert - inside not found\n";                            //construct node containing item
-        locptr = new BinaryNode<T>(item); //need to fix/create
-                                //non-default constructor for this case
+        //cout << "debug: insert - inside not found\n";                            
+        //construct node containing item
+        try
+        {
+            //create new BinaryNode object
+            locptr = new BinaryNode<T>(item); 
+        }
+        catch (const bad_alloc&)
+        {
+            cout << "ERROR: Unable to allocate a node\n";
+        }
+
+                                
         if (parent == NULL)           //empty tree
             myRoot = locptr;
         else if (item < parent->data) //insert to left of parent
