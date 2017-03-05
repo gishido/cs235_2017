@@ -33,7 +33,7 @@ class BSTIterator;
         //non-default constructor
         BST(const T &item)
         {
-            cout << "debug: non-default constructor - newNode create\n";
+            //cout << "debug: non-default constructor - newNode create\n";
             //decided to try and insert here since it creates a new node for us
             insert(item);
             //myRoot = newNode;
@@ -61,7 +61,7 @@ class BSTIterator;
         }
         
         //insert function
-        void insert(const T &item);
+        void insert(const T &item) throw (const char *);
 
         //remove function;
         void remove(const T &item);
@@ -307,7 +307,7 @@ BSTIterator<T> & BSTIterator<T>::operator++ ()
 *    for 12.4 Binary Search Trees
 *************************************************/
 template <class T>
-void BST<T>::insert(const T &item)
+void BST<T>::insert(const T &item) throw (const char *)
 {
     //cout << "debug: Inside insert\n";
     bool found = false;     //indicates if item already in BST
@@ -337,7 +337,7 @@ void BST<T>::insert(const T &item)
             //create new BinaryNode object
             locptr = new BinaryNode<T>(item); 
         }
-        catch (const bad_alloc&)
+        catch (std::bad_alloc)
         {
             cout << "ERROR: Unable to allocate a node\n";
         }
