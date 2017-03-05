@@ -83,8 +83,7 @@ class BSTIterator;
         // find
         BSTIterator<T> find(const T &item);       
         
-        //begin and end functions, returns iterators
-        // not sure if this needs to be in this class or the iterator class
+        //begin and rbegin functions, returns iterators
         BSTIterator<T>& begin()
         {
             BSTIterator<T> it;
@@ -103,13 +102,41 @@ class BSTIterator;
             
             return it;
         }
-        
+
+        BSTIterator<T>& begin()
+        {
+            BSTIterator<T> it;
+            BSTIterator<T> temp(NULL);
+            it = temp;
+            return it;
+        }
+
+        //end and rend iterators
         BSTIterator<T>& end()
         {
            BSTIterator<T> it;
            BSTIterator<T> temp(NULL);
            it = temp;
            return it;
+        }
+
+         BSTIterator<T>& rend()
+        {
+           BSTIterator<T> it;
+            BinaryNode<T> * n = myRoot;
+            Stack<BinaryNode<T>*> nodes;
+            nodes.push(NULL);
+            
+            while (n != NULL)
+            {
+                nodes.push(n);
+                n = n->pLeft;
+            }
+            
+            BSTIterator<T> temp(nodes);
+            it = temp;
+            
+            return it;
         }
 
     private:
