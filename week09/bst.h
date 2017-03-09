@@ -31,11 +31,6 @@ class BSTIterator;
         BST() : myRoot(NULL) {}
 
         //non-default constructor
-        /*  I'm not sure if this is correct or not
-             I don't think this is used correctly...need to reference
-             week09.cpp to see if it's ever called or if we need
-             something for the copy constructor
-        */
         BST(const BST<T> &rhs)
         {
             *this = rhs;
@@ -45,6 +40,15 @@ class BSTIterator;
         ~BST() { clear(); } 
 
         //copy constructor
+        void copyBinaryTree(const BinaryNode<T> * rhs, const BinaryNode<T> * myRoot)
+        {
+            // if (rhs.myRoot != NULL)
+            // {
+            //     myRoot->data = rhs->data;
+            //     myRoot->pLeft = copyBinaryTree()
+
+            // }
+        }
 
         //assignemnt operator
         BST<T> operator= (const BST<T> &rhs) throw (const char *)
