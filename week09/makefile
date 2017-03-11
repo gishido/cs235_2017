@@ -1,16 +1,11 @@
 ###############################################################
 # Program:
-#     Week 09, Binary Search Tree
+#     Week 10, Map
 #     Brother JonesL, CS235
 # Author:
-#     Adam Shumway, Jenaca Willans	
-# Most Difficult Part:                                               
-#     The most difficult part is keeping track of where we are
-#     in the tree. 	 
-# Pair Programming Time:                                               
-#     7 hours	
-# Total Time:                                                          
-#     32 and counting
+#     Adam Shumway, Jenaca Willans
+# Summary:
+#     <put a description here>
 ###############################################################
 ifeq ($(OS),Windows_NT)
     #Windows stuff                                                              
@@ -27,7 +22,7 @@ else
         P_EXT = .out
         POSITIONTEST = positionText.out
         MOVETEST = moveTest.out
-        TAR = tar -cf week09.tar *.h *.cpp makefile
+        TAR = tar -cf week10.tar *.h *.cpp makefile
     endif
     ifeq ($(shell uname),Darwin)
         #Mac stuff                                                              
@@ -37,25 +32,26 @@ else
         P_EXT = .out
         POSITIONTEST = positionText.out
         MOVETEST = moveTest.out
-        TAR = tar -cf week09.tar *.h *.cpp makefile
+        TAR = tar -cf week10.tar *.h *.cpp makefile
     endif
 endif
-
 ##############################################################
 # The main rule
 ##############################################################
-$(PROGRAM): week09.o 
-	g++ -o $(PROGRAM) week09.o
+$(PROGRAM): week10.o wordCount.o
+	g++ -o $(PROGRAM) week10.o wordCount.o 
 	$(TAR)
-
 
 ##############################################################
 # The individual components
-#      week09.o     : the driver program
+#      week10.o       : the driver program
+#      wordCount.o    : the wordCount() function
 ##############################################################
-week09.o: bnode.h bst.h week09.cpp sortBinary.h
-	g++ -c week09.cpp -g
+week10.o: bnode.h bst.h pair.h map.h week10.cpp
+	g++ -c week10.cpp
 
+wordCount.o: map.h wordCount.h wordCount.cpp bnode.h bst.h
+	g++ -c wordCount.cpp 
 
 ###############################################################       
 # General rules                                                        
