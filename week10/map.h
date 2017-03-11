@@ -21,10 +21,13 @@ class Map
 { 
 public: 
    // default constructor
-  Map() : pRoot(NULL) {};
+  Map() : pRoot(NULL), numItems(0) {};
 
    // copy constructor 
-   Map(const Map & rhs) {}; 
+   Map(const Map & rhs) : pRoot(NULL), numItems(0)
+   {
+         pRoot = rhs.pRoot;
+   }
 
    //destructor, call clear() since this does the same thing 
    ~Map() { clear(); } 
@@ -33,7 +36,7 @@ public:
                       BinaryNode<Pair<K, V> > * pRhs) 
       throw (const char*)
       {
-            
+
       }; 
 
    // Return the number of nodes in the binary search tree.  
