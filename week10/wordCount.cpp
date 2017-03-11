@@ -3,7 +3,7 @@
  *    Week 10, WORD COUNT
  *    Brother Helfrich, CS 235
  * Author:
- *    <your name here>
+ *    Adam Shumway, Jenaca Willans
  * Summary:
  *    This program will implement the wordCount() function
  ************************************************************************/
@@ -11,7 +11,10 @@
 #include "map.h"       // for MAP
 #include "wordCount.h" // for wordCount() prototype
 using namespace std;
-void readFile(Map <string, Count> & counts, const string & fileName);
+
+// commented this line out for original compile.
+// need to create a Count class for the wordCount tests.
+//void readFile(Map <string, Count> & counts, const string & fileName);
 
 /*****************************************************
  * WORD COUNT
