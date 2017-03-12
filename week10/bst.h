@@ -47,16 +47,16 @@ class BST
    class BinaryNode;
    
    // iterators
-   class iterator;
-   iterator begin();
-   iterator end()             { return iterator (NULL); }
-   iterator rbegin();
-   iterator rend()            { return iterator (NULL); }
+   class BSTIterator;
+   BSTIterator begin();
+   BSTIterator end()             { return BSTIterator (NULL); }
+   BSTIterator rbegin();
+   BSTIterator rend()            { return BSTIterator (NULL); }
    
    // BST specific interfaces
    void insert(const T & t) throw (const char * );
-   void remove(iterator  & it);
-   iterator find(const T & t);
+   void remove(BSTIterator  & it);
+   BSTIterator find(const T & t);
    
   private:
    // delete a single node from the tree
@@ -218,14 +218,14 @@ void BST <T> :: copyBinaryTree(const BinaryNode * pSrc,
  * Forward and reverse iterator through a BST
  *********************************************************/
 template <class T>
-class BST <T> :: iterator
+class BST <T> :: BSTIterator
 {
   public:
    // constructors and assignment
-   iterator(BinaryNode * p = NULL)     { nodes.push(p);     }
-   iterator(Stack <BinaryNode  *> & s) { nodes = s;         }
-   iterator(const iterator & rhs)      { nodes = rhs.nodes; }
-   iterator & operator = (const iterator & rhs)
+   BSTIterator(BinaryNode * p = NULL)     { nodes.push(p);     }
+   BSTIterator(Stack <BinaryNode  *> & s) { nodes = s;         }
+   BSTIterator(const BSTIterator & rhs)      { nodes = rhs.nodes; }
+   BSTIterator & operator = (const BSTIterator & rhs)
       {
          // need an assignment operator for the Stack class.
          nodes = rhs.nodes;
@@ -233,12 +233,12 @@ class BST <T> :: iterator
       }
    
    // compare
-   bool operator == (const iterator & rhs) const
+   bool operator == (const BSTIterator & rhs) const
    {
       // only need to compare the leaf node
       return rhs.nodes.const_top() == nodes.const_top();
    }
-   bool operator != (const iterator & rhs) const
+   bool operator != (const BSTIterator & rhs) const
    {
       // only need to compare the leaf node
       return rhs.nodes.const_top() != nodes.const_top();
@@ -250,24 +250,24 @@ class BST <T> :: iterator
       return nodes.const_top()->data;
    }
    
-   // iterators
-   iterator & operator ++ ();
-   iterator   operator ++ (int postfix)
+   // BSTIterators
+   BSTIterator & operator ++ ();
+   BSTIterator   operator ++ (int postfix)
    {
-      iterator itReturn = *this;
+      BSTIterator itReturn = *this;
       ++(*this);
       return itReturn;
    }
-   iterator & operator -- ();
-   iterator   operator -- (int postfix)
+   BSTIterator & operator -- ();
+   BSTIterator   operator -- (int postfix)
    {
-      iterator itReturn = *this;
+      BSTIterator itReturn = *this;
       --(*this);
       return itReturn;
    }
    
    // must give friend status to remove so it can call getNode() from it
-   friend void BST <T> :: remove(iterator & it);
+   friend void BST <T> :: remove(BSTIterator & it);
    
   private:
    
@@ -280,13 +280,13 @@ class BST <T> :: iterator
 
 
 /*****************************************************
- * BST :: BEGIN (changed interator custom to iterator BST)
+ * BST :: BEGIN (changed interator custom to BSTIterator)
  * Return the first node (left-most) in a binary search tree
  ****************************************************/
 template <class T>
 //typename BST <T> :: iterator custom :: BST <T> :: begin()
-//typename BST <T> :: iterator BST <T> :: begin()
-class BST <T> :: iterator BST <T> :: begin()
+//typename BST <T> :: BSTIterator <T> :: begin()
+class BST <T> :: BSTIterator :: begin()
 {
    Stack < BinaryNode * > nodes;
 
@@ -303,8 +303,8 @@ class BST <T> :: iterator BST <T> :: begin()
  * Return the last node (right-most) in a binary search tree
  ****************************************************/
 template <class T>
-//typename BST <T> :: iterator  BST <T> :: rbegin()
-class BST <T> :: iterator  BST <T> :: rbegin()
+//typename BST <T> :: BSTIterator <T> :: rbegin()
+class BST <T> :: BSTIterator :: rbegin()
 {
    Stack < BinaryNode * > nodes;
    
@@ -492,8 +492,8 @@ void BST <T> :: deleteNode(BinaryNode * & pDelete, bool toRight)
  * Return the node corresponding to a given value
  ****************************************************/
 template <class T>
-//typename BST <T> :: iterator BST <T> :: find(const T & t)
-class BST <T> :: iterator BST <T> :: find(const T & t)
+//typename BST <T> :: BSTIterator <T> :: find(const T & t)
+class BST <T> :: BSTIterator :: find(const T & t)
 {
    Stack < BinaryNode * > nodesFound;
 
@@ -519,7 +519,7 @@ class BST <T> :: iterator BST <T> :: find(const T & t)
  *************************************************/
 template <class T>
 //typename BST <T> :: iterator & BST <T> :: iterator :: operator ++ ()
-class BST <T> :: iterator & BST <T> :: iterator :: operator ++ ()
+class BST <T> :: BSTIterator & BST <T> :: iterator :: operator ++ ()
 {
    // do nothing if we have nothing
    if (nodes.top() == NULL)
@@ -565,7 +565,7 @@ class BST <T> :: iterator & BST <T> :: iterator :: operator ++ ()
  *************************************************/
 template <class T>
 //typename BST <T> :: iterator & BST <T> :: iterator :: operator -- ()
-class BST <T> :: iterator & BST <T> :: iterator :: operator -- ()
+class BST <T> :: BSTIterator & BST <T> :: iterator :: operator -- ()
 {
    // do nothing if we have nothing
    if (nodes.top() == NULL)

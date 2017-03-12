@@ -59,7 +59,7 @@ public:
    } 
    
    // overloaded assignment operator 
-   Map & operator = (const Map & rhs) throw (const char *) 
+   Map & operator = (const Map<K,V> & rhs) throw (const char *) 
       { 
          recursiveCopy(this->pRoot, rhs.pRoot); 
          return *this; 
@@ -68,9 +68,29 @@ public:
 // square bracket [] operator overload 
 // array index will be words from file 
 // driver program passes both int and string 
-   Pair<K,V> & operator [] (K index) throw(bool); 
+      Map & operator [] (K index) throw(bool)
+      {
+          //create a pair (with a default value that we will search for 
+          Pair<K,V> pair(index,V());
+          
+          BinaryNode< Pair<K,V> > pNode;
+          
+          //find the item 
+          BSTIterator< Pair<K,V> > it = bst.find(pair);
+          
+          //if it is not found, create a new node and put it there 
+          if (end() == it)
+          {
+              bst.insert(pair);
+              it = bst.find(pair);
+              assert(end() != it);
+          }
+    //return the second 
+    return (*it).second;
+}
+    
 
-// insert an item 
+//insert an item 
    void insert(const Pair<K,V> & t) throw (const char *)
    {
          numItems++;
@@ -125,6 +145,16 @@ public:
                          BinaryNode <Pair<K, V> > * pGran,
                          BinaryNode <Pair<K, V> > * pSib, 
                          BinaryNode <Pair<K, V> > * pAunt); 
+};
+
+/***************************************************************** 
+* MapIterator CLASS 
+* A Iterator for a Map 
+******************************************************************/ 
+template <class K, class V>
+class MapIterator
+{
+
 };
 
 #endif //MAP.H
