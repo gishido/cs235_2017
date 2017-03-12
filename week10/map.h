@@ -76,7 +76,9 @@ public:
           BinaryNode< Pair<K,V> > pNode;
           
           //find the item 
-          BSTIterator< Pair<K,V> > it = bst.find(pair);
+//          BSTIterator< Pair<K,V> > it = bst.find(pair);
+          BSTIterator< Pair<K,V> > it = BST.find(pair);
+//          BSTIterator < Pair<K,V> > it = bst.find(Pair<K,V>);
           
           //if it is not found, create a new node and put it there 
           if (end() == it)

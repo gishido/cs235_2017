@@ -411,7 +411,7 @@ void BST <T> :: insert(const T & t) throw (const char *)
  * Remove a given node as specified by the iterator
  ************************************************/
 template <class T>
-void BST <T> :: remove(iterator & it)
+void BST <T> :: remove(BSTIterator & it)
 {
    // find the node
    BinaryNode * pNode = it.getNode();
@@ -519,7 +519,8 @@ class BST <T> :: BSTIterator :: find(const T & t)
  *************************************************/
 template <class T>
 //typename BST <T> :: iterator & BST <T> :: iterator :: operator ++ ()
-class BST <T> :: BSTIterator & BST <T> :: iterator :: operator ++ ()
+//class BST <T> :: BSTIterator & BST <T> :: iterator :: operator ++ ()
+class BST <T> :: BSTIterator & BST <T> :: BSTIterator :: operator++ ()
 {
    // do nothing if we have nothing
    if (nodes.top() == NULL)
@@ -565,7 +566,8 @@ class BST <T> :: BSTIterator & BST <T> :: iterator :: operator ++ ()
  *************************************************/
 template <class T>
 //typename BST <T> :: iterator & BST <T> :: iterator :: operator -- ()
-class BST <T> :: BSTIterator & BST <T> :: iterator :: operator -- ()
+//class BST <T> :: BSTIterator & BST <T> :: iterator :: operator -- ()
+class BST <T> :: BSTIterator & BST <T> :: BSTIterator :: operator-- ()
 {
    // do nothing if we have nothing
    if (nodes.top() == NULL)
