@@ -70,25 +70,25 @@ public:
 // driver program passes both int and string 
       Map & operator [] (K index) throw(bool)
       {
-          //create a pair (with a default value that we will search for 
-          Pair<K,V> pair(index,V());
+//           //create a pair (with a default value that we will search for 
+//           Pair<K,V> pair(index,V());
           
-          BinaryNode< Pair<K,V> > pNode;
+//           BinaryNode< Pair<K,V> > pNode;
           
-          //find the item 
-//          BSTIterator< Pair<K,V> > it = bst.find(pair);
-          BSTIterator< Pair<K,V> > it = BST.find(pair);
-//          BSTIterator < Pair<K,V> > it = bst.find(Pair<K,V>);
+//           //find the item 
+// //          BSTIterator< Pair<K,V> > it = bst.find(pair);
+//           BSTIterator< Pair<K,V> > it = BST.find(pair);
+// //          BSTIterator < Pair<K,V> > it = bst.find(Pair<K,V>);
           
-          //if it is not found, create a new node and put it there 
-          if (end() == it)
-          {
-              bst.insert(pair);
-              it = bst.find(pair);
-              assert(end() != it);
-          }
-    //return the second 
-    return (*it).second;
+//           //if it is not found, create a new node and put it there 
+//           if (end() == it)
+//           {
+//               BST.insert(pair);
+//               it = BST.find(pair);
+//               assert(end() != it);
+//           }
+//     //return the second 
+//     return (*it).second;
 }
     
 

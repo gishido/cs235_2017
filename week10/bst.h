@@ -286,7 +286,7 @@ class BST <T> :: BSTIterator
 template <class T>
 //typename BST <T> :: iterator custom :: BST <T> :: begin()
 //typename BST <T> :: BSTIterator <T> :: begin()
-class BST <T> :: BSTIterator :: begin()
+class BST <T> :: BSTIterator BST<T> :: begin()
 {
    Stack < BinaryNode * > nodes;
 
@@ -295,7 +295,7 @@ class BST <T> :: BSTIterator :: begin()
    while (nodes.top() != NULL && nodes.top()->pLeft)
       nodes.push(nodes.top()->pLeft);
    
-   return iterator (nodes);
+   return BSTIterator (nodes);
 }
 
 /*****************************************************
@@ -304,7 +304,7 @@ class BST <T> :: BSTIterator :: begin()
  ****************************************************/
 template <class T>
 //typename BST <T> :: BSTIterator <T> :: rbegin()
-class BST <T> :: BSTIterator :: rbegin()
+class BST <T> :: BSTIterator BST<T> :: rbegin()
 {
    Stack < BinaryNode * > nodes;
    
@@ -313,7 +313,7 @@ class BST <T> :: BSTIterator :: rbegin()
    while (nodes.top() != NULL && nodes.top()->pRight)
       nodes.push(nodes.top()->pRight);
    
-   return iterator (nodes);
+   return BSTIterator (nodes);
 }
 
 /*********************************************
@@ -493,7 +493,7 @@ void BST <T> :: deleteNode(BinaryNode * & pDelete, bool toRight)
  ****************************************************/
 template <class T>
 //typename BST <T> :: BSTIterator <T> :: find(const T & t)
-class BST <T> :: BSTIterator :: find(const T & t)
+class BST <T> :: BSTIterator BST<T> :: find(const T & t)
 {
    Stack < BinaryNode * > nodesFound;
 
@@ -510,7 +510,7 @@ class BST <T> :: BSTIterator :: find(const T & t)
          nodesFound.push(nodesFound.top()->pRight);
    }
    
-   return iterator ();
+   return BSTIterator ();
 }
 
 /**************************************************
