@@ -68,28 +68,29 @@ public:
 // square bracket [] operator overload 
 // array index will be words from file 
 // driver program passes both int and string 
-      Map & operator [] (K index) throw(bool)
+      V& operator [] (const K index) throw(const char *)
       {
-//           //create a pair (with a default value that we will search for 
+      //This should all work, but it doesn't, which is lame
+// //           //create a pair (with a default value that we will search for 
 //           Pair<K,V> pair(index,V());
           
 //           BinaryNode< Pair<K,V> > pNode;
           
-//           //find the item 
-// //          BSTIterator< Pair<K,V> > it = bst.find(pair);
-//           BSTIterator< Pair<K,V> > it = BST.find(pair);
-// //          BSTIterator < Pair<K,V> > it = bst.find(Pair<K,V>);
+// //           //find the item 
+//          BSTIterator it = bst.find(pair);
+// //           BSTIterator it = bst.find(pair);
+// // //          BSTIterator < Pair<K,V> > it = bst.find(Pair<K,V>);
           
-//           //if it is not found, create a new node and put it there 
+// //           //if it is not found, create a new node and put it there 
 //           if (end() == it)
 //           {
-//               BST.insert(pair);
-//               it = BST.find(pair);
+//               bst.insert(pair);
+//               it = bst.find(pair);
 //               assert(end() != it);
 //           }
-//     //return the second 
-//     return (*it).second;
-}
+//          //return the second 
+//             return (*it).second;
+      }
     
 
 //insert an item 
