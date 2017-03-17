@@ -22,6 +22,7 @@
 #include "sortHeap.h"      // for sortHeap()
 #include "sortMerge.h"     // for sortMerge()
 #include "sortQuick.h"     // for sortQuick()
+#include <cassert>
 using namespace std;
 
 // prototypes for our test functions
