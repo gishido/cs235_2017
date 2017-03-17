@@ -3,7 +3,7 @@
  *    Week 11, Sort Binary
  *    Brother Helfrich, CS 235
  * Author:
- *    <your name>
+ *    Adam Shumway, Jenaca Willans 
  * Summary:
  *    This program will implement the Binary Tree Sort
  ************************************************************************/
@@ -21,6 +21,8 @@
 template <class T>
 void sortBinary(T array[], int num)
 {
+
+   
 }
 
 

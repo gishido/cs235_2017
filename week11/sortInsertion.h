@@ -3,7 +3,7 @@
  *    Week 11, Sort Insertion
  *    Brother Helfrich, CS 235
  * Author:
- *    <your name>
+ *    Adam Shumway, Jenaca Willans 
  * Summary:
  *    This program will implement the Insertion Sort
  ************************************************************************/

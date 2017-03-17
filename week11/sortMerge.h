@@ -3,7 +3,7 @@
  *    Week 11, Sort Merge
  *    Brother Helfrich, CS 235
  * Author:
- *    <author>
+ *    Adam Shumway, Jenaca Willans 
  * Summary:
  *    This program will implement the Merge Sort
  ************************************************************************/
