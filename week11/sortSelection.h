@@ -22,35 +22,29 @@ using namespace std;
 template <class T>
 void sortSelection(T array[], int num)
 {
-    int currPos = 0;
-    int currVal;
-    int switchVal;
-    int switchPos = 0;
-    int innerVal;
+    T smallVal;
+    int smallPos = 0;
 
-    //outter loop
-    for (int i = 1; i < num; i++)
+    for (int i = 0; i < num; i++)
     {
-        //currVal = array[i];
-        //cout << "debug: currVal - " << currVal << endl;
-        //inner loop
-        for (int j = i + 1; j < num; j++)
+        smallPos = i;
+        smallVal = array[smallPos];
+        for (int j = i; j < num; j++)
         {
-            //innerVal = array[j];
-            //cout << "debug: innerVal - " << innerVal << endl;
-            if (array[j] > array[i])
+
+            if (smallVal > array[j])
             {
-                cout << "debug: sortSelect - well, POOP!  I think you did it!\n";
-                // switchVal = array[i];
-                // switchPos = j;
+                smallPos = j;
+                smallVal = array[smallPos];
             }
+
         }
         //switch values
-        // array[switchPos] = array[i];
-        // array[i] = switchVal;
+        array[smallPos] = array[i];
+        array[i] = smallVal;
+
     }
-
-
+    
 }
 
 
