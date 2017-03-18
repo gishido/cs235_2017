@@ -4,8 +4,10 @@
 #     Brother JonesL, CS235
 # Author:
 #     Adam Shumway, Jenaca Willans
-# Summary:
-#     <put a description here>
+# Pair Programming:
+#	6 hours
+# Total Time:
+#       22 hours
 ###############################################################
 ifeq ($(OS),Windows_NT)
     #Windows stuff                                                              

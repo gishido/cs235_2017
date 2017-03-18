@@ -68,29 +68,28 @@ public:
 // square bracket [] operator overload 
 // array index will be words from file 
 // driver program passes both int and string 
-      V& operator [] (const K index) throw(const char *)
+      Map & operator [] (K index) throw(bool)
       {
-      //This should all work, but it doesn't, which is lame
-// //           //create a pair (with a default value that we will search for 
+//           //create a pair (with a default value that we will search for 
 //           Pair<K,V> pair(index,V());
           
 //           BinaryNode< Pair<K,V> > pNode;
           
-// //           //find the item 
-//          BSTIterator it = bst.find(pair);
-// //           BSTIterator it = bst.find(pair);
-// // //          BSTIterator < Pair<K,V> > it = bst.find(Pair<K,V>);
+//           //find the item 
+// //          BSTIterator< Pair<K,V> > it = bst.find(pair);
+//           BSTIterator< Pair<K,V> > it = BST.find(pair);
+// //          BSTIterator < Pair<K,V> > it = bst.find(Pair<K,V>);
           
-// //           //if it is not found, create a new node and put it there 
+//           //if it is not found, create a new node and put it there 
 //           if (end() == it)
 //           {
-//               bst.insert(pair);
-//               it = bst.find(pair);
+//               BST.insert(pair);
+//               it = BST.find(pair);
 //               assert(end() != it);
 //           }
-//          //return the second 
-//             return (*it).second;
-      }
+//     //return the second 
+//     return (*it).second;
+}
     
 
 //insert an item 
@@ -157,7 +156,46 @@ public:
 template <class K, class V>
 class MapIterator
 {
+  public:
+   // default constructor
+  MapIterator() : p(NULL) {}
 
+   // non-default constructor
+  MapIterator(Pair<K,V> *p) : p(p) {}
+
+   // copy constructor
+  MapIterator(const MapIterator<Pair<K,V> > &rhs) : p(rhs.p) {}
+
+   // assignment operator
+   MapIterator<Pair<K,V> > &operator=(const MapIterator<Pair<K,V> > & rhs)
+   {
+      p = rhs.p;
+      return *this;
+   }
+
+   // dereference operator
+   Pair<K,V> &operator*() throw (const char *)
+   {
+      if (p)
+         return p->data;
+      else
+         throw "ERROR: Atempting to dereference a NULL pointer.";
+   }
+
+
+  private:
+   Pair<K,V> *p;
 };
+
+/***************************************************************** 
+* MapIterator :: advance - should call the BST iterator advance
+******************************************************************/ 
+template <class K, class V>
+   MapIterator <Pair<K,V> > BSTIterator<T>::advance()
+{
+   ++p;
+   return p;
+}
+
 
 #endif //MAP.H
