@@ -17,11 +17,21 @@
 /*****************************************************
  * SORT BINARY
  * Perform the binary tree sort
+ * from pseudocode in Data Structures p 276
  ****************************************************/
 template <class T>
 void sortBinary(T array[], int num)
 {
+   for(int i = 0; i < num - 1; i++)
+   {
+//      BST.insert(array[i]);
+   }
 
+   int i = 0;
+   // for (T it = BST.begin(); it < BST.end(); it++)
+   //{
+   //  array[i++] = *it;
+   //}
    
 }
 

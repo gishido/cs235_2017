@@ -5,11 +5,11 @@
 # Author:                                                                     
 #     Adam Shumway, Jenaca Willans                                            
 # Most Difficult Part:                                                        
-#
+#	Ending recursive loops and the binary sort.
 # Pair Programming Time:                                                      
-#
+#	4 hours
 # Total Time:                                                                 
-#
+#	26 hours and counting
 ###############################################################
 ifeq ($(OS),Windows_NT)
     #Windows stuff                                                          

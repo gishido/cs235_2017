@@ -22,8 +22,14 @@ using namespace std;
 template <class T>
 void sortSelection(T array[], int num)
 {
+    int currPos = 0;
+    T currVal;
+    T switchVal;
     T smallVal;
     int smallPos = 0;
+    int switchPos = 0;
+    int innerVal;
+
 
     for (int i = 0; i < num; i++)
     {
