@@ -1,0 +1,233 @@
+
+week12.out:
+
+[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 1
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a hash
+   > 	2. The above plus add a few entries
+   > 	3. The above plus copy a hash table
+   > 	4. The above plus look for the entries
+   > 	a. Spell check
+   > > [4m1
+[0m[0;90mCreate, destroy, and copy a Hash
+[0m   > Create an integer Hash
+   > 	Size:     0
+   > 	Capacity: 5
+   > 	Empty?    Yes
+   > Create a float Hash
+   > 	Size:     0
+   > 	Capacity: 10
+   > 	Empty?    Yes
+   > Create a float Hash using the copy constructor
+   > 	Size:     0
+   > 	Capacity: 10
+   > 	Empty?    Yes
+   > Create a float Hash using the assignment operator
+   > 	Size:     0
+   > 	Capacity: 10
+   > 	Empty?    Yes
+   > Test 1 complete
+[1;92m
+Test 1 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 2
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a hash
+   > 	2. The above plus add a few entries
+   > 	3. The above plus copy a hash table
+   > 	4. The above plus look for the entries
+   > 	a. Spell check
+   > > [4m2
+[0m[0;90m
+[0m[0;90mFirst create a simple hash
+[0m   > Create a small integer hash
+   > 	Size:     0
+   > 	Capacity: 10
+   > 	Empty?    Yes
+[0;90m
+[0m[0;90mAfter filling it, the hash should look like this:
+[0m[0;90m h[0] -->                                                    
+[0m[0;90m h[1] --> 431 --> 991 --> 101 --> 111                        
+[0m[0;90m h[2] --> 452 --> 982                                        
+[0m[0;90m h[3] --> 213 --> 123                                        
+[0m[0;90m h[4] --> 534                                                
+[0m[0;90m h[5] --> 005                                                
+[0m[0;90m h[6] --> 626                                                
+[0m[0;90m h[7] -->                                                    
+[0m[0;90m h[8] --> 408                                                
+[0m[0;90m h[9] -->                     
+[0m   > Fill with 12 values
+   > 	Size:     12
+   > 	Capacity: 10
+   > 	Empty?    No
+   > Test 2 complete
+[1;92m
+Test 2 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 3
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a hash
+   > 	2. The above plus add a few entries
+   > 	3. The above plus copy a hash table
+   > 	4. The above plus look for the entries
+   > 	a. Spell check
+   > > [4m3
+[0m[0;90m
+[0m[0;90mCreate a hash of 25 buckets, each one will have exactly 4 elements in it.
+[0m   > A hash of 25 buckets
+   > 	Empty?    no
+   > 	Size:     100
+   > 	Capacity: 25
+[0;90m
+[0m[0;90mUsing the copy constructor, the new hash should have
+[0m[0;90mthe same number of buckets as h1
+[0m   > Copy the hash into another
+   > 	Empty?    no
+   > 	Size:     100
+   > 	Capacity: 25
+[0;90m
+[0m[0;90mCreate an empty hash of 5 buckets
+[0m   > Create a hash of 5 buckets
+   > 	Empty?    yes
+   > 	Size:     0
+   > 	Capacity: 5
+[0;90m
+[0m[0;90mIt should be possible to copy the contents of one hash into another,
+[0m[0;90meven when the two hashes have a different number of buckets. 
+[0m[0;90mIn this case, we will go from 25 buckets with 4 elements in each bucket,
+[0m[0;90mto 5 buckets with 20 elements in each 
+[0m   > Copy the large hash of 25 buckets into the small one of 5
+   > 	Empty?    no
+   > 	Size:     100
+   > 	Capacity: 25
+   > Test 3 complete
+[1;92m
+Test 3 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 4
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a hash
+   > 	2. The above plus add a few entries
+   > 	3. The above plus copy a hash table
+   > 	4. The above plus look for the entries
+   > 	a. Spell check
+   > > [4m4
+[0m[0;90m
+[0m[0;90mCreate a hash of 10 floating point numbers with a range of 0 through 100
+[0m   > Test adding and querying numbers (0.0 - 100.0) from the hash:
+   >   +5.5   Put 5.5 into the hash
+   >   ?5.5   Determine if 5.5 is in the hash
+   >   !      Display the size and capacity of the hash
+   >   #      Quit
+   > > [4m+5.5
+[0m   > > [4m+55.0
+[0m   > > [4m+7.2
+[0m[0;90m [0] -> 5.5 -> 7.2
+[0m[0;90m [1]
+[0m[0;90m [2]
+[0m[0;90m [3]
+[0m[0;90m [4]
+[0m[0;90m [5] -> 55.0
+[0m[0;90m [6]
+[0m[0;90m [7]
+[0m[0;90m [8]
+[0m[0;90m [9]
+[0m   > > [4m!
+[0m   > 	Size:     3
+   > 	Capacity: 10
+   > 	Empty?    No
+   > > [4m+8.3
+[0m[0;90m [0] -> 5.5 -> 7.2 -> 8.3
+[0m[0;90m [1]
+[0m[0;90m [2]
+[0m[0;90m [3]
+[0m[0;90m [4]
+[0m[0;90m [5] -> 55.0
+[0m[0;90m [6]
+[0m[0;90m [7]
+[0m[0;90m [8]
+[0m[0;90m [9]
+[0m   > > [4m!
+[0m   > 	Size:     4
+   > 	Capacity: 10
+   > 	Empty?    No
+   > > [4m?5.5
+[0m   > 	Found!
+   > > [4m?5.4
+[0m   > 	Not found.
+   > > [4m+14.8
+[0m   > > [4m+25.5
+[0m   > > [4m+83.6
+[0m   > > [4m+99.9
+[0m   > > [4m+0.1
+[0m[0;90m [0] -> 5.5 -> 7.2 -> 8.3 -> 0.1
+[0m[0;90m [1] -> 14.8
+[0m[0;90m [2] -> 25.5
+[0m[0;90m [3]
+[0m[0;90m [4]
+[0m[0;90m [5] -> 55.0
+[0m[0;90m [6]
+[0m[0;90m [7]
+[0m[0;90m [8] -> 83.6
+[0m[0;90m [9] -> 99.9
+[0m   > > [4m!
+[0m   > 	Size:     9
+   > 	Capacity: 10
+   > 	Empty?    No
+   > > [4m? 99.9
+[0m   > 	Found!
+   > > [4m#
+[0m   > Test 4 complete
+[1;92m
+Test 4 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 5
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a hash
+   > 	2. The above plus add a few entries
+   > 	3. The above plus copy a hash table
+   > 	4. The above plus look for the entries
+   > 	a. Spell check
+   > > [4ma
+[0m   > What file do you want to check? [4m/home/cs235/week12/nephi.txt
+[0m   > Misspelled: Nephi, yea
+[1;92m
+Test 5 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 6
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a hash
+   > 	2. The above plus add a few entries
+   > 	3. The above plus copy a hash table
+   > 	4. The above plus look for the entries
+   > 	a. Spell check
+   > > [4ma
+[0m   > What file do you want to check? [4m/home/cs235/week12/twoCities.txt
+[0m   > File contains no spelling errors
+[1;92m
+Test 6 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[1;92m
+============================================================
+[0m[1;92mPassed all tests with no errors.
+[0m[1;92m============================================================
+
+[0m
