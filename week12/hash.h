@@ -32,7 +32,7 @@ class Hash
 
     Hash(int numBuckets) throw (const char *)
     {
-        
+
     }
     
     ~Hash() { clear(); }
@@ -64,8 +64,8 @@ class Hash
     //got from discussion board
     void insert(const T &value)
     {
-        assert(hash(value) >= 0 && hast(value) < capacity());
-        buckets[hast(value)].push_back(value);
+        assert(hash(value) >= 0 && hash(value) < capacity());
+        buckets[hash(value)].push_back(value);
         numItems++;
     }
 
