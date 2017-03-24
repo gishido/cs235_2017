@@ -16,29 +16,36 @@
 //will likely include this in this class
 //  at least we know our list class works over bst
 //  friggin bst
-//#include "list.h"
-
+#include "list.h"
 
 template <class T>
 class Hash
 {
     public:
-    Hash() : numBuckets(0), min(0), max(0) {}
+    Hash() : buckets(NULL), numBuckets(0), numItems(0) {}
     //I'm messing up this non-default constructor...it's too late in the night 
     //  for me to think clearly
-    Hash(const Hash &data) : numBuckets(0), min(0), max(0) {}
+    Hash(const Hash<T> &rhs) : buckets(NULL), numBuckets(0), numItems(0) 
+    {
+        *this = rhs;
+    }
+
+    Hash(int numBuckets) throw (const char *)
+    {
+        
+    }
     
-    ~Hash();
+    ~Hash() { clear(); }
 
     //I'm just setting these up to compile still need to fill these out
-    void operator=(const Hash &rhs) throw(const char *)
+    Hash<T> & operator=(const Hash<T> &rhs) throw(const char *)
     {
 
     }
 
-    bool empty() {return (numBuckets == 0);}
+    bool empty() {return (numItems == 0);}
 
-    int size() {return numBuckets;}
+    int size() {return numItems;}
 
     int capacity() const {return numBuckets;}
 
@@ -54,38 +61,58 @@ class Hash
         return found;
     }
 
-    void insert(T value)
+    //got from discussion board
+    void insert(const T &value)
     {
-
+        assert(hash(value) >= 0 && hast(value) < capacity());
+        buckets[hast(value)].push_back(value);
+        numItems++;
     }
 
-    int hash()
-    {
-        return numBuckets;
-    }
+    virtual int hash(const T &item) const = 0;
+    // {
+    //     return numBuckets;
+    // }
 
     private:
+    List<T> * buckets;
     int numBuckets;
-    int min;
-    int max;
+    int numItems;
+    T data[];
 
-};
 
-/*******************************************************
-* I HASH
-* A simple hash of integers
-*******************************************************/
-class IHash : public Hash <int> 
-{
-public:
-   IHash(int numBuckets)    throw (const char *) : Hash <int> (numBuckets) {}
-   IHash(const IHash & rhs) throw (const char *) : Hash <int> (rhs)		{} 
+// /*******************************************************
+// * I HASH
+// * A simple hash of integers
+// *******************************************************/
+// class IHash : public Hash <int> 
+// {
+// public:
+//    IHash(int numBuckets)    throw (const char *) : Hash <int> (numBuckets) {}
+//    IHash(const IHash & rhs) throw (const char *) : Hash <int> (rhs)		{} 
 
-   // hash function for integers is simply to take the modulous
-   int hash(const int & value) const
-   {
-      return value % capacity();
-   }
+//    // hash function for integers is simply to take the modulous
+//    int hash(const int & value) const
+//    {
+//       return value % capacity();
+//    }
+// };
+
+// /*******************************************************
+// * F HASH
+// * A simple hash of integers
+// *******************************************************/
+// class FHash : public Hash <float> 
+// {
+// public:
+//    FHash(int numBuckets)    throw (const char *) : Hash <float> (numBuckets) {}
+//    FHash(const IHash & rhs) throw (const char *) : Hash <float> (rhs)		{} 
+
+//    // hash function for float is simply to take the modulous
+//    float hash(const float & value) const
+//    {
+//       return value % capacity();
+//    }
 };
 
 #endif // HASH_H
