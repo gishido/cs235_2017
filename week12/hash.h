@@ -11,20 +11,18 @@
 #ifndef HASH_H
 #define HASH_H
 
-
 #include <cassert>
-//will likely include this in this class
-//  at least we know our list class works over bst
-//  friggin bst
+#include <iostream>
 #include "list.h"
+
+using namespace std;
 
 template <class T>
 class Hash
 {
     public:
     Hash() : buckets(NULL), numBuckets(0), numItems(0) {}
-    //I'm messing up this non-default constructor...it's too late in the night 
-    //  for me to think clearly
+
     Hash(const Hash<T> &rhs) : buckets(NULL), numBuckets(0), numItems(0) 
     {
         *this = rhs;
@@ -80,39 +78,6 @@ class Hash
     int numItems;
     T data[];
 
-
-// /*******************************************************
-// * I HASH
-// * A simple hash of integers
-// *******************************************************/
-// class IHash : public Hash <int> 
-// {
-// public:
-//    IHash(int numBuckets)    throw (const char *) : Hash <int> (numBuckets) {}
-//    IHash(const IHash & rhs) throw (const char *) : Hash <int> (rhs)		{} 
-
-//    // hash function for integers is simply to take the modulous
-//    int hash(const int & value) const
-//    {
-//       return value % capacity();
-//    }
-// };
-
-// /*******************************************************
-// * F HASH
-// * A simple hash of integers
-// *******************************************************/
-// class FHash : public Hash <float> 
-// {
-// public:
-//    FHash(int numBuckets)    throw (const char *) : Hash <float> (numBuckets) {}
-//    FHash(const IHash & rhs) throw (const char *) : Hash <float> (rhs)		{} 
-
-//    // hash function for float is simply to take the modulous
-//    float hash(const float & value) const
-//    {
-//       return value % capacity();
-//    }
 };
 
 #endif // HASH_H
