@@ -28,9 +28,10 @@ class Hash
         *this = rhs;
     }
 
-    Hash(int numBuckets) throw (const char *)
+    Hash(int data) throw (const char *)
     {
-
+        numBuckets = data;
+        numItems = 0;
     }
     
     ~Hash() { clear(); }
@@ -38,7 +39,10 @@ class Hash
     //I'm just setting these up to compile still need to fill these out
     Hash<T> & operator=(const Hash<T> &rhs) throw(const char *)
     {
-
+        clear();
+        buckets = rhs.buckets;
+        numBuckets = rhs.numBuckets;
+        numItems = rhs.numItems;
     }
 
     bool empty() {return (numItems == 0);}
@@ -76,7 +80,6 @@ class Hash
     List<T> * buckets;
     int numBuckets;
     int numItems;
-    T data[];
 
 };
 
