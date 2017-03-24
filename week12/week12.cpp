@@ -30,7 +30,7 @@ void testQuery();
 // TEST1.  Then, when TEST1 works, try TEST2 and so on.
 #define TEST1   // for testSimple()
 #define TEST2   // for testAdd()
-// #define TEST3   // for testCopy()
+#define TEST3   // for testCopy()
 // #define TEST4   // for testQuery()
 
 /**********************************************************************
