@@ -32,6 +32,7 @@ class Hash
     {
         numBuckets = data;
         numItems = 0;
+        buckets = new List<T>[numBuckets];
     }
     
     ~Hash() { clear(); }
@@ -66,12 +67,14 @@ class Hash
     //got from discussion board
     void insert(const T &value)
     {
-        //the insert needs some love.  I got this from 
-        // the boards, but there's something that's not 
-        // working on the push_back...maybe its the array?
-        // I'm sure I'm missing something simple
+
+        // cout << "debug: hash(value) - " << hash(value) << endl;
         assert(hash(value) >= 0 && hash(value) < capacity());
-        buckets[hash(value)].push_back(value);
+        // int slot = hash(value);
+        // List<T> bucket = data[slot];        
+        // bucket.push_back(value);
+        int slot = hash(value);
+        buckets[slot].push_back(value);
         numItems++;
     }
 
