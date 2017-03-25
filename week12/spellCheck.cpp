@@ -70,10 +70,10 @@ private:
 /*****************************************
  * read file
  ****************************************/
-void readFile(string fileName, string fileArray[])
+void readFile(string &fileName, string fileArray[])
 {
    
-   ifstream fin(fileName);
+   ifstream fin(fileName.c_str());
    assert(!fin.fail());
    
    fileArray[FSIZE];
