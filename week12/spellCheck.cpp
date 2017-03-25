@@ -133,9 +133,10 @@ void spellCheck()
    {
       //cout << "debug: start searching for misspelligns\n";
       //cout << (d.find(fileArray[i]) ? "Found!\n" : "Not found.\n");
-      if(d.find(fileArray[i]))
+      if(!(d.find(fileArray[i])))
       {
-         misspelledArray[errorCounter] = fileArray[i];
+         //misspelledArray[errorCounter] = fileArray[i];
+         cout << "debug: fileArray[i] value - " << fileArray[i] << endl;
          errorCounter++;
          spellingErrors = true;
       }
