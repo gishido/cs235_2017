@@ -72,7 +72,8 @@ private:
  ****************************************/
 void readFile(string &fileName, string fileArray[])
 {
-   
+   cout << "debug: enterying readFile\n";
+   cout << "debug: filenName value - " << fileName << endl;
    ifstream fin(fileName.c_str());
    assert(!fin.fail());
    
@@ -81,7 +82,7 @@ void readFile(string &fileName, string fileArray[])
    for(int i = 0; i < FSIZE; i++)
    {
       fin >> fileArray[i];
-      assert(!fin.fail());
+      //assert(!fin.fail());
    }
    
    fin.close();
@@ -98,14 +99,16 @@ void spellCheck()
    SHash d(hashSize);
    string dFile;
 
+   cout << "debug: starting to read dictionary\n";
    ifstream fin("dictionary.txt");
    assert(!fin.fail());
+   cout << "debug: end reading dictionary\n";
    while (!fin.eof())
    {
       string value;
       fin >> value;
       d.insert(value);
-      assert(!fin.fail());
+      //assert(!fin.fail());
    }
    fin.close();
 
@@ -113,9 +116,10 @@ void spellCheck()
    string fileArray[FSIZE];
    
    cout << "What file do you want to check? ";
-//   cin >> testFile;
-   getline(cin, testFile);
-   cin.ignore();
+  cin >> testFile;
+//    getline(testFile, 256);
+//    cin.ignore();
+   cout << "debug: input testFile value - " << testFile << endl;
 
    readFile(testFile, fileArray);
 
