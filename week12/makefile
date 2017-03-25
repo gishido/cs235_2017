@@ -1,11 +1,15 @@
 ###############################################################
 # Program:
 #     Week 12, Hash
-#     Brother XXXXX, CS235
+#     Brother JonesL, CS235
 # Author:
-#     <your name here>
-# Summary:
-#     <put a description here>
+#     Adam Shumway, Jenaca Willans
+# Most Difficult Part:
+#     We spent forever on one missing line from insert().
+# Pair Programming:
+#     2 and counting	
+# Total time:
+#     12 and counting
 ###############################################################
 ifeq ($(OS),Windows_NT)
     #Windows stuff                                                          

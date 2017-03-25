@@ -70,7 +70,8 @@ public:
   ListIterator<T> remove(ListIterator<T> &it) throw(const char *);
 
   //void insert and item in the list
-  ListIterator<T> insert(ListIterator<T> &it, const T &value) throw(const char *);
+  ListIterator<T> insert(ListIterator<T> &it, const T &value)
+     throw(const char *);
 
   // push items to the back of the list
   void push_back(const T &value) throw(const char *)
@@ -438,7 +439,7 @@ ListIterator<T> List<T>::insert(ListIterator<T> &it, const T &value) throw(const
 
 /**************************************************
  * List Remove
- * remove a single node form the list
+ * remove a single node from the list
  *************************************************/
 template <class T>
 ListIterator<T> List<T>::remove(ListIterator<T> &it) throw(const char *)

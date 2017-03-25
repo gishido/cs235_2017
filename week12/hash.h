@@ -61,27 +61,31 @@ class Hash
     {
         bool found = false;
 
+        int slot = hash(value);
+
+        for(ListIterator<T> it = buckets[slot].begin();
+            it != buckets[slot].end(); it++)
+        {
+           if(*it == value)
+           {
+              found = true;
+           }
+        }
+
         return found;
     }
 
     //got from discussion board
     void insert(const T &value)
     {
-
-        // cout << "debug: hash(value) - " << hash(value) << endl;
         assert(hash(value) >= 0 && hash(value) < capacity());
-        // int slot = hash(value);
-        // List<T> bucket = data[slot];        
-        // bucket.push_back(value);
+
         int slot = hash(value);
         buckets[slot].push_back(value);
         numItems++;
     }
 
     virtual int hash(const T &item) const = 0;
-    // {
-    //     return numBuckets;
-    // }
 
     private:
     List<T> * buckets;
