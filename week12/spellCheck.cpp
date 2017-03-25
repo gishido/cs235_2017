@@ -17,8 +17,8 @@
 using namespace std;
 
 #define DSIZE 2322 //size for dictionary array
-#define FARRAY 130 //size for file array
-#define MARRAY 5 //sixe for misspelled array
+#define FSIZE 130 //size for file array
+#define MSIZE 5 //sixe for misspelled array
 
 /****************************************
  * S HASH
@@ -36,14 +36,17 @@ public:
    int hash(const string & value) const
    {
       int index = 0;
-      //int newSize = numBuckets + (numBuckets * 1.5);
+
       for(const char * p = value.c_str(); *p; p++)
       {
          index += *p;
       }
+      
       index %= capacity();
       assert(0 <= index && index < capacity());
+
       return index;
+
       //when calling this hash, we'll need to calculate the size
       // before callign the hash since it will affect capacity and other 
       // assert functions that are based on numBuckets
@@ -63,42 +66,73 @@ private:
 
 };
 
+
+/*****************************************
+ * read file
+ ****************************************/
+void readFile(string fileName, string fileArray[])
+{
+   
+   ifstream fin(fileName);
+   assert(!fin.fail());
+   
+   fileArray[FSIZE];
+   
+   for(int i = 0; i < FSIZE; i++)
+   {
+      fin >> fileArray[i];
+      assert(!fin.fail());
+   }
+   
+   fin.close();
+   
+}
+
 /*****************************************
  * SPELL CHECK
  * Prompt the user for a file to spell-check
  ****************************************/
 void spellCheck()
 {
-   //we should probably defind our static sizes so
-   // we can use them in our loops
-
-
-   string fileName;
-   string dictionaryArray[DSIZE];
-   string fileArray[FARRAY];
-
    int hashSize = DSIZE * 1.5;
    SHash d(hashSize);
+   string dFile;
+
+   ifstream fin("dictionary.txt");
+   assert(!fin.fail());
+   while (!fin.eof())
+   {
+      string value;
+      fin >> value;
+      d.insert(value);
+      assert(!fin.fail());
+   }
+   fin.close();
+
+   string testFile = "";
+   string fileArray[FSIZE];
    
    cout << "What file do you want to check? ";
-   cin >> fileName;
+//   cin >> testFile;
+   getline(cin, testFile);
+   cin.ignore();
 
-//   ifstream fin(fileName);
-   // assert(!fin.fail());
-   // for (int i = 0; i < 130; i++)
-   // {
-   // fin >> fileArray[i];
-   // assert(!fin.fail());
-   // }
-   //fin.close();
+   readFile(testFile, fileArray);
 
-
-   // compare file with dictionary.txt
-   // add any words not found to array
-   // if words are added to array, change bool to true
-
+   
    bool spellingErrors = false;
-   string misspelledArray[5];
+   string misspelledArray[MSIZE];
+
+   // Iterate through fileArray[] and test each
+   // word against the dictionary hash. If NOT found, add
+   // word to misspelled array.
+   // if words are added to misspelled array,
+   // change bool to true.
+   
+   // find example:
+   // cin >> number;
+   // cout << (h.find(number) ? "Found!" : "Not found.")
+   //   << endl;
    
    if(spellingErrors)
    {
@@ -111,29 +145,4 @@ void spellCheck()
    {
       cout << "File contains no spelling errors\n";
    }
-}
-
-void readFile(string fileName, SHash d)
-{
-
-   ifstream fin("dictionary.txt");
-   assert(!fin.fail());
-   while (!fin.eof())
-   {
-      string value;
-      fin >> value;
-      d.insert(value);
-      assert(!fin.fail());
-   }
-//    for (int i = 0; i < DSIZE; i++)
-//    {
-//       //insert into the hash here?
-//       //fin >> dictionaryArray[i];
-//       string value;
-//       fin >> value;
-//       d.insert(value);
-//       assert(!fin.fail());
-//    }
-   fin.close();
-
 }
