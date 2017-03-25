@@ -135,8 +135,8 @@ void spellCheck()
       //cout << (d.find(fileArray[i]) ? "Found!\n" : "Not found.\n");
       if(!(d.find(fileArray[i])))
       {
-         //misspelledArray[errorCounter] = fileArray[i];
-         cout << "debug: fileArray[i] value - " << fileArray[i] << endl;
+         misspelledArray[errorCounter] = fileArray[i];
+//         cout << "debug: fileArray[i] value - " << fileArray[i] << endl;
          errorCounter++;
          spellingErrors = true;
       }
@@ -153,10 +153,9 @@ void spellCheck()
       // for another project, loop through the array to display.
       for (int i = 0; misspelledArray[i] != "\0"; i++)
       {
-            //cout << "Misspelled: " << misspelledArray[i] << ", ";
+           cout << "Misspelled: " << misspelledArray[0] << ", "
+            << misspelledArray[1] << endl;
       }
-      //  cout << "Misspelled: " << misspelledArray[0] << ", "
-      //       << misspelledArray[1] << endl;
    }
    else if(!spellingErrors)
    {
