@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <algorithm>
 #include "spellCheck.h"
 #include "hash.h"
 #include "list.h"
@@ -133,7 +134,10 @@ void spellCheck()
    {
       //cout << "debug: start searching for misspelligns\n";
       //cout << (d.find(fileArray[i]) ? "Found!\n" : "Not found.\n");
-      if(!(d.find(fileArray[i])))
+      string search = fileArray[i];
+      transform(search.begin(), search.end(), search.begin(), ::tolower);
+      //cout << "debug: transform search - " << search << endl;
+      if(!(d.find(search)))
       {
          misspelledArray[errorCounter] = fileArray[i];
 //         cout << "debug: fileArray[i] value - " << fileArray[i] << endl;
