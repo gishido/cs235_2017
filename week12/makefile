@@ -7,9 +7,9 @@
 # Most Difficult Part:
 #     We spent forever on one missing line from insert().
 # Pair Programming:
-#     2 and counting	
+#     6 and counting	
 # Total time:
-#     12 and counting
+#     19 and counting
 ###############################################################
 ifeq ($(OS),Windows_NT)
     #Windows stuff                                                          
@@ -26,7 +26,7 @@ else
         P_EXT = .out
         POSITIONTEST = positionText.out
         MOVETEST = moveTest.out
-        TAR = tar -cf week12.tar *.h *.cpp makefile
+        TAR = tar -cf week12.tar *.h *.cpp *.txt makefile
     endif
     ifeq ($(shell uname),Darwin)
         #Mac stuff                                                           
@@ -36,7 +36,7 @@ else
         P_EXT = .out
         POSITIONTEST = positionText.out
         MOVETEST = moveTest.out
-        TAR = tar -cf week12.tar *.h *.cpp makefile
+        TAR = tar -cf week12.tar *.h *.cpp *.txt makefile
     endif
 endif
 ##############################################################

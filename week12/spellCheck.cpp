@@ -129,8 +129,10 @@ void spellCheck()
    // if words are added to misspelled array,
    // change bool to true.
 
-   for(int i = 0; i != '\0'; i++)
+   for(int i = 0; fileArray[i] != "\0"; i++)
    {
+      //cout << "debug: start searching for misspelligns\n";
+      //cout << (d.find(fileArray[i]) ? "Found!\n" : "Not found.\n");
       if(d.find(fileArray[i]))
       {
          misspelledArray[errorCounter] = fileArray[i];
@@ -148,8 +150,12 @@ void spellCheck()
    {
       // testBed only has two misspelled words. If we ever use this
       // for another project, loop through the array to display.
-       cout << "Misspelled: " << misspelledArray[0] << ", "
-            << misspelledArray[1] << endl;
+      for (int i = 0; misspelledArray[i] != "\0"; i++)
+      {
+            //cout << "Misspelled: " << misspelledArray[i] << ", ";
+      }
+      //  cout << "Misspelled: " << misspelledArray[0] << ", "
+      //       << misspelledArray[1] << endl;
    }
    else if(!spellingErrors)
    {
