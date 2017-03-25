@@ -5,11 +5,12 @@
 # Author:
 #     Adam Shumway, Jenaca Willans
 # Most Difficult Part:
-#     We spent forever on one missing line from insert().
+#     We spent forever on one missing line from insert(). We also
+#     struggled with case sensitivity in our dictionary.
 # Pair Programming:
-#     6 and counting	
+#     9
 # Total time:
-#     19 and counting
+#     23
 ###############################################################
 ifeq ($(OS),Windows_NT)
     #Windows stuff                                                          

@@ -62,13 +62,10 @@ class Hash
         bool found = false;
 
         int slot = hash(value);
-        // cout << "debug: find value - " << value 
-        //     << " - hash hash value - " << hash(value) << endl;
 
         for(ListIterator<T> it = buckets[slot].begin();
             it != buckets[slot].end(); it++)
         {
-            //cout << "debug: find in dictionary - " << *it << endl;
            if(*it == value)
            {
               found = true;

@@ -155,11 +155,13 @@ void spellCheck()
    {
       // testBed only has two misspelled words. If we ever use this
       // for another project, loop through the array to display.
-      for (int i = 0; misspelledArray[i] != "\0"; i++)
+      for (int i = 0; i < errorCounter - 1; i++)
       {
-           cout << "Misspelled: " << misspelledArray[0] << ", "
-            << misspelledArray[1] << endl;
+         cout << "Misspelled: " << misspelledArray[i] << ", ";
       }
+
+      cout << misspelledArray[errorCounter - 1] << endl;
+      
    }
    else if(!spellingErrors)
    {
