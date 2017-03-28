@@ -1,0 +1,239 @@
+
+week13.out:
+
+[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 1
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a graph
+   > 	2. The above plus add a few entries
+   > 	3. Determine if two verticies are connected
+   > 	4. Find all the verticies connected to a given vertex
+   > 	a. Maze
+   > > [4m1
+[0m[0;90m
+[0m[0;90mSimple test of creating a graph
+[0m   > Create a graph of 10 verticies
+   > 	Size: 10
+   > Create a graph of 20 verticies
+   > 	Size: 20
+   > Create a graph using the copy constructor
+   > 	Size: 20
+   > Copy a graph using the assignment operator
+   > 	Size: 20
+   > Test 1 complete
+[1;92m
+Test 1 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 2
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a graph
+   > 	2. The above plus add a few entries
+   > 	3. Determine if two verticies are connected
+   > 	4. Find all the verticies connected to a given vertex
+   > 	a. Maze
+   > > [4m2
+[0m[0;90m
+[0m[0;90mTest adding edges to a graph using two verticies
+[0m   > Create a graph of 5 verticies
+   > 	A --> B
+   > 	B --> C
+   > 	C --> A
+[0;90m
+[0m[0;90mTest adding edgest to a graph using a set of verticies
+[0m   > 	D --> {A, B, C, D}
+   > Test 2 complete
+[1;92m
+Test 2 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 3
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a graph
+   > 	2. The above plus add a few entries
+   > 	3. Determine if two verticies are connected
+   > 	4. Find all the verticies connected to a given vertex
+   > 	a. Maze
+   > > [4m3
+[0m[0;90m
+[0m[0;90mRead a 5x5 graph:
+[0m[0;90m    a1 a2 a3 a4 a5 b1 b2 b3 b4 b5 c1 c2 c3 c4 c5 d1 d2 d3 d4 d5 e1 e2 e3 e4 e5
+[0m[0;90m a1  
+[0m[0;90m a2 y
+[0m[0;90m a3    y
+[0m[0;90m a4       y
+[0m[0;90m a5          y
+[0m[0;90m b1                   y
+[0m[0;90m b2    y
+[0m[0;90m b3       y
+[0m[0;90m b4          y
+[0m[0;90m b5                         y
+[0m[0;90m c1                                  y
+[0m[0;90m c2                                     y
+[0m[0;90m c3                      y
+[0m[0;90m c4                                           y
+[0m[0;90m c5                            y
+[0m[0;90m d1                               y
+[0m[0;90m d2                                                    y
+[0m[0;90m d3                                                                   y
+[0m[0;90m d4                                        y
+[0m[0;90m d5                                                                         y
+[0m[0;90m e1                                              y
+[0m[0;90m e2                                                             y
+[0m[0;90m e3                                                                y
+[0m[0;90m e4                                                       y
+[0m[0;90m e5                                                                      y
+[0m[0;90m    a1 a2 a3 a4 a5 b1 b2 b3 b4 b5 c1 c2 c3 c4 c5 d1 d2 d3 d4 d5 e1 e2 e3 e4 e5
+[0m   > Determine if a given edge exists in the graph
+   > > [4ma1 a2
+[0m   > 	a1 - a2 is an edge
+   > > [4ma2 a1
+[0m   > 	a2 - a1 is NOT an edge
+   > > [4mb3 c3
+[0m   > 	b3 - c3 is an edge
+   > > [4mc3 b3
+[0m   > 	c3 - b3 is NOT an edge
+   > > [4ma1 e4
+[0m   > 	a1 - e4 is NOT an edge
+   > > [4mquit
+[0m   > Test 3 complete
+[1;92m
+Test 3 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 4
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a graph
+   > 	2. The above plus add a few entries
+   > 	3. Determine if two verticies are connected
+   > 	4. Find all the verticies connected to a given vertex
+   > 	a. Maze
+   > > [4m4
+[0m   > For the given class, the prerequisites will be listed:
+   > > [4mCS165
+[0m   > 	CS124
+   > > [4mCS235
+[0m   > 	CS165
+   > > [4mCS364
+[0m   > 	CS246
+   > 	CS308
+   > > [4mCS306
+[0m   > 	CS235
+   > 	CS237
+   > > [4mquit
+[0m   > Test 4 complete
+[1;92m
+Test 4 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 5
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a graph
+   > 	2. The above plus add a few entries
+   > 	3. Determine if two verticies are connected
+   > 	4. Find all the verticies connected to a given vertex
+   > 	a. Maze
+   > > [4ma
+[0m   > What is the filename? [4m/home/cs235/week13/maze5x5.txt
+[0m   > +  +--+--+--+--+
+   > |  |  |        |
+   > +  +  +  +--+  +
+   > |     |  |  |  |
+   > +  +--+  +  +  +
+   > |        |     |
+   > +  +--+--+--+--+
+   > |     |        |
+   > +  +  +  +--+  +
+   > |  |     |     |
+   > +--+--+--+--+  +
+   > Press any key to solve the maze.
+[4m\n
+[0m   > +  +--+--+--+--+
+   > |##|  |        |
+   > +  +  +  +--+  +
+   > |##   |  |  |  |
+   > +  +--+  +  +  +
+   > |##      |     |
+   > +  +--+--+--+--+
+   > |## ##|## ## ##|
+   > +  +  +  +--+  +
+   > |  |## ##|   ##|
+   > +--+--+--+--+  +
+[1;92m
+Test 5 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 6
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a graph
+   > 	2. The above plus add a few entries
+   > 	3. Determine if two verticies are connected
+   > 	4. Find all the verticies connected to a given vertex
+   > 	a. Maze
+   > > [4ma
+[0m   > What is the filename? [4m/home/cs235/week13/maze10x10.txt
+[0m   > +  +--+--+--+--+--+--+--+--+--+
+   > |  |        |        |        |
+   > +  +  +--+  +  +  +  +  +--+--+
+   > |  |     |  |  |  |     |     |
+   > +  +  +  +  +  +  +--+--+  +  +
+   > |     |  |     |        |  |  |
+   > +--+--+  +  +--+  +--+--+  +--+
+   > |     |  |     |  |     |     |
+   > +  +  +  +  +  +  +  +  +--+  +
+   > |  |     |  |  |     |     |  |
+   > +  +  +--+  +  +  +--+  +--+  +
+   > |  |     |  |  |     |        |
+   > +  +  +--+  +  +--+--+--+--+--+
+   > |  |  |     |                 |
+   > +  +--+  +--+--+  +--+  +--+--+
+   > |     |  |     |     |        |
+   > +  +  +--+  +  +--+--+  +  +--+
+   > |  |     |  |  |        |  |  |
+   > +  +  +  +--+  +  +  +--+  +  +
+   > |  |  |        |  |     |     |
+   > +--+--+--+--+--+--+--+--+--+  +
+   > Press any key to solve the maze.
+[4m\n
+[0m   > +  +--+--+--+--+--+--+--+--+--+
+   > |##|## ## ##|        |        |
+   > +  +  +--+  +  +  +  +  +--+--+
+   > |##|##   |##|  |  |     |     |
+   > +  +  +  +  +  +  +--+--+  +  +
+   > |## ##|  |##   |        |  |  |
+   > +--+--+  +  +--+  +--+--+  +--+
+   > |     |  |## ##|  |     |     |
+   > +  +  +  +  +  +  +  +  +--+  +
+   > |  |     |  |##|     |     |  |
+   > +  +  +--+  +  +  +--+  +--+  +
+   > |  |     |  |##|     |        |
+   > +  +  +--+  +  +--+--+--+--+--+
+   > |  |  |     |## ## ## ##      |
+   > +  +--+  +--+--+  +--+  +--+--+
+   > |     |  |     |     |## ##   |
+   > +  +  +--+  +  +--+--+  +  +--+
+   > |  |     |  |  |        |##|  |
+   > +  +  +  +--+  +  +  +--+  +  +
+   > |  |  |        |  |     |## ##|
+   > +--+--+--+--+--+--+--+--+--+  +
+[1;92m
+Test 6 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[1;92m
+============================================================
+[0m[1;92mPassed all tests with no errors.
+[0m[1;92m============================================================
+
+[0m
