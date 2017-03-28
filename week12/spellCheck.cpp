@@ -34,6 +34,8 @@ public:
          Hash <string> (rhs) {}
 
    // hash function for strings will add up all the ASCII values
+   // this does well against the three metrics:
+   // Fast, Systematic, and Uniform.
    int hash(const string & value) const
    {
       int index = 0;
@@ -47,15 +49,7 @@ public:
       assert(0 <= index && index < capacity());
 
       return index;
-
-      //when calling this hash, we'll need to calculate the size
-      // before callign the hash since it will affect capacity and other 
-      // assert functions that are based on numBuckets
-      
-      //return index % newSize;
-      //old size was static 3000, but I'm calculating a newhash size, although
-      // it doesn't match capacity.  May need to think abou that.'
-      
+            
       // per the new Data Structures text p 312
       // the hash should be approximately 1.5 times
       // larger than the number of elements to be stored
@@ -63,18 +57,14 @@ public:
       // We made our hash capacity 3000.
 
    }
-private:
 
 };
-
 
 /*****************************************
  * read file
  ****************************************/
 void readFile(string &fileName, string fileArray[])
 {
-//   cout << "debug: enterying readFile\n";
-//   cout << "debug: filenName value - " << fileName << endl;
    ifstream fin(fileName.c_str());
    assert(!fin.fail());
    
@@ -86,7 +76,6 @@ void readFile(string &fileName, string fileArray[])
    }
    
    fin.close();
-   
 }
 
 /*****************************************
@@ -99,10 +88,9 @@ void spellCheck()
    SHash d(hashSize);
    string dFile;
 
-//   cout << "debug: starting to read dictionary\n";
    ifstream fin("dictionary.txt");
    assert(!fin.fail());
-   // cout << "debug: end reading dictionary\n";
+
    while (!fin.eof())
    {
       string value;
@@ -115,8 +103,7 @@ void spellCheck()
    string fileArray[FSIZE];
    
    cout << "What file do you want to check? ";
-  cin >> testFile;
-//   cout << "debug: input testFile value - " << testFile << endl;
+   cin >> testFile;
 
    readFile(testFile, fileArray);
    
@@ -132,29 +119,19 @@ void spellCheck()
 
    for(int i = 0; fileArray[i] != "\0"; i++)
    {
-      //cout << "debug: start searching for misspelligns\n";
-      //cout << (d.find(fileArray[i]) ? "Found!\n" : "Not found.\n");
       string search = fileArray[i];
       transform(search.begin(), search.end(), search.begin(), ::tolower);
-      //cout << "debug: transform search - " << search << endl;
+
       if(!(d.find(search)))
       {
          misspelledArray[errorCounter] = fileArray[i];
-//         cout << "debug: fileArray[i] value - " << fileArray[i] << endl;
          errorCounter++;
          spellingErrors = true;
       }
    }
    
-   // find example:
-   // cin >> number;
-   // cout << (h.find(number) ? "Found!" : "Not found.")
-   //   << endl;
-   
    if(spellingErrors)
    {
-      // testBed only has two misspelled words. If we ever use this
-      // for another project, loop through the array to display.
       for (int i = 0; i < errorCounter - 1; i++)
       {
          cout << "Misspelled: " << misspelledArray[i] << ", ";
