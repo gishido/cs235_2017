@@ -128,6 +128,11 @@ class SetIterator
          this->p = rhs.p;
          return *this;
       }
+   //equals operator
+   bool &operator==(const SetIterator &rhs) const
+      {
+         return rhs == *this;
+      }
    
    //not equals operator
    bool operator!=(const SetIterator &rhs) const

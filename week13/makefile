@@ -53,7 +53,7 @@ $(PROGRAM): week13.o graph.o maze.o
 week13.o: graph.h vertex.h week13.cpp
 	g++ -c week13.cpp -g
 
-graph.o: graph.h set.h vertex.h graph.cpp
+graph.o: graph.h set.h vertex.h vector.h graph.cpp
 	g++ -c graph.cpp -g
 
 maze.o: maze.cpp maze.h vertex.h graph.h

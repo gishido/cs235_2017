@@ -42,9 +42,9 @@ Set<Vertex> Graph::findEdges(const Vertex &vFrom)
  
  /******************************************
  * GRAPH: findPath
- * finds a path and returns a vertex
+ * finds a path and returns a vector
  ******************************************/
-Vertex<Vertex> Graph::findPath(const Vertex &vFrom, const Vertex &vTo)
+Vector<Vertex> Graph::findPath(const Vertex &vFrom, const Vertex &vTo)
 {
 
 }
@@ -53,7 +53,7 @@ Vertex<Vertex> Graph::findPath(const Vertex &vFrom, const Vertex &vTo)
  * GRAPH: add
  * Adds an edge, accepting two vertices
  ******************************************/
-void add(const Vertex &vFrom, const Vertex &vTo)
+void Graph::add(const Vertex &vFrom, const Vertex &vTo)
 {
 
 }
@@ -63,7 +63,7 @@ void add(const Vertex &vFrom, const Vertex &vTo)
  * Add and edge, accept one vertex and a set
  *   of vertices
  ******************************************/
-void add(const Vertex &vFrom, const Set<Vertex> &vTo)
+void Graph::add(const Vertex &vFrom, const Set<Vertex> &vTo)
 {
 
 }

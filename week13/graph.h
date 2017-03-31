@@ -19,9 +19,9 @@
 class Graph
 {
     public:
-        Graph(int numNode) {}
+        Graph(int numNode);
 
-        Graph(const Graphy &rhs) : matrix(NULL) { *this = rhs; }
+        Graph(const Graph &rhs) : matrix(NULL) { *this = rhs; }
 
         ~Graph() { clear(); }
 
@@ -30,7 +30,7 @@ class Graph
             numNode = rhs.numNode;
         }
 
-        int size() { return numNode; }
+        int size() const { return numNode; }
 
         void clear () 
         {
@@ -38,7 +38,7 @@ class Graph
                 delete [] matrix;
         }
 
-        bool isEdge(const Vertex &vFrom, const Vertex &vTo)
+        bool isEdge(const Vertex &vFrom, const Vertex &vTo) const
         {
             bool theEdge = false;
 
@@ -47,7 +47,7 @@ class Graph
 
         Set<Vertex> findEdges(const Vertex &vFrom);
     
-        Vertex<Vertex> findPath(const Vertex &vFrom, const Vertex &vTo);
+        Vector<Vertex> findPath(const Vertex &vFrom, const Vertex &vTo);
 
         void add(const Vertex &vFrom, const Vertex &vTo);
         void add(const Vertex &vFrom, const Set<Vertex> &vTo);
