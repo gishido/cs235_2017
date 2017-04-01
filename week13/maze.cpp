@@ -31,12 +31,16 @@ void solveMaze()
    char * fileName = new char[0];
    Graph g(1000);
    Vector<Vertex> path(g.size());
+   CVertex vFrom;
+   CVertex vTo;
+
 
    cout << "What is the filename? ";
    cin >> fileName;
 
    readMaze(fileName);
-//   drawMaze(g, g.findPath());
+   drawMaze(g, g.findPath(vFrom, vTo));
+
 }
 
 /************************************************
@@ -49,8 +53,8 @@ void solveMaze()
 void drawMaze(const Graph & g, const Vector <Vertex> & path)
 {
 
-    cout << "Debug: path: \n";
-  cout << path[0] << endl;
+//    cout << "Debug: path: \n";
+//  cout << path[0] << endl;
   
    CVertex v;
 
@@ -110,8 +114,6 @@ Graph readMaze(const char * fileName)
 
    // all done!
    fin.close();
-
-   drawMaze(g, g.findPath(vFrom, vTo));
       
    return g;
 
@@ -127,7 +129,7 @@ void drawMazeRow(const Graph & g, int row, Set <CVertex> & s)
    
    CVertex vFrom;
    CVertex vTo;
-   assert(g.size() == vFrom.getMaxCol() * vFrom.getMaxRow());
+//   assert(g.size() == vFrom.getMaxCol() * vFrom.getMaxRow());
 
    // they all start with a #
    cout << "|";
