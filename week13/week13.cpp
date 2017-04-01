@@ -189,7 +189,8 @@ void testQuery()
    try
    {
       // read the verticies from a file
-      Graph g1(readMaze("/home/cs235/week13/maze5x5.txt"));
+      //Graph g1(readMaze("/home/cs235/week13/maze5x5.txt"));
+      Graph g1(readMaze("maze5x5.txt"));
 
       // copy the graph. Note that we need to ge the size from g1
       Graph g2(g1.size());

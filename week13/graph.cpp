@@ -21,6 +21,11 @@
      try
      {
          this->matrix = new bool[numNode * numNode];
+         
+         int mSize = numNode * numNode;
+         for (int i = 0; i < mSize; i++)
+            matrix[i] = false;
+        
          this->numNode = numNode;
      }
      catch(...)
@@ -55,7 +60,11 @@ Vector<Vertex> Graph::findPath(const Vertex &vFrom, const Vertex &vTo)
  ******************************************/
 void Graph::add(const Vertex &vFrom, const Vertex &vTo)
 {
-
+    cout << "debug: add...index value is - " << index(vFrom, vTo)
+        << endl;
+    matrix[index(vFrom, vTo)] = true;
+    cout << "debug: add...matrix bool is - " 
+        << (matrix[index(vFrom, vTo)]) ? "True!\n" : "False!\n";
 }
 
  /******************************************
@@ -65,6 +74,7 @@ void Graph::add(const Vertex &vFrom, const Vertex &vTo)
  ******************************************/
 void Graph::add(const Vertex &vFrom, const Set<Vertex> &vTo)
 {
+
 
 }
  

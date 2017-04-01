@@ -41,6 +41,11 @@ class Graph
         bool isEdge(const Vertex &vFrom, const Vertex &vTo) const
         {
             bool theEdge = false;
+            if (matrix[index(vFrom, vTo)] == true)
+                theEdge = true;
+
+            cout << "debug: matrix index - " << index(vFrom, vTo) << endl;
+            cout << "debug: isEdge - " << theEdge ? "true\n" : "false\n";
 
             return theEdge;
         }
@@ -53,6 +58,11 @@ class Graph
         void add(const Vertex &vFrom, const Set<Vertex> &vTo);
 
     private:
+        int index(const Vertex &vFrom, const Vertex &vTo) const
+        {
+            assert(vFrom.index() * numNode + vTo.index() < numNode * numNode);
+            return vFrom.index() * numNode + vTo.index();
+        }
         bool * matrix;
         int numNode;
 };
