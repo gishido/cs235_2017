@@ -21,12 +21,14 @@
      try
      {
          this->matrix = new bool[numNode * numNode];
-         
-         int mSize = numNode * numNode;
-         for (int i = 0; i < mSize; i++)
-            matrix[i] = false;
-        
          this->numNode = numNode;
+
+         //for (int i = 0; i < (numNode * 2); i++)
+         //{
+         //   this->matrix[i] = false;
+         //}
+
+//         clear();
      }
      catch(...)
      {
@@ -42,7 +44,17 @@
  ******************************************/
 Set<Vertex> Graph::findEdges(const Vertex &vFrom)
 {
+   Set <Vertex> s;
+   
+   for(int v2 = 0; v2 < size(); v2++)
+   {
+      if(matrix[index(vFrom, v2)] == true)
+      {
+         s.insert(v2);
+      }
+   }
 
+   return s;
 }
  
  /******************************************
@@ -51,7 +63,59 @@ Set<Vertex> Graph::findEdges(const Vertex &vFrom)
  ******************************************/
 Vector<Vertex> Graph::findPath(const Vertex &vFrom, const Vertex &vTo)
 {
+//   int distance = 0;
+   // Vector <Vertex> distances;
+   //Vector <Vertex> predecessor;
+   //Vector <Vertex> v;
+//   Set <Vertex> s;
+   // Vector <Vertex> path;
+   // VectorIterator<Vertex> it;
+   //Set<Vertex> toVisit;
+   
 
+   //toVisit.push_back(vFrom);
+   //for(int i = 0; i < size(); i++)
+   // {
+   //  distances[i] = -1;
+   //}
+
+   //while(!toVisit.empty() && distances[vTo] = -1)
+   // {
+   //  v = toVisit.front();
+   // toVisit.pop_front();
+
+   // if(distances[v] > distance)
+   // {
+   //    distance++;
+   // }
+
+   // Vector<Vertex> s = findEdges(v);
+
+   // for(it = s.begin(); it < s.end(); it++)
+   // {
+   //    if(distances[it] = -1)
+   //    {
+   //       distances[it] = distance + 1;
+   //       predecessor[it] = v;
+   //       toVisit.push_back(it);
+   //    }
+   // }
+   //}
+   
+   //distance++;
+
+   //if(distances[vTo] = -1)
+   // {
+//      return Error
+   //}
+
+   //path.push_back(vTo);
+   //for(int i = 1; i < distance; i++)
+   //{
+   // path.push_back(predecessor[path[i - 1]]);
+   //}
+
+   //return path;
 }
 
  /******************************************
@@ -60,11 +124,7 @@ Vector<Vertex> Graph::findPath(const Vertex &vFrom, const Vertex &vTo)
  ******************************************/
 void Graph::add(const Vertex &vFrom, const Vertex &vTo)
 {
-    cout << "debug: add...index value is - " << index(vFrom, vTo)
-        << endl;
-    matrix[index(vFrom, vTo)] = true;
-    cout << "debug: add...matrix bool is - " 
-        << (matrix[index(vFrom, vTo)]) ? "True!\n" : "False!\n";
+   this->matrix[index(vFrom, vTo)] = true;
 }
 
  /******************************************
@@ -72,9 +132,8 @@ void Graph::add(const Vertex &vFrom, const Vertex &vTo)
  * Add and edge, accept one vertex and a set
  *   of vertices
  ******************************************/
-void Graph::add(const Vertex &vFrom, const Set<Vertex> &vTo)
+void Graph::add(const Vertex &vFrom, const Set<Vertex> &sTo)
 {
-
-
+//   this->matrix[index(vFrom, sTo)] = true;
 }
  
