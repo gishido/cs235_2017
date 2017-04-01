@@ -13,6 +13,7 @@
 
 #include "vector.h"
 #include "set.h"
+#include "list.h"
 #include "vertex.h"
 
 //Create Graph Class
@@ -36,15 +37,7 @@ class Graph
       {
          clear();
          numNode = rhs.numNode;
-         try
-         {
-            this->matrix = new bool[numNode * numNode];
-         }
-         catch(...)
-         {
-             throw "ERROR: can't allocate while in operator=\n";
-         }
-
+         this->matrix = new bool[numNode * numNode];
          
          int mSize = numNode * numNode;
          for (int i = 0; i < mSize; i++)
@@ -77,10 +70,7 @@ class Graph
    Vector<Vertex> findPath(const Vertex &vFrom, const Vertex &vTo);
    
    void add(const Vertex &vFrom, const Vertex &vTo);
-//             void add(const Vertex &vFrom, const Set<Vertex> &vTo);
    void add(const Vertex &vFrom, const Set<Vertex> &sTo);
-
-   bool getMatrix(const int &value) { return matrix[value];}
    
   private:
    
@@ -90,7 +80,13 @@ class Graph
       assert(vFrom.index() * numNode + vTo.index() < numNode * numNode);
       return vFrom.index() * numNode + vTo.index();
    }
-   
+
+//   int index(const Vertex & vFrom, const Set<Vertex> & sTo) const
+   //  {
+   //  assert(vFrom.index() * numNode + sTo.index() < numNode * numNode);
+   //  return vFrom.index() * numNode + sTo.index();
+   // }
+
    bool * matrix;
    int numNode;
 };

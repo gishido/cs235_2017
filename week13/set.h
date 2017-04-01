@@ -46,7 +46,7 @@ class Set
         if (theCapacity)
             delete[] data;
     }
-
+    
     //assignment operator
     Set<T> &operator=(const Set<T> &rhs) throw(const char *);
     

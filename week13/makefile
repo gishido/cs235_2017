@@ -5,11 +5,12 @@
 # Author:
 #     Adam Shumway, Jenaca Willans
 # Most Difficult Part:
-#   
+#     So far, the most difficult part has been getting the 
+#     assignment operator working properly.	   
 # Pair Programming:
-#   
+#     4 and counting
 # Total time:
-#    
+#     16 and counting
 ###############################################################
 ifeq ($(OS),Windows_NT)
     #Windows stuff                                                          

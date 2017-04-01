@@ -38,8 +38,11 @@ void solveMaze()
    cout << "What is the filename? ";
    cin >> fileName;
 
+   cout << "debug: about to read the maze file\n";
 //    Graph daGraph = 
    readMaze(fileName);
+
+   cout << "debug: finished reading maze file\n";
    
 //    int mSize = daGraph.size();
 //    cout << "debug: solveMaze...graphSize - "
@@ -102,6 +105,7 @@ void drawMaze(const Graph & g, const Vector <Vertex> & path)
  ********************************************/
 Graph readMaze(const char * fileName)
 {
+      cout << "debug: starting readMaze\n";
    // attempt to open the file
    ifstream fin (fileName);
    if (fin.fail())
@@ -110,6 +114,7 @@ Graph readMaze(const char * fileName)
       return Graph(1);
    }
 
+   cout << "debug: file has been read successfully\n";
    // read the size from the beginning of the maze
    int numCol;
    int numRow;
@@ -117,8 +122,8 @@ Graph readMaze(const char * fileName)
    CVertex vFrom;
    CVertex vTo;
    vFrom.setMax(numCol, numRow);
-//    cout << "debug: readMaze...getMax (graph size) - "
-//       << vFrom.getMax() << endl;
+   cout << "debug: readMaze...getMax (graph size) - "
+      << vFrom.getMax() << endl;
 
    // now read all the items and put them into the Graph
    Graph g(vFrom.getMax());
