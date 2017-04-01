@@ -79,6 +79,8 @@ class Graph
    void add(const Vertex &vFrom, const Vertex &vTo);
 //             void add(const Vertex &vFrom, const Set<Vertex> &vTo);
    void add(const Vertex &vFrom, const Set<Vertex> &sTo);
+
+   bool getMatrix(const int &value) { return matrix[value];}
    
   private:
    

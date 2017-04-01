@@ -126,6 +126,8 @@ Vector<Vertex> Graph::findPath(const Vertex &vFrom, const Vertex &vTo)
 void Graph::add(const Vertex &vFrom, const Vertex &vTo)
 {
    this->matrix[index(vFrom, vTo)] = true;
+   cout << "debug: add.. just added - " << index(vFrom, vTo)
+    << endl;
 }
 
  /******************************************

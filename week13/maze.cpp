@@ -29,17 +29,28 @@ void drawMazeColumn(const Graph & g, int row, const Set <CVertex> & s);
 void solveMaze()
 {
    char * fileName = new char[0];
-   Graph g(1000);
-   Vector<Vertex> path(g.size());
-   CVertex vFrom;
-   CVertex vTo;
+//    Graph g(1000);
+//    Vector<Vertex> path(g.size());
+//    CVertex vFrom;
+//    CVertex vTo;
 
 
    cout << "What is the filename? ";
    cin >> fileName;
 
+//    Graph daGraph = 
    readMaze(fileName);
-   drawMaze(g, g.findPath(vFrom, vTo));
+   
+//    int mSize = daGraph.size();
+//    cout << "debug: solveMaze...graphSize - "
+//       << mSize << endl;
+//    for (int i = 0; i < mSize; i++)
+//    {
+//          cout << "debug: maze indexes - "
+//             << (daGraph.getMatrix(i) ? i : 9999)
+//             << " and index value - " << i << endl;
+//    }
+   //drawMaze(g, g.findPath(vFrom, vTo));
 
 }
 
@@ -106,6 +117,8 @@ Graph readMaze(const char * fileName)
    CVertex vFrom;
    CVertex vTo;
    vFrom.setMax(numCol, numRow);
+//    cout << "debug: readMaze...getMax (graph size) - "
+//       << vFrom.getMax() << endl;
 
    // now read all the items and put them into the Graph
    Graph g(vFrom.getMax());
