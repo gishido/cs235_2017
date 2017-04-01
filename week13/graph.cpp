@@ -23,10 +23,11 @@
          this->matrix = new bool[numNode * numNode];
          this->numNode = numNode;
 
-         //for (int i = 0; i < (numNode * 2); i++)
-         //{
-         //   this->matrix[i] = false;
-         //}
+         int mSize = numNode * numNode;
+         for (int i = 0; i < mSize; i++)
+         {
+           this->matrix[i] = false;
+         }
 
 //         clear();
      }
@@ -134,6 +135,6 @@ void Graph::add(const Vertex &vFrom, const Vertex &vTo)
  ******************************************/
 void Graph::add(const Vertex &vFrom, const Set<Vertex> &sTo)
 {
-//   this->matrix[index(vFrom, sTo)] = true;
+//    this->matrix[index(vFrom, sTo)] = true;
 }
  

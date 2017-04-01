@@ -34,7 +34,15 @@ class Graph
    
    Graph &operator=(const Graph &rhs)
       {
+         clear();
          numNode = rhs.numNode;
+         this->matrix = new bool[numNode * numNode];
+         
+         int mSize = numNode * numNode;
+         for (int i = 0; i < mSize; i++)
+         {
+           this->matrix[i] = rhs.matrix[i];
+         }
       }
    
    // number of edges
@@ -53,11 +61,7 @@ class Graph
    
    bool isEdge(const Vertex &vFrom, const Vertex &vTo) const
    {
-//    bool theEdge = false;
-//    return theEdge;
-
       return matrix[index(vFrom, vTo)];
-      
    }
    
    Set<Vertex> findEdges(const Vertex &vFrom);
