@@ -231,7 +231,7 @@ void testFindAll()
       CourseVertex vFrom;
       CourseVertex vTo;
 
-      {
+      // {
          Graph g2(g1.size());
 
          // read the class dependencies from a file
@@ -249,7 +249,7 @@ void testFindAll()
          fin.close();
          g1 = g2;
          g2.clear();
-      }
+      // }
       // g2 is destroyed
 
       // prompt for the next class

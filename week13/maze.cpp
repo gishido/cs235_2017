@@ -28,7 +28,15 @@ void drawMazeColumn(const Graph & g, int row, const Set <CVertex> & s);
  *****************************************/
 void solveMaze()
 {
-   // your code here
+   char * fileName = new char[0];
+   Graph g(1000);
+   Vector<Vertex> path(g.size());
+
+   cout << "What is the filename? ";
+   cin >> fileName;
+
+   readMaze(fileName);
+//   drawMaze(g, g.findPath());
 }
 
 /************************************************
@@ -40,6 +48,10 @@ void solveMaze()
  ***********************************************/
 void drawMaze(const Graph & g, const Vector <Vertex> & path)
 {
+
+    cout << "Debug: path: \n";
+  cout << path[0] << endl;
+  
    CVertex v;
 
    // copy everything into a set
@@ -98,6 +110,9 @@ Graph readMaze(const char * fileName)
 
    // all done!
    fin.close();
+
+   drawMaze(g, g.findPath(vFrom, vTo));
+      
    return g;
 
 }
@@ -123,7 +138,12 @@ void drawMazeRow(const Graph & g, int row, Set <CVertex> & s)
       // set the position
       vFrom.set(col, row);
       vTo.set(col - 1, row);
+
+      // seg fault here
       space = (s.end() == s.find(vTo) ? "  " : "##");
+
+//      cout << "Debug: arrived in draw row for loop \n";
+
       
       // draw
       if (g.isEdge(vFrom, vTo) || g.isEdge(vTo, vFrom))

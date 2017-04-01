@@ -36,7 +36,15 @@ class Graph
       {
          clear();
          numNode = rhs.numNode;
-         this->matrix = new bool[numNode * numNode];
+         try
+         {
+            this->matrix = new bool[numNode * numNode];
+         }
+         catch(...)
+         {
+             throw "ERROR: can't allocate while in operator=\n";
+         }
+
          
          int mSize = numNode * numNode;
          for (int i = 0; i < mSize; i++)
