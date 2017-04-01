@@ -64,60 +64,60 @@ Set<Vertex> Graph::findEdges(const Vertex &vFrom)
  ******************************************/
 Vector<Vertex> Graph::findPath(const Vertex &vFrom, const Vertex &vTo)
 {
-//   cout << "Debug: arrived in findPath \n";
+// //   cout << "Debug: arrived in findPath \n";
 
-   int distance = 0;
-   Vector<Vertex> distances;
-   List<Vertex> predecessor;
-   Vertex v;
-   Set <Vertex> s;
-   Vector <Vertex> path;
-   List <Vertex> toVisit;
+//    int distance = 0;
+//    Vector<Vertex> distances;
+//    List<Vertex> predecessor;
+//    Vertex v;
+//    Set <Vertex> s;
+    Vector <Vertex> path;
+//    //List <Vertex> toVisit;
    
    
-   toVisit.push_back(vFrom);
+//    toVisit.push_back(vFrom);
 
-   for(int i = 0; i < size(); i++)
-   {
-      distances[i] = -1;
-   }
+//    for(int i = 0; i < size(); i++)
+//    {
+//       distances[i] = -1;
+//    }
    
-   while(!toVisit.empty())// && distances[vTo] = -1)
-   {
-      v = toVisit.front();
-//      toVisit.pop_front();
+//    while(!toVisit.empty())// && distances[vTo] = -1)
+//    {
+//       v = toVisit.front();
+// //      toVisit.pop_front();
       
-//      if(distances[v] > distance)
-//      {
-//         distance++;
-//      }
+// //      if(distances[v] > distance)
+// //      {
+// //         distance++;
+// //      }
       
-      s = findEdges(v);
+//       s = findEdges(v);
 
-      for(SetIterator<Vertex> it = s.begin(); it != s.end(); ++it)
-      {
-//         if(distances[it] = -1)
-//         {
-//            distances[it] = distance + 1;
-//            predecessor[it] = v;
-//            toVisit.push_back(it);
-//         }
-      }
-   }
+//       for(SetIterator<Vertex> it = s.begin(); it != s.end(); ++it)
+//       {
+// //         if(distances[it] = -1)
+// //         {
+// //            distances[it] = distance + 1;
+// //            predecessor[it] = v;
+// //            toVisit.push_back(it);
+// //         }
+//       }
+//    }
    
-   distance++;
+//    distance++;
    
-//   if(distances[vTo] = -1)
-//   {
-//      return -1;
-//   }
+// //   if(distances[vTo] = -1)
+// //   {
+// //      return -1;
+// //   }
    
    
-   path.push_back(vTo);
-   for(int i = 1; i < distance; i++)
-   {
-//      path.push_back(predecessor[path[i - 1]]);
-   }
+//    path.push_back(vTo);
+//    for(int i = 1; i < distance; i++)
+//    {
+// //      path.push_back(predecessor[path[i - 1]]);
+//    }
    
    return path;
 }
@@ -138,6 +138,10 @@ void Graph::add(const Vertex &vFrom, const Vertex &vTo)
  ******************************************/
 void Graph::add(const Vertex &vFrom, const Set<Vertex> &sTo)
 {
-//   this->matrix[index(vFrom, sTo)] = true;
+    for (SetConstIterator<Vertex> it = sTo.begin(); it != sTo.end(); ++it)
+    {
+        this->matrix[index(vFrom, *it)] = true;
+    }
+
 }
  

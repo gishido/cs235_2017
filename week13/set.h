@@ -88,9 +88,11 @@ class Set
     
     // return an iterator to the beginning of the list
     SetIterator<T> begin() { return SetIterator<T>(data); }
+    SetConstIterator<T> begin() const { return SetConstIterator<T>(data); }
 
     // return an iterator to the end of the list
     SetIterator<T> end() { return SetIterator<T>(data + numItems); }
+    SetConstIterator<T> end() const { return SetConstIterator<T>(data + numItems); }
 
     // return the const iterator to the beginning of the list
     SetConstIterator<T> cbegin() const { return SetConstIterator<T>(data); }
