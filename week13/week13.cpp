@@ -236,7 +236,8 @@ void testFindAll()
 
          // read the class dependencies from a file
          // CS124 CS165 CIT225 ECEN160 |
-         ifstream fin("/home/cs235/week13/cs.txt");
+         //ifstream fin("/home/cs235/week13/cs.txt");
+         ifstream fin("cs.txt");
          assert(fin.good());
          while (fin >> vFrom)  // read the first vertex, the class
          {
