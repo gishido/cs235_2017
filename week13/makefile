@@ -10,7 +10,7 @@
 # Pair Programming:
 #     4 and counting
 # Total time:
-#     16 and counting
+#     26 and counting
 ###############################################################
 ifeq ($(OS),Windows_NT)
     #Windows stuff                                                          

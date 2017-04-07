@@ -29,32 +29,29 @@ void drawMazeColumn(const Graph & g, int row, const Set <CVertex> & s);
 void solveMaze()
 {
    char * fileName = new char[0];
-//    Graph g(1000);
-//    Vector<Vertex> path(g.size());
-//    CVertex vFrom;
-//    CVertex vTo;
+   Graph g(1000);
+   Vector<Vertex> path(g.size());
+   CVertex vFrom;
+   CVertex vTo;
 
+   vFrom.set(1,1);
+   vTo.set(1,1);
 
    cout << "What is the filename? ";
    cin >> fileName;
 
-   cout << "debug: about to read the maze file\n";
-//    Graph daGraph = 
    readMaze(fileName);
+   drawMaze(g, g.findPath(vFrom, vTo));
 
-   cout << "debug: finished reading maze file\n";
+   char key = 0;
+   cout << "Press any key to solve the maze.";
+   cin >> key;
+
+   // new path with solution
+   // Vector<Vertex> pathSolve(g.size());
+
+//   drawMaze(g, g.findPath(vFrom, vTo));
    
-//    int mSize = daGraph.size();
-//    cout << "debug: solveMaze...graphSize - "
-//       << mSize << endl;
-//    for (int i = 0; i < mSize; i++)
-//    {
-//          cout << "debug: maze indexes - "
-//             << (daGraph.getMatrix(i) ? i : 9999)
-//             << " and index value - " << i << endl;
-//    }
-   //drawMaze(g, g.findPath(vFrom, vTo));
-
 }
 
 /************************************************
@@ -105,7 +102,6 @@ void drawMaze(const Graph & g, const Vector <Vertex> & path)
  ********************************************/
 Graph readMaze(const char * fileName)
 {
-      cout << "debug: starting readMaze\n";
    // attempt to open the file
    ifstream fin (fileName);
    if (fin.fail())
@@ -114,7 +110,6 @@ Graph readMaze(const char * fileName)
       return Graph(1);
    }
 
-   cout << "debug: file has been read successfully\n";
    // read the size from the beginning of the maze
    int numCol;
    int numRow;
@@ -122,8 +117,6 @@ Graph readMaze(const char * fileName)
    CVertex vFrom;
    CVertex vTo;
    vFrom.setMax(numCol, numRow);
-   cout << "debug: readMaze...getMax (graph size) - "
-      << vFrom.getMax() << endl;
 
    // now read all the items and put them into the Graph
    Graph g(vFrom.getMax());
@@ -159,10 +152,10 @@ void drawMazeRow(const Graph & g, int row, Set <CVertex> & s)
       vFrom.set(col, row);
       vTo.set(col - 1, row);
 
-      // seg fault here
+      // seg fault here in a.out
       space = (s.end() == s.find(vTo) ? "  " : "##");
 
-//      cout << "Debug: arrived in draw row for loop \n";
+//      cout << "Debug: passed seg in draw row for loop \n";
 
       
       // draw

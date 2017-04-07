@@ -113,7 +113,7 @@ Vector<Vertex> Graph::findPath(const Vertex &vFrom, const Vertex &vTo)
 // //   }
    
    
-//    path.push_back(vTo);
+    path.push_back(vTo);
 //    for(int i = 1; i < distance; i++)
 //    {
 // //      path.push_back(predecessor[path[i - 1]]);
