@@ -1,0 +1,272 @@
+
+week10.out:
+
+[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 1
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Map
+   > 	2. The above plus add a few entries
+   > 	3. The above plus display the contents of a Map
+   > 	4. The above plus retrieve entries from the Map
+   > 	a. Count word frequency
+   > 	b. Test tree balancing
+   > > [4m1
+[0m[0;90mCreate, destroy, and copy a Map
+[0m   > Create a bool-int Map using default constructor
+   > 	Size:     0
+   > 	Empty?    Yes
+   > Create a double-char Map dynamically allocated
+   > 	Size:     0
+   > 	Empty?    Yes
+   > Create a double-char Map using the copy constructor
+   > 	Size:     0
+   > 	Empty?    Yes
+   > Copy a double-char Map using the assignment operator
+   > 	Size:     0
+   > 	Empty?    Yes
+   > Test 1 complete
+[1;92m
+Test 1 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 2
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Map
+   > 	2. The above plus add a few entries
+   > 	3. The above plus display the contents of a Map
+   > 	4. The above plus retrieve entries from the Map
+   > 	a. Count word frequency
+   > 	b. Test tree balancing
+   > > [4m2
+[0m[0;90m
+[0m[0;90mA simple map that is empty
+[0m   > Create an integer-string Map
+   > 	Empty? yes
+   > 	Count: 0
+[0;90m
+[0m[0;90mFill the map with the [] operator. The tree is:
+[0m[0;90m               8
+[0m[0;90m          +----+----+
+[0m[0;90m          4         12
+[0m[0;90m       +--+--+   +--+--+
+[0m[0;90m       2     6   9     13
+[0m[0;90m     +-+   +-+   +-+
+[0m[0;90m     0     5       11
+[0m[0;90m
+[0m   > Fill with 10 values
+   > 	Empty? no
+   > 	Count: 10
+[0;90m
+[0m[0;90mNow the original should be clear but the copy should remain
+[0m   > Empty the contents
+   > 	Empty? yes
+   > 	Count: 0
+   > Test 2 complete
+[1;92m
+Test 2 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 3
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Map
+   > 	2. The above plus add a few entries
+   > 	3. The above plus display the contents of a Map
+   > 	4. The above plus retrieve entries from the Map
+   > 	a. Count word frequency
+   > 	b. Test tree balancing
+   > > [4m3
+[0m[0;90m
+[0m[0;90mThis is just a repeat of Test 2
+[0m   > Create an empty bool-bool Map
+   > 	Empty?    yes
+   > 	Count:    0
+   > 	Contents: {  }
+[0;90m
+[0m[0;90mTest filling the map with the [] operator.
+[0m[0;90mAlso test the forward iterator
+[0m   > Create a string-integer map that is filled with:  f c i b e g j a d h
+   > 	Empty?    no
+   > 	Count:    10
+   > 	Contents: {  1  2  3  4  5  6  7  8  9  10  }
+[0;90m
+[0m[0;90mTest to make sure the assignmetn operator and the clear() method works
+[0m   > Copy the map and destroy the original
+   > 	Empty?    no
+   > 	Count:    10
+   > 	Contents: {  1  2  3  4  5  6  7  8  9  10  }
+[0;90m
+[0m[0;90mFinally test the reverse iterator
+[0m   > The map displayed backwards
+   > 	{  10  9  8  7  6  5  4  3  2  1  }
+   > Test 3 complete
+[1;92m
+Test 3 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 4
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Map
+   > 	2. The above plus add a few entries
+   > 	3. The above plus display the contents of a Map
+   > 	4. The above plus retrieve entries from the Map
+   > 	a. Count word frequency
+   > 	b. Test tree balancing
+   > > [4m4
+[0m[0;90m
+[0m[0;90mTest building a map using the [] operator
+[0m   > Please enter a letter word pair. Enter ! for the letter when finished.
+   > 	> [4md Dog
+[0m   > 	> [4mc Cat
+[0m   > 	> [4mf Fish
+[0m   > 	> [4mb Bird
+[0m   > 	> [4mm Mouse
+[0m   > 	> [4m! !
+[0m[0;90m
+[0m[0;90mVerify that the map is build correctly. Note that since we are using the >
+[0m[0;90mto build the BST in the Map, and since we are iterating through the Map
+[0m[0;90musing in-order traversal, the tree will appear sorted
+[0m   > There are 5 items in the map
+   > The contents of the map are: {  Bird  Cat  Dog  Fish  Mouse  }
+[0;90m
+[0m[0;90mNext test that we can find items in the map
+[0m   > Please enter the letter to be found. Enter ! when finished.
+   > 	> [4mf
+[0m   > The letter 'f' corresponds to "Fish"
+   > 	> [4md
+[0m   > The letter 'd' corresponds to "Dog"
+   > 	> [4mb
+[0m   > The letter 'b' corresponds to "Bird"
+   > 	> [4mc
+[0m   > The letter 'c' corresponds to "Cat"
+   > 	> [4mm
+[0m   > The letter 'm' corresponds to "Mouse"
+   > 	> [4m!
+[0m   > Test 4 complete
+[1;92m
+Test 4 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 5
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Map
+   > 	2. The above plus add a few entries
+   > 	3. The above plus display the contents of a Map
+   > 	4. The above plus retrieve entries from the Map
+   > 	a. Count word frequency
+   > 	b. Test tree balancing
+   > > [4ma
+[0m[0;90m
+[0m[0;90mRead the text from the file and put it in a Map much like Test 2
+[0m   > What is the filename to be counted? [4m/home/cs235/week10/D_C_121.txt
+[0m[0;90m
+[0m[0;90mThere are 1345 words in this file, most of which have duplicates.
+[0m[0;90mThis means there should be a few hundred nodes. The depth of the tree
+[0m[0;90mshould be about 8. This means searching for a word should take, on average
+[0m[0;90m7 or 8 compares. That should be very fast.
+[0m   > What word whose frequency is to be found. Type ! when done
+   > > [4mNephi
+[0m   > 	Nephi : 0
+   > > [4mLord
+[0m   > 	Lord : 6
+   > > [4mChrist
+[0m   > 	Christ : 1
+   > > [4mI
+[0m   > 	I : 2
+   > > [4mthe
+[0m   > 	the : 79
+[0;90m
+[0m[0;90mThe next test is a shock! There is no "C++" in the D&C!!!
+[0m   > > [4mC++
+[0m   > 	C++ : 0
+   > > [4m!
+[0m[1;92m
+Test 5 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 6
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Map
+   > 	2. The above plus add a few entries
+   > 	3. The above plus display the contents of a Map
+   > 	4. The above plus retrieve entries from the Map
+   > 	a. Count word frequency
+   > 	b. Test tree balancing
+   > > [4mb
+[0m   > Create a simple Binary Search Tree
+[0;90m
+[0m[0;90mA black root
+[0m[0;90m                (60 b)
+[0m   > 	Pass Case 1
+[0;90m
+[0m[0;90mTwo red children
+[0m[0;90m                (60 b)
+[0m[0;90m             +----+----+
+[0m[0;90m          (50 r)     (70 r)
+[0m   > 	Pass Case 2
+[0;90m
+[0m[0;90mAdd a child which should cause 50 and 70 to turn black
+[0m[0;90m                (60 b)
+[0m[0;90m             +----+----+
+[0m[0;90m          (50 b)     (70 b)
+[0m[0;90m        +---+
+[0m[0;90m    (20 r)
+[0m   > 	Pass Case 3
+[0;90m
+[0m[0;90mAdd a child to 20 which should cause a right rotation on 50
+[0m[0;90m                (60 b)
+[0m[0;90m             +----+----+
+[0m[0;90m          (20 b)     (70 b)
+[0m[0;90m        +---+---+
+[0m[0;90m    (10 r)    (50 r)
+[0m   > 	Pass Case 4a
+[0;90m
+[0m[0;90mAdd 30 (Case 3 then 2) followed by 40 (Case 4b)  
+[0m[0;90m                (60 b)
+[0m[0;90m             +----+----+
+[0m[0;90m          (20 b)     (70 b)
+[0m[0;90m        +---+---+
+[0m[0;90m    (10 r)    (50 r)
+[0m[0;90m            +---+---+
+[0m[0;90m        (30 r)    (50 r)
+[0m   > 	Pass Case 4b
+[0;90m
+[0m[0;90mAdd 100 (Case 2) followed by 110 (Case 4c) rotate left 
+[0m[0;90m                 (60 b)
+[0m[0;90m           +--------+--------+
+[0m[0;90m         ...              (100 b)
+[0m[0;90m                       +-----+-----+
+[0m[0;90m                    (70 r)       (110 r)
+[0m   > 	Pass Case 4c
+[0;90m
+[0m[0;90mAdd 90 (Case 3 then 2) followed by 80 (Case 4d)
+[0m[0;90m                 (60 b)
+[0m[0;90m           +--------+--------+
+[0m[0;90m         ...              (100 r)
+[0m[0;90m                       +-----+-----+
+[0m[0;90m                    (80 b)       (110 b)
+[0m[0;90m                 +-----+-----+
+[0m[0;90m              (70 r)      (90 r)
+[0m   > 	Pass Case 4d
+   > Final tree: {  10  20  30  40  50  60  70  80  90  100  110  }
+   > Test Balance complete
+[1;92m
+Test 6 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[1;92m
+============================================================
+[0m[1;92mPassed all tests with no errors.
+[0m[1;92m============================================================
+
+[0m

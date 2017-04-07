@@ -1,0 +1,254 @@
+
+week05.out:
+
+[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 1
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Set.
+   > 	2. The above plus fill and iterate through the Set.
+   > 	3. The above plus find if an item is in the Set.
+   > 	4. The above plus union and intersection.
+   > 	5. Extra credit: test the const iterator.
+   > 	6. Extra credit: test the difference operator.
+   > 	a. Go Fish!
+   > > [4m1
+[0m[0;90mCreate, destory, and copy a Set
+[0m   > Create a bool Set using default constructor
+   > 	Size:     0
+   > 	Capacity: 0
+   > 	Empty?    Yes
+   > Create a double Set using the non-default constructor
+   > 	Size:     0
+   > 	Capacity: 10
+   > 	Empty?    Yes
+   > Create a double Set using the copy constructor
+   > 	Size:     0
+   > 	Capacity: 0
+   > 	Empty?    Yes
+   > Copy a double Set using the assignment operator
+   > 	Size:     0
+   > 	Capacity: 2
+   > 	Empty?    Yes
+   > Test 1 complete
+[1;92m
+Test 1 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 2
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Set.
+   > 	2. The above plus fill and iterate through the Set.
+   > 	3. The above plus find if an item is in the Set.
+   > 	4. The above plus union and intersection.
+   > 	5. Extra credit: test the const iterator.
+   > 	6. Extra credit: test the difference operator.
+   > 	a. Go Fish!
+   > > [4m2
+[0m   > Enter numbers, type 0 when done
+[0;90mAn empty list 
+[0m   > 	{ } > [4m4
+[0m[0;90mResize to capacity of one. Since 4's are duplicate, only the first is added
+[0m   > 	{ 4 } > [4m4
+[0m   > 	{ 4 } > [4m4
+[0m   > 	{ 4 } > [4m2
+[0m[0;90mResize to capacity of two
+[0m   > 	{ 2 4 } > [4m6
+[0m[0;90mResize to capacity of four where the last slot is empty
+[0m   > 	{ 2 4 6 } > [4m3
+[0m   > 	{ 2 3 4 6 } > [4m5
+[0m[0;90mResize to capacity of eight were the last three are empty
+[0m   > 	{ 2 3 4 5 6 } > [4m4
+[0m   > 	{ 2 3 4 5 6 } > [4m4
+[0m   > 	{ 2 3 4 5 6 } > [4m1
+[0m   > 	{ 1 2 3 4 5 6 } > [4m7
+[0m   > 	{ 1 2 3 4 5 6 7 } > [4m0
+[0m   > 	Size:     7
+   > 	Empty?    No
+   > 	Capacity: 8
+[0;90ms1 is emptied but s2 and s3 should be faithful copies of the original s1
+[0m   > 	s1 = { }
+   > 	s2 = { 1 2 3 4 5 6 7 }
+   > 	s3 = { 1 2 3 4 5 6 7 }
+   > Test 2 complete
+[1;92m
+Test 2 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 3
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Set.
+   > 	2. The above plus fill and iterate through the Set.
+   > 	3. The above plus find if an item is in the Set.
+   > 	4. The above plus union and intersection.
+   > 	5. Extra credit: test the const iterator.
+   > 	6. Extra credit: test the difference operator.
+   > 	a. Go Fish!
+   > > [4m3
+[0m   > Enter text, type "quit" when done
+[0;90m
+[0m[0;90mDisplay an empty set. The iterator should work with zero size
+[0m   > 	{ } > [4mbeta
+[0m[0;90m
+[0m[0;90mTest putting a single item in the set
+[0m   > 	{ beta } > [4malpha
+[0m[0;90m
+[0m[0;90mSince "alpha" comes before "beta", it should go in slot 0
+[0m   > 	{ alpha beta } > [4malpha
+[0m[0;90m
+[0m[0;90mSince "epsilon" comes last, we do not need to shift here
+[0m   > 	{ alpha beta } > [4mepsilon
+[0m[0;90m
+[0m[0;90m"delta" goes in the middle of the set
+[0m   > 	{ alpha beta epsilon } > [4mdelta
+[0m   > 	{ alpha beta delta epsilon } > [4mtheta
+[0m   > 	{ alpha beta delta epsilon theta } > [4mplatypus
+[0m   > 	{ alpha beta delta epsilon platypus theta } > [4mtheta
+[0m   > 	{ alpha beta delta epsilon platypus theta } > [4mupsilon
+[0m   > 	{ alpha beta delta epsilon platypus theta upsilon } > [4mcapybara
+[0m   > 	{ alpha beta capybara delta epsilon platypus theta upsilon } > [4mquit
+[0m   > Find items in the set and delete.
+   > Enter words to search for, type "quit" when done
+[0;90m
+[0m[0;90mFirst find and remove capybara - the largest member of the rodent family
+[0m   > 	{ alpha beta capybara delta epsilon platypus theta upsilon } > [4mcapybara
+[0m   > 	Found and removed!
+[0;90m
+[0m[0;90mThe second attempt to remove capybara will fail; it should be gone!
+[0m   > 	{ alpha beta delta epsilon platypus theta upsilon } > [4mcapybara
+[0m   > 	Not found
+[0;90m
+[0m[0;90mThere is no tapir, a relative of the elephant
+[0m   > 	{ alpha beta delta epsilon platypus theta upsilon } > [4mtapir
+[0m   > 	Not found
+[0;90m
+[0m[0;90mThe platypus, proof that God has a sense of humor!
+[0m   > 	{ alpha beta delta epsilon platypus theta upsilon } > [4mplatypus
+[0m   > 	Found and removed!
+[0;90mNothing but the Greek alphabet remains
+[0m   > 	{ alpha beta delta epsilon theta upsilon } > [4mquit
+[0m   > The remaining set after the items were removed
+   > 	{ alpha beta delta epsilon theta upsilon }
+   > The items in the set before the items were removed
+   > 	{ alpha beta capybara delta epsilon platypus theta upsilon }
+   > Test 3 complete
+[1;92m
+Test 3 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 4
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Set.
+   > 	2. The above plus fill and iterate through the Set.
+   > 	3. The above plus find if an item is in the Set.
+   > 	4. The above plus union and intersection.
+   > 	5. Extra credit: test the const iterator.
+   > 	6. Extra credit: test the difference operator.
+   > 	a. Go Fish!
+   > > [4m4
+[0m   > First set: enter numbers, type 0.0 when done
+   > 	> [4m2
+[0m   > 	> [4m4
+[0m   > 	> [4m6
+[0m   > 	> [4m8
+[0m   > 	> [4m0
+[0m   > Second set: enter numbers, type 0.0 when done
+   > 	> [4m3
+[0m   > 	> [4m4
+[0m   > 	> [4m5
+[0m   > 	> [4m6
+[0m   > 	> [4m7
+[0m   > 	> [4m0
+[0m   > s1 = { 2.0 4.0 6.0 8.0 }
+   > s2 = { 3.0 4.0 5.0 6.0 7.0 }
+   > s1 && s2 = { 4.0 6.0 }
+   > s1 || s2 = { 2.0 3.0 4.0 5.0 6.0 7.0 8.0 }
+   > Test 4 complete
+[1;92m
+Test 4 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 5
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Set.
+   > 	2. The above plus fill and iterate through the Set.
+   > 	3. The above plus find if an item is in the Set.
+   > 	4. The above plus union and intersection.
+   > 	5. Extra credit: test the const iterator.
+   > 	6. Extra credit: test the difference operator.
+   > 	a. Go Fish!
+   > > [4ma
+[0m   > We will play 5 rounds of Go Fish.  Guess the card in the hand
+   > round 1: [4mShark
+[0m   > 	You got a match!
+   > round 2: [4mShark
+[0m   > 	Go Fish!
+   > round 3: [4mGoldfish
+[0m   > 	Go Fish!
+   > round 4: [4mSalmon
+[0m   > 	Go Fish!
+   > round 5: [4mCod
+[0m   > 	You got a match!
+   > You have 2 matches!
+   > The remaining cards: AngleFish, Crab, Dolphin, SeaHorse
+[1;92m
+Test 5 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 6
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Set.
+   > 	2. The above plus fill and iterate through the Set.
+   > 	3. The above plus find if an item is in the Set.
+   > 	4. The above plus union and intersection.
+   > 	5. Extra credit: test the const iterator.
+   > 	6. Extra credit: test the difference operator.
+   > 	a. Go Fish!
+   > > [4m5
+[0m   > Display the contents using a const iterator
+   > 	2
+   > 	4
+   > 	6
+   > 	8
+   > Extra credit: const iterator completed
+[1;92m
+Test 6 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 7
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Set.
+   > 	2. The above plus fill and iterate through the Set.
+   > 	3. The above plus find if an item is in the Set.
+   > 	4. The above plus union and intersection.
+   > 	5. Extra credit: test the const iterator.
+   > 	6. Extra credit: test the difference operator.
+   > 	a. Go Fish!
+   > > [4m6
+[0m   > Please enter 10 characters: [4mabcdefghij
+[0m   > Please enter another 10 characters: [4maeiouaeiou
+[0m   > 	{ a b c d e f g h i j } - { a e i o u } = { b c d f g h j }
+   > 	{ a e i o u } - { a b c d e f g h i j } = { o u }
+   > Extra credit: difference completed
+[1;92m
+Test 7 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[1;92m
+============================================================
+[0m[1;92mPassed all tests with no errors.
+[0m[1;92m============================================================
+
+[0m

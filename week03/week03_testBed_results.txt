@@ -1,0 +1,338 @@
+
+a.out:
+
+[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 1
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Queue
+   > 	2. The above plus push, pop, and top
+   > 	3. The above plus test implementation of the circular Queue
+   > 	4. Exercise the error handling
+   > 	a. Selling Stock
+   > > [4m1
+[0m[0;90mCreate, destory, and copy a Queue
+[0m   > Create a bool Queue using default constructor
+   > 	Size:     0
+   > 	Capacity: 0
+   > 	Empty?    Yes
+   > Create a double Queue using the non-default constructor
+   > 	Size:     0
+   > 	Capacity: 10
+   > 	Empty?    Yes
+   > Create a double Queue using the copy constructor
+   > 	Size:     0
+   > 	Capacity: 10
+   > 	Empty?    Yes
+   > Copy a double Queue using the assignment operator
+   > 	Size:     0
+   > 	Capacity: 10
+   > 	Empty?    Yes
+   > Test 1 complete
+[1;92m
+Test 1 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 2
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Queue
+   > 	2. The above plus push, pop, and top
+   > 	3. The above plus test implementation of the circular Queue
+   > 	4. Exercise the error handling
+   > 	a. Selling Stock
+   > > [4m2
+[0m[0;90mCreate a Dollars Queue with the default constructor\n
+[0m   > Enter money amounts, type $0 when done
+[0;90mInitially an empty queue
+[0m   > 	{ } > [4m$1
+[0m[0;90mFirst resize should set the capacity to one
+[0m   > 	{ $1.00 } > [4m-2
+[0m[0;90mNow the capacity should be two
+[0m   > 	{ $1.00 $(2.00) } > [4m3.0
+[0m[0;90mDouble again to four
+[0m   > 	{ $1.00 $(2.00) $3.00 } > [4m(4.1)
+[0m   > 	{ $1.00 $(2.00) $3.00 $(4.10) } > [4m$(-5.21)
+[0m[0;90mDouble again to 8
+[0m   > 	{ $1.00 $(2.00) $3.00 $(4.10) $(5.21) } > [4m0
+[0m   > 	Size:     5
+   > 	Empty?    No
+   > 	Capacity: 8
+[0;90mWhen we clear q1, then q2 and q3 should keep their data
+[0m   > 	q1 = { }
+   > 	q2 = { $1.00 $(2.00) $3.00 $(4.10) $(5.21) }
+   > 	q3 = { $1.00 $(2.00) $3.00 $(4.10) $(5.21) }
+   > Test 2 complete
+[1;92m
+Test 2 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 3
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Queue
+   > 	2. The above plus push, pop, and top
+   > 	3. The above plus test implementation of the circular Queue
+   > 	4. Exercise the error handling
+   > 	a. Selling Stock
+   > > [4m3
+[0m   > Create a string Queue with the default constructor
+   > 	To add the word "dog", type +dog
+   > 	To pop the word off the queue, type -
+   > 	To display the state of the queue, type *
+   > 	To quit, type !
+[0;90mInitially the capacity should be 4 so no resizing is needed here
+[0m   > 	{ } > [4m+alfa
+[0m   > 	{ alfa } > [4m+bravo
+[0m   > 	{ alfa bravo } > [4m+charlie
+[0m   > 	{ alfa bravo charlie } > [4m+delta
+[0m   > 	{ alfa bravo charlie delta } > [4m*
+[0m   > Size:     4
+   > Empty?    No
+   > Capacity: 4
+[0;90mNext we will make room for two items on the front
+[0m   > 	{ alfa bravo charlie delta } > [4m-
+[0m   > 	{ bravo charlie delta } > [4m-
+[0m   > 	{ charlie delta } > [4m*
+[0m   > Size:     2
+   > Empty?    No
+   > Capacity: 4
+[0;90mThis tests the circular queue. We will add two items which will wrap around
+[0m   > 	{ charlie delta } > [4m+echo
+[0m   > 	{ charlie delta echo } > [4m+foxtrot
+[0m   > 	{ charlie delta echo foxtrot } > [4m*
+[0m[0;90mNow our capacity should be unchagned (there are only 3 items on the queue),
+[0m[0;90mbut we are wrapping around using the circular queue
+[0m   > Size:     4
+   > Empty?    No
+   > Capacity: 4
+[0;90mNext we will empty the queue
+[0m   > 	{ charlie delta echo foxtrot } > [4m-
+[0m   > 	{ delta echo foxtrot } > [4m-
+[0m   > 	{ echo foxtrot } > [4m-
+[0m   > 	{ foxtrot } > [4m-
+[0m   > 	{ } > [4m*
+[0m[0;90mThe capacity should remain at 4 even though the size is zero
+[0m   > Size:     0
+   > Empty?    Yes
+   > Capacity: 4
+[0;90mFrom here we will fill the queue with four items
+[0m   > 	{ } > [4m+hotel
+[0m   > 	{ hotel } > [4m+india
+[0m   > 	{ hotel india } > [4m+juliett
+[0m   > 	{ hotel india juliett } > [4m+kilo
+[0m   > 	{ hotel india juliett kilo } > [4m-
+[0m[0;90mNow we will get into the wrapped condition of the circular queue
+[0m   > 	{ india juliett kilo } > [4m+lima
+[0m   > 	{ india juliett kilo lima } > [4m*
+[0m   > Size:     4
+   > Empty?    No
+   > Capacity: 4
+[0;90mNow we will add a fifth item. This requires a resize. 
+[0m[0;90mOur resize code must know how to deal with a wrapping condition
+[0m   > 	{ india juliett kilo lima } > [4m+mike
+[0m   > 	{ india juliett kilo lima mike } > [4m*
+[0m   > Size:     5
+   > Empty?    No
+   > Capacity: 8
+   > 	{ india juliett kilo lima mike } > [4m-
+[0m   > 	{ juliett kilo lima mike } > [4m-
+[0m   > 	{ kilo lima mike } > [4m*
+[0m   > Size:     3
+   > Empty?    No
+   > Capacity: 8
+   > 	{ kilo lima mike } > [4m!
+[0m   > Test 3 complete
+[1;92m
+Test 3 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 4
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Queue
+   > 	2. The above plus push, pop, and top
+   > 	3. The above plus test implementation of the circular Queue
+   > 	4. Exercise the error handling
+   > 	a. Selling Stock
+   > > [4m4
+[0m[0;90m
+[0m[0;90mTest front() from an empty queue
+[0m   > 	Queue::front() error message correctly caught.
+   > 	"ERROR: attempting to access an item in an empty queue"
+[0;90m
+[0m[0;90mTest back() from an empty queue
+[0m   > 	Queue::back() error message correctly caught.
+   > 	"ERROR: attempting to access an item in an empty queue"
+[0;90m
+[0m[0;90mTest pop() from an empty queue
+[0m   > 	Queue::pop() error message correctly caught.
+   > 	"ERROR: attempting to pop from an empty queue"
+   > Test 4 complete
+[1;92m
+Test 4 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 5
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Queue
+   > 	2. The above plus push, pop, and top
+   > 	3. The above plus test implementation of the circular Queue
+   > 	4. Exercise the error handling
+   > 	a. Selling Stock
+   > > [4ma
+[0m   > This program will allow you to buy and sell stocks. The actions are:
+   >   buy 200 $1.57   - Buy 200 shares at $1.57
+   >   sell 150 $2.15  - Sell 150 shares at $2.15
+   >   display         - Display your current stock portfolio
+   >   quit            - Display a final report and quit the program
+[0;90m
+[0m[0;90mBuy two batches
+[0m   > > [4mbuy 100 $2.00
+[0m   > > [4mbuy 400 $3.00
+[0m   > > [4mdisplay
+[0m   > Currently held:
+   > 	Bought 100 shares at $2.00
+   > 	Bought 400 shares at $3.00
+   > Proceeds: $0.00
+[0;90m
+[0m[0;90mSell 150 which will require taking 100 from the first batch
+[0m[0;90mand 50 from the second
+[0m   > > [4msell 150 5.5
+[0m   > > [4mdisplay
+[0m   > Currently held:
+   > 	Bought 350 shares at $3.00
+   > Sell History:
+   > 	Sold 100 shares at $5.50 for a profit of $350.00
+   > 	Sold 50 shares at $5.50 for a profit of $125.00
+   > Proceeds: $475.00
+[0;90m
+[0m[0;90mNext we will sell 150 which should be completely within the remaining batch
+[0m   > > [4msell 150 $5.50
+[0m   > > [4mdisplay
+[0m   > Currently held:
+   > 	Bought 200 shares at $3.00
+   > Sell History:
+   > 	Sold 100 shares at $5.50 for a profit of $350.00
+   > 	Sold 50 shares at $5.50 for a profit of $125.00
+   > 	Sold 150 shares at $5.50 for a profit of $375.00
+   > Proceeds: $850.00
+[0;90m
+[0m[0;90mBuy two more batches
+[0m   > > [4mbuy 300 $1.50
+[0m   > > [4mbuy 120 $5.25
+[0m   > > [4mdisplay
+[0m   > Currently held:
+   > 	Bought 200 shares at $3.00
+   > 	Bought 300 shares at $1.50
+   > 	Bought 120 shares at $5.25
+   > Sell History:
+   > 	Sold 100 shares at $5.50 for a profit of $350.00
+   > 	Sold 50 shares at $5.50 for a profit of $125.00
+   > 	Sold 150 shares at $5.50 for a profit of $375.00
+   > Proceeds: $850.00
+   > > [4mquit
+[0m[1;92m
+Test 5 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 6
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Queue
+   > 	2. The above plus push, pop, and top
+   > 	3. The above plus test implementation of the circular Queue
+   > 	4. Exercise the error handling
+   > 	a. Selling Stock
+   > > [4ma
+[0m   > This program will allow you to buy and sell stocks. The actions are:
+   >   buy 200 $1.57   - Buy 200 shares at $1.57
+   >   sell 150 $2.15  - Sell 150 shares at $2.15
+   >   display         - Display your current stock portfolio
+   >   quit            - Display a final report and quit the program
+[0;90m
+[0m[0;90mBuy two batches for a total of 512 shares
+[0m   > > [4mbuy 256 2.56
+[0m   > > [4mbuy 256 3.44
+[0m[0;90m
+[0m[0;90mSell 400. That is 256 from first batch and 144 from the second.
+[0m[0;90mThis leaves us with 112 in the remaining batch
+[0m   > > [4msell 400 5.00
+[0m[0;90m
+[0m[0;90mBuy 145 more. Now we have 2 batches: 112 in the first and 145 in the last
+[0m   > > [4mbuy 145 5.10
+[0m[0;90m
+[0m[0;90mSell 125. This will clear out the first batch and require an additional
+[0m[0;90m13 more from the last. It will then leave 132 in the last.
+[0m   > > [4msell 125 8.00
+[0m   > > [4mdisplay
+[0m   > Currently held:
+   > 	Bought 132 shares at $5.10
+   > Sell History:
+   > 	Sold 256 shares at $5.00 for a profit of $624.64
+   > 	Sold 144 shares at $5.00 for a profit of $224.64
+   > 	Sold 112 shares at $8.00 for a profit of $510.72
+   > 	Sold 13 shares at $8.00 for a profit of $37.70
+   > Proceeds: $1397.70
+   > > [4mquit
+[0m[1;92m
+Test 6 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[0;90m------------------------------------------------------------
+[0m[0;90mStarting Test 7
+
+[0m   > Select the test you want to run:
+   > 	1. Just create and destroy a Queue
+   > 	2. The above plus push, pop, and top
+   > 	3. The above plus test implementation of the circular Queue
+   > 	4. Exercise the error handling
+   > 	a. Selling Stock
+   > > [4ma
+[0m   > This program will allow you to buy and sell stocks. The actions are:
+   >   buy 200 $1.57   - Buy 200 shares at $1.57
+   >   sell 150 $2.15  - Sell 150 shares at $2.15
+   >   display         - Display your current stock portfolio
+   >   quit            - Display a final report and quit the program
+[0;90m
+[0m[0;90mWe will buy 200 and sell 150 over three instances. This leave us with 50
+[0m   > > [4mbuy 200 $1.00
+[0m   > > [4msell 50 $1.50
+[0m   > > [4msell 50 $1.75
+[0m   > > [4msell 50 $2.00
+[0m[0;90m
+[0m[0;90mAfter this, we will have 2 batchs: 50 in the first and 100 in the second
+[0m   > > [4mbuy 100 $4.00
+[0m[0;90m
+[0m[0;90mThe first will now be gone leaving us only with the second
+[0m   > > [4msell 50 $4.10
+[0m[0;90m
+[0m[0;90mNow the last batch will be sold off
+[0m   > > [4msell 50 $1.00
+[0m   > > [4msell 50 4.01
+[0m   > > [4mdisplay
+[0m   > Sell History:
+   > 	Sold 50 shares at $1.50 for a profit of $25.00
+   > 	Sold 50 shares at $1.75 for a profit of $37.50
+   > 	Sold 50 shares at $2.00 for a profit of $50.00
+   > 	Sold 50 shares at $4.10 for a profit of $155.00
+   > 	Sold 50 shares at $1.00 for a profit of $(150.00)
+   > 	Sold 50 shares at $4.01 for a profit of $0.50
+   > Proceeds: $118.00
+   > > [4mquit
+[0m[1;92m
+Test 7 passed.
+[0m[0;90m------------------------------------------------------------
+
+[0m[1;92m
+============================================================
+[0m[1;92mPassed all tests with no errors.
+[0m[1;92m============================================================
+
+[0m
